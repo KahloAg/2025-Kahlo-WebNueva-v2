@@ -53,16 +53,20 @@ $cardsImages = [
             pointer-events: none;
         }
 
-        .trail-piece {
-            position: fixed;
-            width: 250px;
-            height: 250px;
-            background-size: cover;
-            background-position: center;
-            opacity: 1;
-            pointer-events: none;
-            transform: translate(-50%, -50%) scale(1);
-        }
+       .trail-piece {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -50%) scale(1);
+        width: auto;
+        height: auto;
+        max-width: 260px;
+        max-height: 260px;
+        object-fit: contain;
+        opacity: 1;
+        pointer-events: none;
+        will-change: transform, opacity;
+    }
 
         .trail-piece.animate {
             animation: fadeScale 3s forwards;
@@ -1504,21 +1508,35 @@ tl.to(".section-logos .before-title:last-of-type", {
             return `img/${index}.jpg`;
         }
 
-        function createTrailPieceForCard(x, y, category) {
-            const piece = document.createElement('div');
-            piece.className = 'trail-piece';
-            piece.style.left = x + 'px';
-            piece.style.top = y + 'px';
-            const imgUrl = pickImageForCategory(category);
-            piece.style.backgroundImage = `url('${imgUrl}')`;
-            wrapper.appendChild(piece);
-            requestAnimationFrame(() => {
-                piece.classList.add('animate');
-            });
-            piece.addEventListener('animationend', () => {
-                wrapper.removeChild(piece);
-            });
-        }
+function createTrailPieceForCard(x, y, category) {
+    const url = pickImageForCategory(category);
+    const piece = new Image();
+    piece.className = 'trail-piece';
+    piece.style.left = x + 'px';
+    piece.style.top = y + 'px';
+    piece.src = url;
+    piece.decoding = 'async';
+    piece.loading = 'eager';
+
+    wrapper.appendChild(piece);
+
+    piece.addEventListener('load', () => {
+        const maxW = 260;
+        const maxH = 260;
+        const w = piece.naturalWidth || maxW;
+        const h = piece.naturalHeight || maxH;
+        const ratio = Math.min(maxW / w, maxH / h, 1);
+
+        piece.style.width = (w * ratio) + 'px';
+        piece.style.height = (h * ratio) + 'px';
+
+        piece.classList.add('animate');
+    });
+
+    piece.addEventListener('animationend', () => {
+        piece.remove();
+    });
+}
     </script>
 
     <script>
