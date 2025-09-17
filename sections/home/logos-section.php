@@ -27,10 +27,10 @@
             <div class="d-flex align-items-center justify-content-center">
                 <img src="img/mercado-libre.png">
                 <div class="score ms-3">
-                    <h4 class="mb-0">4.5</h4>
+                    <h4 class="mb-0">4.0</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
                         class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
-                        class="fa-regular fa-star-half-stroke"></i>
+                        class="fa-regular fa-star"></i>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="d-flex align-items-center justify-content-center">
                 <img src="img/mercado-libre.png">
                 <div class="score ms-3">
-                    <h4 class="mb-0">4.5</h4>
+                    <h4 class="mb-0">4.3</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
                         class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
                         class="fa-regular fa-star-half-stroke"></i>
@@ -49,7 +49,7 @@
             <div class="d-flex align-items-center justify-content-center">
                 <img src="img/mercado-libre.png">
                 <div class="score ms-3">
-                    <h4 class="mb-0">4.5</h4>
+                    <h4 class="mb-0">4.8</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
                         class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
                         class="fa-regular fa-star-half-stroke"></i>
@@ -60,10 +60,10 @@
             <div class="d-flex align-items-center justify-content-center">
                 <img src="img/mercado-libre.png">
                 <div class="score ms-3">
-                    <h4 class="mb-0">4.5</h4>
+                    <h4 class="mb-0">5.0</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
                         class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
-                        class="fa-regular fa-star-half-stroke"></i>
+                        class="fa-solid fa-star"></i>
                 </div>
             </div>
         </div>

@@ -27,10 +27,10 @@
 
                     <div class="col-12 col-sm-6 col-lg-3 text-end">
                         <p class="mb-4">BUENOS AIRES <br>
-                            Aguirre 540 2ºB <br> 1425 Buenos Aires <br> ARGENTINA</p>
+                            Aguirre 540 2ºB <br>ARGENTINA</p>
 
                         <p class="mb-0">MADRID<br>
-                            Calle Campo Real, 9, <br>28039 Madrid<br>ESPAÑA</p>
+                            Calle Campo Real, 9<br>ESPAÑA</p>
                     </div>
                 </div>
                 <div class="col-12 mt-5">
