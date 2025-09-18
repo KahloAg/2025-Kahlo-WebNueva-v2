@@ -15621,11 +15621,6 @@ xclip
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .header-area.header-one .header-wrapper .header-right .nav-area {
-    display: none;
-  }
-}
 
 .header-area.header-one .header-wrapper .header-right .nav-area ul {
   padding: 0;
@@ -22609,6 +22604,17 @@ figure {
   font-size: 31px;
   line-height: 41px;
 }
+
+a.underline:hover {text-decoration: underline;}
+.mb-works {margin-bottom: 7.5% !important;}
+.txt-trabajo-sub p
+ {
+     font-size: 2.6rem;
+    line-height: 3.5rem;
+    margin-bottom: 25px;
+}
+
+.txt-next {font-size: 40px; line-height: 43px;}
 
 .text-black {
   color: #000000
@@ -32519,13 +32525,67 @@ body.servi-ce-details .rts-footer-two-area {
   height: 30px;
 }
 
+/* Botón hamburguesa */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 18px;
+  cursor: pointer;
+}
+.menu-toggle span {
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: flex;
+  }
+  .header-right {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: black;
+    overflow: hidden;
+    max-height: 0;              /* oculto por defecto */
+    transition: max-height 0.4s ease-in-out;
+  }
+  .header-right.open {
+    max-height: 400px;          /* altura suficiente para mostrar menú */
+  }
+  .navbar-nav-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+  }
+  .navbar-nav-1 li {
+    margin: 10px 0;
+  }
+}
 /*# sourceMappingURL=../maps/style.css.map */
 
 @media (max-width: 1200px) {
+  .txt-next {
+    font-size: 37px;
+}
   .section-logos h3 {
     font-size: 70px;
     line-height: 77px;
   }
+  .txt-trabajo-sub p {
+    font-size: 2.3rem;
+    line-height: 3.4rem;
+}
+h1 {
+        font-size: 76px;
+        line-height: 80px;
+    }
 
   .before-title {
     font-size: 22px;
@@ -32546,6 +32606,11 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 992px) {
+      .txt-trabajo-sub p
+    {
+        font-size: 2rem;
+        line-height: 3.2rem;
+    }
   .section-logos h3 {
     font-size: 56px;
     line-height: 65px;

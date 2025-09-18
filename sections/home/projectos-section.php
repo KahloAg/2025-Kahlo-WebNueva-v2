@@ -329,7 +329,7 @@
                 </div>
 
 
-                <!--  <a href="#" class="learn-more-btn text-center">Ver todos <i class="fa-solid fa-arrow-up-right"></i></a> -->
+                <!--  <a href="#" class="learn-more-btn text-center">Ver todos <i class="fa-solid fa-arrow-up-right"></i></a> 
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                 <div class="single-case-main-wrapper">
@@ -644,7 +644,6 @@
                 </div>
 
 
-
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                  <div class="single-case-main-wrapper">
                         <a href="#" class="pli-image-link">
@@ -661,8 +660,7 @@
 
                     </div>
                 </div>  
-                
-                
+                           
 
                  <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     
@@ -682,6 +680,8 @@
                     </div>
 
                 </div>
+
+-->
 
                 
 
