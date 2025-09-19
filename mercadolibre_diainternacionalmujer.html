@@ -30,25 +30,25 @@
 <body class="index-six">
 
     <!-- header area start -->
-    <header class="header-area header-one position-absolute start-0 py-4">
+    <!-- ====== HEADER ====== -->
+    <header class="header-area header-one py-4">
         <div class="container">
             <div class="header-wrapper">
-                <a href="index.html" class="logo">
+                <a href="index.php" class="logo">
                     <img src="img/logo-white.svg" alt="logo">
                 </a>
-                <div class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div class="header-right" id="navMenu">
+
+                <!-- Menú Desktop -->
+                <div class="header-right desktop-menu">
                     <nav class="nav-area">
                         <ul class="navbar-nav-1">
                             <li class="menu-item main-nav-on">
-                                <a class="menu-link" href="#"><span class="rolling-text">Trabajos</span></a>
+                                <a class="menu-link" href="index.php#trabajos"><span
+                                        class="rolling-text">Trabajos</span></a>
                             </li>
                             <li class="menu-item main-nav-on">
-                                <a class="menu-link" href="#"><span class="rolling-text">Clientes</span></a>
+                                <a class="menu-link" href="index.php#clientes"><span
+                                        class="rolling-text">Clientes</span></a>
                             </li>
                             <li class="menu-item main-nav-on">
                                 <a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..."
@@ -61,40 +61,58 @@
                             </li>
                             <li class="menu-item main-nav-on">
                                 <a class="menu-link" href="https://www.linkedin.com/company/kahlo-agencia/"
-                                    target="_blank">
-                                    <img src="img/in.svg" height="25">
-                                </a>
+                                    target="_blank"><img src="img/in.svg" height="25"></a>
                             </li>
                         </ul>
                     </nav>
+                </div>
+
+                <!-- Botón hamburguesa (solo mobile) -->
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- ====== MOBILE FULLSCREEN NAV ====== -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="#">Trabajos</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..."
+                    target="_blank">Contactanos</a></li>
+            <li><a href="https://www.instagram.com/kahloagencia/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank">LinkedIn</a></li>
+        </ul>
+    </div>
+
 
     <main>
         <section class="d-flex align-items-center min-hv">
-            <div class="container">
-                <div class="row align-items-end">
+            <div class="container mt-83">
+                <div class="row">
                     <div class="col-lg-8 col-xl-8">
                         <div class="d-flex align-items-center justify-content-between col-xl-8">
                             <img src="img/mercado-libre.png" class="logo-interna">
                             <p class="text-white font13">PÚBLICO EXTERNO</p>
                         </div>
-                        <h1 class="mt-6">Mercado Libre <br>
+                        <h1 class="mt-6 mb-0">Mercado Libre <br>
                             Día Internacional de la Mujer</h1>
                     </div>
-                    <div class="col-lg-3 offset-lg-1">
+                    <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
 
                         <p class="text-white text-uppercase font13">Campaña 360 estilo documental testimonial con
                             motivo del Día Internacional de la Mujer</p>
                     </div>
+                    
                 </div>
             </div>
         </section>
 
-        <section class="spacer">
+        <section>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 embed-container">
@@ -107,7 +125,7 @@
             </div>
         </section>
 
-        <section class="spacer d-flex align-items-center mb-5 mb-md-0">
+        <section class="spacer d-flex align-items-center my-50">
             <div class="container">
                 <div class="row">
                     <div class="col-12 txt-trabajo-sub">
@@ -120,7 +138,7 @@
                             historias de las colaboradoras, con el propósito de inspirar, motivar y transmitir la
                             autenticidad de sus experiencias.</p>
 
-                        <p class="text-white">Asumimos un desafío ambicioso. Con jornadas de rodaje en tres países
+                        <p class="text-white mb-0">Asumimos un desafío ambicioso. Con jornadas de rodaje en tres países
                             distintos y más de 50 horas de entrevistas, superamos nuestros propios límites y logramos
                             presentar una narrativa poderosa y transformadora que evidencia el compromiso de MELI con la
                             creación de un ambiente más diverso, equitativo e inclusivo, valores que funcionan como
@@ -133,15 +151,15 @@
 
 
 
-        <section class="spacer bg-white position-relative" style="z-index: 2;">
-            <div class="container vh-100">
-                <div class="row justify-content-between align-items-center h-100">
-                    <div class="col-lg-5 col-md-6 col-sm-6 col-12">
+        <section class="spacer bg-white d-flex align-items-center position-relative" style="z-index: 2;">
+            <div class="container h-100 py-5">
+                <div class="row justify-content-sm-between justify-content-center align-items-center h-100">
+                    <div class="col-md-5 col-sm-6 col-11">
                         <div class="single-case-main-wrapper">
                             <a href="#" class="pli-image-link">
                                 <div class="pli-image-holder">
                                     <figure class="pli-image">
-                                        <video class="w-100 image-blur-target" autoplay loop muted
+                                        <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback
                                             src="img/personalpay.mp4" data-src="img/personalpay.mp4"
                                             alt="image"></video>
                                     </figure>
@@ -152,20 +170,21 @@
                             </a>
 
                         </div>
-                        <div class="d-flex flex-column col-xl-8 col-lg-10 text-end">
+                        <div class="d-flex flex-column text-start">
                             <p class="txt-next mb-4 text-black"><a class="underline" href="#"><img
-                                        src="img/arrow-right-black.svg" class="me-4" style="height: 25px;">VER ANTERIOR
+                                        src="img/arrow-left-black.svg" class="me-4" style="height: 25px;">VER
+                                    ANTERIOR<br>
                                     PROYECTO</a></p>
                             <p class="fs-3 text-black mb-0">Personal Pay - Audiologo</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-5 col-md-6 col-sm-6 col-12">
+                    <div class="col-md-5 col-sm-6 col-11 mt-5 mt-sm-0">
                         <div class="single-case-main-wrapper">
                             <a href="#" class="pli-image-link">
                                 <div class="pli-image-holder">
                                     <figure class="pli-image">
-                                        <video class="w-100 image-blur-target" autoplay loop muted src="img/liliana.mp4"
+                                        <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback src="img/liliana.mp4"
                                             data-src="img/liliana.mp4" alt="image"></video>
                                     </figure>
                                     <div class="logo-overlay">
@@ -175,9 +194,10 @@
                             </a>
 
                         </div>
-                        <div class="d-flex flex-column col-xl-8 col-lg-10 ms-auto">
+                        <div class="d-flex flex-column text-md-end">
                             <p class="txt-next mb-4 text-black"><a href="#" class="underline"><img
-                                        src="img/arrow-right-black.svg" class="me-4" style="height: 25px;">VER SIGUIENTE
+                                        src="img/arrow-right-black.svg" class="me-4" style="height: 25px;">VER
+                                    SIGUIENTE<br>
                                     PROYECTO</a></p>
                             <p class="fs-3 text-black mb-0">Liliana - Seguí tu receta</p>
                         </div>
@@ -187,6 +207,8 @@
                 </div>
             </div>
         </section>
+          <div id="footer-spacer" aria-hidden="true"></div>
+
     </main>
 
 
@@ -194,44 +216,46 @@
         <div class="footer-container">
             <div class="container py-5">
                 <div class="row align-items-end gx-5">
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <p class="mb-0 border-bottom pb-4"><a
+                    <div class="col-12 col-sm-4 col-md-3 mb-5 mb-sm-0" >
+                        <p class="mb-0 border-bottom pb-4 fade-item"><a
                                 href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..."
                                 target="_blank" class="d-flex align-items-center justify-content-between">CONTACTANOS
                                 <img src="img/arrow-right.svg" style="height: 25px;"></a></p>
                     </div>
 
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <p class="mb-3"><a target="_blank"
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <p class="mb-3 fade-item"><a target="_blank"
                                 href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..."
                                 class="d-flex align-items-center"><span>WHATSAPP</span> <img src="img/arrow-right.svg"
                                     style="height: 25px;"></a></p>
-                        <p class="mb-3"><a href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank"
+                        <p class="mb-3 fade-item"><a href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank"
                                 class="d-flex align-items-center"><span>LINKEDIN</span> <img src="img/arrow-right.svg"
                                     style="height: 25px;"></a></p>
-                        <p class="mb-0"><a href="https://www.instagram.com/kahloagencia" target="_blank"
+                        <p class="mb-0 fade-item"><a href="https://www.instagram.com/kahloagencia" target="_blank"
                                 class="d-flex align-items-center"><span>INSTAGRAM</span> <img src="img/arrow-right.svg"
                                     style="height: 25px;"></a></p>
                     </div>
 
-                    <div class="col-12 col-sm-6 col-lg-3">
-                        <p class="mb-3"><a href="#" class="d-flex align-items-center"><span>TRABAJOS</span> <img
+                    <div class="col-6 col-sm-4 col-md-3">
+                        <p class="mb-3 fade-item ps-3 ps-sm-0"><a href="index.php#trabajos" class="d-flex align-items-center"><span>TRABAJOS</span> <img
                                     src="img/arrow-right.svg" style="height: 25px;"></a></p>
-                        <p class="mb-0"><a href="#" class="d-flex align-items-center"><span>CLIENTES</span> <img
+                        <p class="mb-0 fade-item ps-3 ps-sm-0"><a href="index.php#clientes" class="d-flex align-items-center"><span>CLIENTES</span> <img
                                     src="img/arrow-right.svg" style="height: 25px;"></a></p>
                     </div>
 
 
-                    <div class="col-12 col-sm-6 col-lg-3 text-end">
-                        <p class="mb-4">BUENOS AIRES <br>
-                            Aguirre 540 2ºB <br> 1425 Buenos Aires <br> ARGENTINA</p>
+                    <div class="col-12 col-md-3 text-md-end mt-5 mt-md-0 d-flex-mob justify-content-between">
+                        <p class="mb-4 d-flex-mob align-items-start fade-item">BUENOS AIRES <br>
+                            Aguirre 540 2ºB <br> ARGENTINA</p>
 
-                        <p class="mb-0">MADRID<br>
-                            Calle Campo Real, 9, <br>28039 Madrid<br>ESPAÑA</p>
+                        <p class="mb-0 d-flex-mob align-items-start fade-item">MADRID<br>
+                            Calle Campo Real, 9 <br>ESPAÑA</p>
                     </div>
+
+                    
                 </div>
                 <div class="col-12 mt-5">
-                    <img src="img/logo-footer.svg" class="img-fluid">
+                    <img src="img/logo-footer.svg" class="img-fluid fade-item">
                 </div>
             </div>
         </div>
@@ -277,48 +301,80 @@
     <!-- custom javascripts -->
     <script defer src="js/main.js"></script>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+   <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileLinks = mobileNav.querySelectorAll("a");
+    const header = document.querySelector("header");
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const mainElement = document.querySelector("main");
-            const footerElement = document.querySelector("footer");
+    // Abrir/cerrar con hamburguesa
+    menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        mobileNav.classList.toggle("open");
+    });
 
-            // Altura del footer
-            let footerHeight = footerElement.offsetHeight;
-
-            // Altura de la última sección del main
-            const lastSection = mainElement.querySelector("section:last-of-type");
-            let lastSectionBottom = lastSection.getBoundingClientRect().bottom;
-            let viewportHeight = window.innerHeight;
-
-            // Ajuste dinámico: cuánto se "ve" la última sección desde el viewport
-            let adjustment = Math.max(0, viewportHeight - lastSectionBottom);
-
-            gsap.to(mainElement, {
-                y: -(footerHeight + adjustment),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: mainElement,
-                    start: "bottom bottom",
-                    end: "bottom top",
-                    scrub: true,
-                }
-            });
-
-            document.body.style.overflowX = 'hidden';
+    // Cerrar al hacer click en un link del menú
+    mobileLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            menuToggle.classList.remove("active");
+            mobileNav.classList.remove("open");
         });
-    </script>
+    });
 
-    <script>
-        const menuToggle = document.getElementById("menuToggle");
-        const navMenu = document.getElementById("navMenu");
+    // Solo aplicar efecto scroll en mobile
+    const mediaQuery = window.matchMedia("(max-width: 992px)");
 
-        menuToggle.addEventListener("click", () => {
-            navMenu.classList.toggle("open");
+    function handleScroll() {
+        if (mediaQuery.matches) {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        } else {
+            header.classList.remove("scrolled"); // reset en desktop
+        }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll(); // ejecutar al cargar
+
+
+    // --- Ajustar altura footer dinámicamente ---
+    function ajustarAlturaFooter() {
+    const footer = document.querySelector("footer.footer");
+    const main = document.querySelector("main");
+    if (footer && main) {
+      const footerHeight = footer.offsetHeight;
+      main.style.marginBottom = footerHeight + "px";
+    }
+  }
+
+  window.addEventListener("load", ajustarAlturaFooter);
+  window.addEventListener("resize", ajustarAlturaFooter);
+
+  // --- Fade reveal con IntersectionObserver ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll("footer .fade-item");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
         });
-    </script>
+      },
+      {
+        root: null,
+        threshold: 0.1, // empieza a mostrar cuando un 10% del item entra
+      }
+    );
 
+    items.forEach((item) => observer.observe(item));
+  });
+</script>
 
 
 </body>

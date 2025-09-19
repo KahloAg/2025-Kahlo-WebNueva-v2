@@ -56,30 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tl.to(".animated-element", { opacity: 1, y: 0, duration: 0.6, stagger: 0.3 }, 1.8);
 });
 
-gsap.registerPlugin(ScrollTrigger);
 
-document.addEventListener("DOMContentLoaded", function () {
-    const mainElement = document.querySelector("main");
-    const footerElement = document.querySelector("footer");
-    let footerHeight = footerElement.offsetHeight;
-    const lastSection = mainElement.querySelector("section:last-of-type");
-    let lastSectionBottom = lastSection.getBoundingClientRect().bottom;
-    let viewportHeight = window.innerHeight;
-    let adjustment = Math.max(0, viewportHeight - lastSectionBottom);
-
-    gsap.to(mainElement, {
-        y: -(footerHeight + adjustment),
-        ease: "none",
-        scrollTrigger: {
-            trigger: mainElement,
-            start: "bottom bottom",
-            end: "bottom top",
-            scrub: true
-        }
-    });
-
-    document.body.style.overflowX = 'hidden';
-});
 
 const wrapper = document.querySelector('.trail-wrapper');
 const cards = document.querySelectorAll('.card-servicios');

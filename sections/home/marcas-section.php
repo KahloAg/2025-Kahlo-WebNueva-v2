@@ -1,4 +1,4 @@
-   <div id="main" style="position: relative; z-index:99">
+   <div id="main" style="position: relative; z-index:9">
     <div class="vh-100 d-flex justify-content-center flex-column position-relative bg-white logos-slide">
         <section class="container1" style="overflow: hidden">
             <div class="list-clients" id="slide1" name="slide_type_1" onmouseover="myToggleFunction(1)"

@@ -22,7 +22,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay loop muted src="img/mercadolibre.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/mercadolibre.mp4"
                                         data-src="img/mercadolibre.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -39,7 +39,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback 
                                         src="img/santander-8m.mp4" data-src="img/santander-8m.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -57,7 +57,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/liliana.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/liliana.mp4"
                                         data-src="img/liliana.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -73,7 +73,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/adecco.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/adecco.mp4"
                                         data-src="img/adecco.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -108,7 +108,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/naranja-marcaempleadora.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/naranja-marcaempleadora.mp4"
                                         data-src="img/naranja-marcaempleadora.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -141,7 +141,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/renault.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/renault.mp4"
                                         data-src="img/renault.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -159,7 +159,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/personalpay.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/personalpay.mp4"
                                         data-src="img/personalpay.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -195,7 +195,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/santander-diversidad.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/santander-diversidad.mp4"
                                         data-src="img/santander-diversidad.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -228,7 +228,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback 
                                         src="img/naranjax-ebook.mp4" data-src="img/naranjax-ebook.mp4"
                                         alt="image"></video>
                                 </figure>
@@ -282,7 +282,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/style-store.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/style-store.mp4"
                                         data-src="img/style-store.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -407,7 +407,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/nerdearla.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/nerdearla.mp4"
                                         data-src="img/nerdearla.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -442,7 +442,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay muted loop src="img/fuera-de-serie.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/fuera-de-serie.mp4"
                                         data-src="img/fuera-de-serie.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
@@ -649,7 +649,7 @@
                         <a href="#" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
-                                    <video class="w-100 image-blur-target" autoplay loop muted src="img/naranjax.mp4"
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/naranjax.mp4"
                                         data-src="img/naranjax.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">

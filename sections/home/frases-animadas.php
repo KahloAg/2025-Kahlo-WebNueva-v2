@@ -3,7 +3,7 @@
         class="team-area-start-elements rts-team__area rts-section-gap rts-banner-area-7 rts-scroll-down-circle-wrapper-3 next-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-11">
+                <div class="col-sm-11">
                     <!--  <div class="top-center-image rts-scroll-down-circle-wrapper-5">
                         <a href="" class="speen-shape scroll-down-circle-5">
                             <img src="img/1.png" style="height: 80px;">
