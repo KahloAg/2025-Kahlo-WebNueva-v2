@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'sharp_groteskbook';
+  src: url('../fonts/sharpgrotesk-book20-webfont.woff2') format('woff2'),
+    url('../fonts/sharpgrotesk-book20-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+@font-face {
+  font-family: 'sharp_groteskmedium';
+  src: url('../fonts/sharpgrotesk-medium20-webfont.woff2') format('woff2'),
+    url('../fonts/sharpgrotesk-medium20-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 :root {
   --color-primary: #141414;
   --color-secondary: #1F1F25;
@@ -184,9 +203,9 @@ figure.pli-image {
 
 .score h4 {
   color: #FFFFFF;
-  font-size: 50px;
-  line-height: 40px;
-  font-weight: 800;
+  font-size: 44px;
+  line-height: 44px;
+  font-weight: normal;
   z-index: 2;
 }
 
@@ -220,8 +239,8 @@ figure.pli-image {
 }
 
 .before-title {
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 23px;
+  font-weight: normal;
   color: #929292;
 }
 
@@ -230,10 +249,10 @@ figure.pli-image {
 }
 
 .section-logos h3 {
-  font-size: 85px;
-  line-height: 90px;
+  font-size: 73px;
+  line-height: 81px;
   color: black;
-  font-weight: 600;
+  font-weight: normal;
   opacity: 0;
 }
 
@@ -375,8 +394,8 @@ footer a:hover img {
 
 
 .card-servicios h2 {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 23px;
+  font-weight: normal;
   color: #000000;
   line-height: 30px;
 }
@@ -401,9 +420,10 @@ footer a:hover img {
 
 
 h2.card-title-alt {
-  font-weight: 400;
+  font-weight: normal;
   font-size: 19px;
   line-height: 25px;
+  font-family: 'sharp_groteskbook';
 }
 
 .card-servicios p {
@@ -491,7 +511,7 @@ body {
   line-height: var(--line-height-b1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'sharp_groteskbook';
   color: var(--color-body);
   font-weight: var(--p-regular);
   position: relative;
@@ -566,7 +586,7 @@ h6,
 .h5,
 .h6 {
   word-break: break-word;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'sharp_groteskmedium';
   line-height: 1.4074;
   color: var(--color-heading-1);
 }
@@ -15640,8 +15660,9 @@ xclip
 }
 
 .header-area.header-one .header-wrapper .header-right .nav-area ul li>a {
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: normal;
+  font-family: 'sharp_groteskmedium';
+  font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
   letter-spacing: 0em;
@@ -22619,8 +22640,8 @@ a.underline:hover {
 }
 
 .txt-trabajo-sub p {
-  font-size: 2.6rem;
-  line-height: 3.5rem;
+  font-size: 2.5rem;
+  line-height: 3.7rem;
   margin-bottom: 25px;
 }
 
@@ -22634,9 +22655,10 @@ a.underline:hover {
 }
 
 h1 {
-  font-size: 90px;
-  font-weight: 500;
+  font-size: 82px;
+  font-family: 'sharp_groteskmedium';
   line-height: 92px;
+  font-weight: normal;
 }
 
 .border-animation {
@@ -29372,26 +29394,27 @@ section.svg-container:nth-last-of-type(0) svg.radial-progress {
   -webkit-text-fill-color: transparent;
   font-size: 140px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   line-height: normal;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1599px) {
   .team-title-4 .title {
-    font-size: 98px;
-    line-height: 120px;
+    font-size: 70px;
+    line-height: 94px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .team-title-4 .title {
-    font-size: 70px;
+    font-size: 75px; line-height: 98px;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .team-title-4 .title {
-    font-size: 36px;
+    font-size: 59px;
+        line-height: 80px;
   }
 }
 
@@ -32562,6 +32585,10 @@ body.servi-ce-details .rts-footer-two-area {
   margin-top: 83px;
 }
 
+.lh-21 {
+  line-height: 21px;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .menu-toggle {
@@ -32605,7 +32632,7 @@ body.servi-ce-details .rts-footer-two-area {
 
 @media (max-width: 1200px) {
   .txt-next {
-    font-size: 37px;
+    font-size: 34px;
   }
 
   .section-logos h3 {
@@ -32614,13 +32641,13 @@ body.servi-ce-details .rts-footer-two-area {
   }
 
   .txt-trabajo-sub p {
-    font-size: 2.3rem;
-    line-height: 3.4rem;
+    font-size: 2.1rem;
+    line-height: 3.6rem;
   }
 
   h1 {
-    font-size: 76px;
-    line-height: 80px;
+    font-size: 62px;
+    line-height: 77px;
   }
 
   .before-title {
@@ -32658,13 +32685,13 @@ body.servi-ce-details .rts-footer-two-area {
   }
 
   .txt-trabajo-sub p {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 3.2rem;
   }
 
   .section-logos h3 {
-    font-size: 56px;
-    line-height: 65px;
+    font-size: 55px;
+    line-height: 67px;
   }
 
   .before-title {
@@ -32698,14 +32725,19 @@ body.servi-ce-details .rts-footer-two-area {
     margin: 12% 0;
   }
 
+  footer p
+ {
+    line-height: 23px;
+    font-size: 14px;
+}
   .txt-next {
     font-size: 24px;
     line-height: 28px;
   }
 
   h1 {
-    font-size: 66px;
-    line-height: 70px;
+    font-size: 55px;
+    line-height: 67px;
   }
 
   .element1 {
@@ -32741,14 +32773,18 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 576px) {
+  footer p
+ {
+    font-size: 15px;
+}
   .team-title-4 .title {
-    font-size: 50px;
-    line-height: 56px;
+    font-size: 52px;
+    line-height: 72px;
   }
 
   .section-logos h3 {
     font-size: 45px;
-    line-height: 46px;
+    line-height: 55px;
   }
 
   .before-title {
@@ -32833,9 +32869,20 @@ body.servi-ce-details .rts-footer-two-area {
 
 @media (max-width: 486px) {
   h1 {
-    font-size: 53px;
-    line-height: 60px;
+    font-size: 45px;
+    line-height: 52px;
   }
+      .section-logos h3 {
+        font-size: 37px;
+        line-height: 46px;
+    }
+    footer p {
+        font-size: 14px;
+    }
+        .team-title-4 .title {
+        font-size: 39px;
+        line-height: 52px;
+    }
 }
 
 .header-area {
