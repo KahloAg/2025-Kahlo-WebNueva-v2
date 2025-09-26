@@ -56,8 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     tl.to(".animated-element", { opacity: 1, y: 0, duration: 0.6, stagger: 0.3 }, 1.8);
 });
 
-
-
 const wrapper = document.querySelector('.trail-wrapper');
 const cards = document.querySelectorAll('.card-servicios');
 let lastTime = 0;
@@ -70,13 +68,35 @@ const imageOrderState = {
 
 let lastSpot = null;
 
+const activePieces = new WeakMap();
+
 cards.forEach(card => {
     card.addEventListener('mousemove', () => {
         const now = Date.now();
         if (now - lastTime > MIN_INTERVAL) {
             const category = card.dataset.category || '';
-            createTrailPieceForCard(category);
+            createTrailPieceForCard(category, card);
             lastTime = now;
+        }
+    });
+    card.addEventListener('mouseleave', () => {
+        const set = activePieces.get(card);
+        if (set && set.size) {
+            for (const piece of set) {
+                if (piece.__timeout) clearTimeout(piece.__timeout);
+                if (piece.isConnected) {
+                    gsap.to(piece, {
+                        opacity: 0,
+                        duration: 0.3,
+                        onComplete: () => {
+                            piece.remove();
+                            const s = activePieces.get(card);
+                            if (s) s.delete(piece);
+                        }
+                    });
+                }
+            }
+            set.clear();
         }
     });
 });
@@ -125,7 +145,7 @@ function pickPositionAvoidingOverlap(vw, vh, w, h, pad) {
     return best || { x: pad, y: pad };
 }
 
-function createTrailPieceForCard(category) {
+function createTrailPieceForCard(category, card) {
     const url = nextSequentialImage(category);
     const piece = new Image();
     piece.className = 'trail-piece';
@@ -144,6 +164,13 @@ function createTrailPieceForCard(category) {
     const viewportLimit = Math.floor(Math.min(vw, vh) * 0.6);
     const BASE_MAX = 560;
     const MAX = Math.min(BASE_MAX, viewportLimit);
+
+    let set = activePieces.get(card);
+    if (!set) {
+        set = new Set();
+        activePieces.set(card, set);
+    }
+    set.add(piece);
 
     document.body.appendChild(piece);
 
@@ -173,8 +200,16 @@ function createTrailPieceForCard(category) {
             { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }
         );
 
-        setTimeout(() => {
-            piece.remove();
+        piece.__timeout = setTimeout(() => {
+            gsap.to(piece, {
+                opacity: 0,
+                duration: 0.3,
+                onComplete: () => {
+                    piece.remove();
+                    const s = activePieces.get(card);
+                    if (s) s.delete(piece);
+                }
+            });
         }, 2000);
     });
 }
