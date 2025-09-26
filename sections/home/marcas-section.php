@@ -1,6 +1,6 @@
    <div id="main" style="position: relative; z-index:9">
     <div class="vh-100 d-flex justify-content-center flex-column position-relative bg-white logos-slide">
-        <section class="container1" style="overflow: hidden">
+        <section class="container1" style="overflow: hidden" id="clientes">
             <div class="list-clients" id="slide1" name="slide_type_1" onmouseover="myToggleFunction(1)"
                 onmouseout="myToggleFunctionOff(1)">
                 <div class="item align-items-center d-flex align-items-center">

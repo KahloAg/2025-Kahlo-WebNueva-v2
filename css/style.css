@@ -17,6 +17,11 @@
 
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* altura del navbar */
+}
+
 :root {
   --color-primary: #141414;
   --color-secondary: #1F1F25;
@@ -22631,6 +22636,12 @@ figure {
   line-height: 41px;
 }
 
+
+.txt-trabajo-20 {
+  font-size: 20px;
+  line-height: 32px;
+}
+
 a.underline:hover {
   text-decoration: underline;
 }
@@ -22640,6 +22651,12 @@ a.underline:hover {
 }
 
 .txt-trabajo-sub p {
+  font-size: 2.5rem;
+  line-height: 3.7rem;
+  margin-bottom: 25px;
+}
+
+.txt-trabajo-sub {
   font-size: 2.5rem;
   line-height: 3.7rem;
   margin-bottom: 25px;
@@ -32773,6 +32790,8 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 576px) {
+  .hidden-xs {display: none;}
+
   footer p
  {
     font-size: 15px;
@@ -32860,6 +32879,8 @@ body.servi-ce-details .rts-footer-two-area {
   .logo-interna {
     max-height: 35px;
   }
+
+  .h-mob-auto {height: auto !important; min-height: auto !important;}
 
   h1 {
     font-size: 56px;

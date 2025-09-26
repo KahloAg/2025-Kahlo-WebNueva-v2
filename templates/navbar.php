@@ -11,11 +11,11 @@
                     <nav class="nav-area">
                         <ul class="navbar-nav-1">
                             <li class="menu-item main-nav-on">
-                                <a class="menu-link" href="index.php#trabajos"><span
+                                <a class="menu-link" href="#trabajos"><span
                                         class="rolling-text">Trabajos</span></a>
                             </li>
                             <li class="menu-item main-nav-on">
-                                <a class="menu-link" href="index.php#clientes"><span
+                                <a class="menu-link" href="#clientes"><span
                                         class="rolling-text">Clientes</span></a>
                             </li>
                             <li class="menu-item main-nav-on">
@@ -48,8 +48,8 @@
 
      <div class="mobile-nav" id="mobileNav">
         <ul>
-            <li><a href="#">Trabajos</a></li>
-            <li><a href="#">Clientes</a></li>
+            <li><a href="index.php#trabajos">Trabajos</a></li>
+            <li><a href="index.php#clientes">Clientes</a></li>
             <li><a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..."
                     target="_blank">Contactanos</a></li>
             <li><a href="https://www.instagram.com/kahloagencia/" target="_blank">Instagram</a></li>
