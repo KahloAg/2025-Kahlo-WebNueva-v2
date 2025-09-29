@@ -181,7 +181,7 @@
                                         data-src="img/holiday.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image">
+                                    <img src="img/holliday.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
