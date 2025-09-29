@@ -25,7 +25,7 @@
         </div>
         <div class="animated-element p-4 element2">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="img/mercado-libre.png">
+                <img src="img/arcor.png">
                 <div class="score ms-3">
                     <h4 class="mb-0">4.0</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
@@ -36,7 +36,7 @@
         </div>
         <div class="animated-element p-4 element3">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="img/mercado-libre.png">
+                <img src="img/ypf.png">
                 <div class="score ms-3">
                     <h4 class="mb-0">4.3</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
@@ -47,7 +47,7 @@
         </div>
         <div class="animated-element p-4 element4">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="img/mercado-libre.png">
+                <img src="img/santander.svg">
                 <div class="score ms-3">
                     <h4 class="mb-0">4.8</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i
@@ -58,7 +58,7 @@
         </div>
         <div class="animated-element p-4 element5">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="img/mercado-libre.png">
+                <img src="img/indra-group.svg">
                 <div class="score ms-3">
                     <h4 class="mb-0">5.0</h4>
                     <i class="fa-solid fa-star white me-1"></i><i class="fa-solid fa-star white me-1"></i><i

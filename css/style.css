@@ -118,6 +118,12 @@ figure.pli-image {
   pointer-events: none;
 }
 
+.logo-overlay img
+ {
+    height: 55px !important;
+    width: auto !important;
+}
+
 .pli-image-holder:hover .image-blur-target {
   filter: blur(10px);
 }
@@ -22672,9 +22678,9 @@ a.underline:hover {
 }
 
 h1 {
-  font-size: 82px;
+  font-size: 78px;
   font-family: 'sharp_groteskmedium';
-  line-height: 92px;
+  line-height: 84px;
   font-weight: normal;
 }
 
@@ -32651,10 +32657,18 @@ body.servi-ce-details .rts-footer-two-area {
 
 /*# sourceMappingURL=../maps/style.css.map */
 
+@media (max-width: 1300px) {
+  .logo-overlay img
+ {
+    height: 45px !important;
+}
+}
+
 @media (max-width: 1200px) {
   .txt-next {
     font-size: 34px;
   }
+
 
   .section-logos h3 {
     font-size: 70px;

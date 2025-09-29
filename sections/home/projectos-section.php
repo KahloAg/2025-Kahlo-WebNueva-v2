@@ -19,14 +19,14 @@
 
              <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                  <div class="single-case-main-wrapper">
-                        <a href="#" class="pli-image-link">
+                        <a href="mercadolibre_diainternacionalmujer.html" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
                                     <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/mercadolibre.mp4"
                                         data-src="img/mercadolibre.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/mercado-libre.png" class="logo-image" style="height: 40px;">
+                                    <img src="img/mercado-libre.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -43,7 +43,7 @@
                                         src="img/santander-8m.mp4" data-src="img/santander-8m.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/santander.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -61,7 +61,7 @@
                                         data-src="img/liliana.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/liliana.svg" class="logo-image" style="height: 40px;">
+                                    <img src="img/liliana.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -77,7 +77,7 @@
                                         data-src="img/adecco.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/adecco.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/adecco.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -87,14 +87,14 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                   <div class="single-case-main-wrapper">
-                        <a href="#" class="pli-image-link">
+                        <a href="alsa_marcaempleadora.html" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
                                     <img class="image-blur-target" src="img/alsa.jpg"
                                         data-src="img/alsa.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/alsa.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -112,7 +112,7 @@
                                         data-src="img/naranja-marcaempleadora.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/renault-group.svg" class="logo-image" style="height: 50px;">
+                                    <img src="img/naranjax.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -121,14 +121,14 @@
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                   <div class="single-case-main-wrapper">
-                        <a href="#" class="pli-image-link">
+                        <a href="tigo_diadelpadre.html" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
                                     <img class="image-blur-target" src="img/tigo.jpg"
                                         data-src="img/tigo.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/tigo.svg" class="logo-image" style="height: 60px;">
+                                    <img src="img/tigo.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -145,7 +145,7 @@
                                         data-src="img/renault.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/renault-group.svg" class="logo-image" style="height: 50px;">
+                                    <img src="img/renault-group.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -163,7 +163,7 @@
                                         data-src="img/personalpay.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/personal-pay.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/personal-pay.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -181,7 +181,7 @@
                                         data-src="img/holiday.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/santander.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -192,14 +192,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                  
                     <div class="single-case-main-wrapper">
-                        <a href="#" class="pli-image-link">
+                        <a href="santander_diversidadeinclusion.html" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
                                     <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback  src="img/santander-diversidad.mp4"
                                         data-src="img/santander-diversidad.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/renault-group.svg" class="logo-image" style="height: 50px;">
+                                    <img src="img/santander.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -215,7 +215,7 @@
                                         data-src="img/arcor.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/arcor.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -233,7 +233,7 @@
                                         alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/naranjax.svg" class="logo-image" style="height:35px;">
+                                    <img src="img/naranjax.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -244,14 +244,14 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12">
                     
                     <div class="single-case-main-wrapper">
-                        <a href="#" class="pli-image-link">
+                        <a href="lifeseguros_cybermonday.html" class="pli-image-link">
                             <div class="pli-image-holder">
                                 <figure class="pli-image">
                                     <img class="image-blur-target" src="img/life-seguros-cybermonday.jpg"
                                         data-src="img/life-seguros-cybermonday.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/life-seguros.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -269,7 +269,7 @@
                                         data-src="img/supervielle-transformacion.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/supervielle.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -286,7 +286,7 @@
                                         data-src="img/style-store.mp4" alt="image"></video>
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/style-store.svg" class="logo-image" style="height: 50px;">
+                                    <img src="img/style-store.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -303,7 +303,7 @@
                                         data-src="img/despegar.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/santander.svg" class="logo-image" style="height: 34px;">
+                                    <img src="img/despegar.png" class="logo-image">
                                 </div>
                             </div>
                         </a>
@@ -320,7 +320,7 @@
                                         src="img/prudential.jpg" data-src="img/prudential.jpg" alt="image">
                                 </figure>
                                 <div class="logo-overlay">
-                                    <img src="img/prudential.svg" class="logo-image" style="height: 40px;">
+                                    <img src="img/prudential.svg" class="logo-image">
                                 </div>
                             </div>
                         </a>
