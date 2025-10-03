@@ -92,6 +92,11 @@ html {
   height: 23px;
 }
 
+p
+ {
+    margin-bottom: 20px !important;
+}
+
 .anim-image-parallax-wrap {
   border-radius: 5px;
 }
@@ -22659,13 +22664,13 @@ a.underline:hover {
 .txt-trabajo-sub p {
   font-size: 2.5rem;
   line-height: 3.7rem;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .txt-trabajo-sub {
   font-size: 2.5rem;
   line-height: 3.7rem;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .txt-next {
