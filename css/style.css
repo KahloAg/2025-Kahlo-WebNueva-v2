@@ -32813,6 +32813,10 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 576px) {
+      .embed-container.hmob-video
+ {
+        padding-bottom: 120%;
+    }
   .hidden-xs {display: none;}
 
   footer p
