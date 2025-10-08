@@ -2,7 +2,7 @@
 include_once("_general.php");
 ?>
 
-<?php include_once("templates/head-info.php"); ?>
+<?php include_once("templates/home/head-info.php"); ?>
 <link rel="stylesheet" href="css/index.css">
 <style>
 .footer {opacity: 0}
@@ -13,10 +13,10 @@ include_once("_general.php");
 <body class="index-six">
     <div class="trail-wrapper"></div>
 
-    <?php include_once("templates/navbar.php"); ?>
+    <?php include_once("templates/home/navbar.php"); ?>
 
     
-    <?php include_once("templates/navbar_video_section.php"); ?>
+    <?php include_once("templates/home/navbar_video_section.php"); ?>
 
     
     <?php include_once("sections/home/frases-animadas.php"); ?>
@@ -30,9 +30,9 @@ include_once("_general.php");
     <?php include_once("sections/home/marcas-section.php"); ?>
 
 
-    <?php include_once("templates/footer.php"); ?>
+    <?php include_once("templates/home/footer.php"); ?>
 
-    <?php include_once("templates/loading-miscelaneos.php"); ?>
+    <?php include_once("templates/home/loading-miscelaneos.php"); ?>
 
     <script defer src="js/jquery.min.js"></script>
     <script defer src="js/bootstrap.min.js"></script>
