@@ -27,7 +27,7 @@ $PAGE_TITLE = "Kahlo Agencia - Prudential";
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
                     <p class="text-white text-uppercase font13 lh-21">
-                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                     Campaña 360° con mensaje optimista: “vive sin preocuparte, disfruta el presente”.
                     </p>
                 </div>
             </div>
@@ -67,7 +67,7 @@ $PAGE_TITLE = "Kahlo Agencia - Prudential";
                     <img src="../img/trabajos/prudential_segurosdevida-2.jpg" class="img-fluid" alt="Key visual Prudential 2">
                 </div>
 
-                <div class="col-12 mt-5">
+                <div class="col-12 mt-5 mb-7">
                     <img src="../img/trabajos/prudential_segurosdevida-3.jpg" class="img-fluid" alt="Key visual Prudential 3">
                 </div>
             </div>

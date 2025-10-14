@@ -51,21 +51,13 @@ $PAGE_TITLE = "Kahlo Agencia - Holliday";
         <div class="container">
             <div class="row align-items-center">
 
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <p class="text-white">
-                        Para lograr el objetivo lanzamos en primera instancia la campaña de concientización
-                        <strong>#CuidaloConElCorazón</strong>, dirigida a dueños de mascotas y veterinarios, promoviendo
-                        la auscultación frecuente del corazón de perros de pequeño porte. En segunda instancia comunicamos
-                        los medicamentos de la marca que tratan esta problemática.
-                    </p>
-                    <p class="text-white">
-                        De esta manera logramos impactar a estos públicos con un fuerte mensaje de prevención y pusimos a
-                        la marca en un rol relevante, liderando la conversación sobre la prevención y el tratamiento de la
-                        cardiopatía canina.
+                <div class="col-12 col-lg-5 col-xl-4">
+                    <p class="text-white txt-trabajo-20 mb-0">
+                       El desafío: Holliday-Scott nos convocó para desarrollar una campaña de concientización veterinaria sobre la cardiopatía canina. Bajo el concepto #CuidaloConElCorazón, buscamos generar conciencia sobre la prevención y detección temprana en perros de raza pequeña.                  
                     </p>
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 mt-7 mt-lg-0">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-7 mt-lg-0">
                     <img src="../img/trabajos/holliday_scott-1.jpg" class="img-fluid" alt="Holliday Scott 1">
                 </div>
 
@@ -75,6 +67,11 @@ $PAGE_TITLE = "Kahlo Agencia - Holliday";
 
                 <div class="col-12 mt-5">
                     <img src="../img/trabajos/holliday_scott-3.jpg" class="img-fluid" alt="Holliday Scott 3">
+                </div>
+
+                
+                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-15">
+                <p class="text-white txt-trabajo-20 mb-0">El resultado: Integramos la línea Cardial como parte del tratamiento, posicionando a Holliday-Scott como referente en salud canina y marketing farmacéutico veterinario. Una campaña que conectó emoción, educación y propósito.</p>
                 </div>
 
             </div>
@@ -91,22 +88,7 @@ $PAGE_TITLE = "Kahlo Agencia - Holliday";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<!-- Loader / decor -->
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<!-- back to top -->
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <!-- Scripts -->
 <script defer src="../js/jquery.min.js"></script>
