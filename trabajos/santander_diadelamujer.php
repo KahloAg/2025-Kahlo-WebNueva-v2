@@ -23,7 +23,7 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
                     <h1 class="mt-6 mb-0">Santander <br> Día de la Mujer</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                    <p class="text-white text-uppercase font13 lh-21">Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer</p>
+                    <p class="text-white text-uppercase font13 lh-21">Campaña que desafía estereotipos y promueve igualdad de género laboral con tono empático.</p>
                 </div>
             </div>
         </div>
@@ -42,11 +42,14 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
     <section class="spacer d-flex align-items-center my-50">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 col-lg-6 mt-7 mt-lg-0">
+                <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 txt-trabajo-sub text-center mt-7 mb-7">
+                <p class="text-white mb-0">Junto a Banco Santander lanzamos una campaña por el Día de la Mujer con un objetivo claro: desafiar los estereotipos y prejuicios que todavía persisten, reafirmando el compromiso con la igualdad en todas sus formas.</p>
+                </div>
+                <div class="col-12 col-lg-6 mt-7">
                     <img src="../img/trabajos/santander_diamujer-2.jpg" class="img-fluid">
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5">
-                    <p class="text-white txt-trabajo-20">Trabajamos juntos para derribar ciertos mitos y percepciones que se tienen de las mujeres, tomando como concepto madre la igualdad de género en el aspecto laboral, y utilizando los hashtags #EachForEqual y #SomosIguales.</p>
+                <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4">
+                    <p class="text-white txt-trabajo-20 mb-0">Partimos de una idea madre: la igualdad de género en el ámbito laboral. Con los hashtags #EachForEqual y #SomosIguales, buscamos visibilizar los sesgos que enfrentan las mujeres y promover una conversación más justa y equitativa.</p>
                 </div>
                 <div class="col-12 mt-5">
                     <img src="../img/trabajos/santander_diamujer-3.jpg" class="img-fluid">
@@ -57,10 +60,10 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
                 <div class="col-12 col-md-6 mt-5">
                     <img src="../img/trabajos/santander_diamujer-5.jpg" class="img-fluid">
                 </div>
-                <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-0">
-                    <p class="text-white txt-trabajo-20">Sergio Lew, Country Head, de Santander Argentina se sumó a la campaña mundial #EachforEqual con el siguiente mensaje: En Santander apoyamos la igualdad en todas sus formas, ya que creemos que está en cada uno de nosotros desafiar los estereotipos y prejuicios.</p>
+                <div class="col-12 col-lg-5 col-xl-4 mt-7 mt-lg-0">
+                    <p class="text-white txt-trabajo-20 mb-0">El propio Sergio Lew, Country Head de Santander Argentina, se sumó a la campaña global #EachForEqual con un mensaje contundente: <i>“En Santander apoyamos la igualdad en todas sus formas, porque creemos que está en cada uno de nosotros desafiar los estereotipos y prejuicios.”</i></p>
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 mt-5">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-5 mb-7">
                     <img src="../img/trabajos/santander_diamujer-6.jpg" class="img-fluid">
                 </div>
             </div>
@@ -74,20 +77,7 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <script defer src="../js/jquery.min.js"></script>
 <script defer src="../js/bootstrap.min.js"></script>

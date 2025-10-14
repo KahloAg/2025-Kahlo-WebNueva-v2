@@ -23,7 +23,7 @@ $PAGE_TITLE = "Kahlo Agencia - Life Seguros";
                     <h1 class="mt-6 mb-0">Life Seguros <br>Campaña Cybermonday</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                    <p class="text-white text-uppercase font13 lh-21">Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer</p>
+                    <p class="text-white text-uppercase font13 lh-21">Campaña visual con IA que proyecta futuros escenarios para comunicar protección hoy.</p>
                 </div>
             </div>
         </div>
@@ -42,11 +42,13 @@ $PAGE_TITLE = "Kahlo Agencia - Life Seguros";
     <section class="spacer d-flex align-items-center my-50">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <p class="text-white">Para alcanzarlo, desarrollamos una campaña visualmente innovadora, utilizando Inteligencia Artificial (IA) para generar imágenes futuristas de cómo podría ser la vida en los próximos años. Estas imágenes representaban escenarios familiares, hogares y mascotas protegidos, con el mensaje central: “ No sabemos cómo será la vida del futuro, pero sabemos cómo protegerla desde hoy."</p>
-                    <p class="text-white mb-0">Conclusión: El resultado fue una campaña altamente efectiva, donde la tecnología y la creatividad se unieron para potenciar el mensaje y conectar emocionalmente con los consumidores.</p>
+                <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 txt-trabajo-sub mb-7 text-center">
+                <p class="text-white mb-0">Life Seguros nos pidió diseñar una campaña de alto impacto para comunicar su promoción de Cybermonday en seguros de vida, hogar y mascotas, con un objetivo claro: lograr conversiones reales.</p>
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 mt-7 mt-lg-0">
+                <div class="col-12 col-lg-5 col-xl-4 txt-trabajo-sub mb-0">
+                    <p class="text-white mb-0">Para destacar en un entorno saturado, usamos inteligencia artificial para generar imágenes futuristas, mostrando hogares, familias y mascotas protegidos. Bajo la idea “No sabemos cómo será el futuro, pero sí cómo cuidarlo desde hoy”, fusionamos tecnología y emoción.</p>
+                </div>
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2">
                     <img src="../img/trabajos/lifeseguros_cybermonday-1.jpg" class="img-fluid">
                 </div>
                 <div class="col-12 col-md-6 mt-5">
@@ -61,6 +63,10 @@ $PAGE_TITLE = "Kahlo Agencia - Life Seguros";
                 <div class="col-12 col-md-6 mt-5">
                     <img src="../img/trabajos/lifeseguros_cybermonday-4.jpg" class="img-fluid">
                 </div>
+
+                <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 txt-trabajo-sub mt-15 mb-15 text-center">
+                <p class="text-white mb-0">La creatividad y la tecnología se unieron para dar forma a una campaña altamente efectiva. Con impacto visual y mensaje claro, conectamos emocionalmente con el público y potenciamos las conversiones que Life Seguros esperaba.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -72,20 +78,7 @@ $PAGE_TITLE = "Kahlo Agencia - Life Seguros";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <script defer src="../js/jquery.min.js"></script>
 <script defer src="../js/bootstrap.min.js"></script>

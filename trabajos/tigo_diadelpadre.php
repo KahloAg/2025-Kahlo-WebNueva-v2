@@ -23,7 +23,7 @@ $PAGE_TITLE = "Kahlo Agencia - Tigo";
                     <h1 class="mt-6 mb-0">Tigo <br>Día del Padre</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                    <p class="text-white text-uppercase font13 lh-21">Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer</p>
+                    <p class="text-white text-uppercase font13 lh-21">Campaña del Día del Padre que celebra sus antojos con humor y emoción cotidiana.</p>
                 </div>
             </div>
         </div>
@@ -42,12 +42,12 @@ $PAGE_TITLE = "Kahlo Agencia - Tigo";
     <section class="spacer d-flex align-items-center my-50">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <p class="text-white mb-4">Para hacerlo con impacto lanzamos una campaña bajo el concepto “Papá también tiene antojos” que reflejaba el interés del padre en los productos de la marca.</p>
-                    <p class="text-white">Trabajando en equipo creamos piezas para redes sociales, puntos de venta y medios digitales protagonizadas por Rigo, uno de las celebridades más reconocidas de ese país.</p>
-                    <p class="text-white mb-0 txt-trabajo-20">Gracias a esta colaboración, logramos conectar con una amplia audiencia, generando un alto nivel de interacción y visibilidad para la marca.</p>
+                <div class="col-12 col-lg-5 col-xl-4">
+                    <p class="text-white">La empresa líder en telefonía de Colombia confió en nosotros para potenciar sus promociones del Día del Padre. Bajo el concepto “Papá también tiene antojos”, lanzamos una campaña que conectó con humor y empatía, mostrando que los padres también desean lo mejor.</p>
+<p class="text-white mb-0">Con Rigo, una de las figuras más queridas del país, desarrollamos piezas para redes, puntos de venta y medios digitales que impulsaron las ventas y reforzaron el vínculo con la marca.</p>
+                    
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 mt-7 mt-lg-0">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-7 mt-lg-0">
                     <img src="../img/trabajos/tigo_diadelpadre-2.jpg" class="img-fluid">
                 </div>
                 <div class="col-12 col-md-6 mt-5">
@@ -57,6 +57,10 @@ $PAGE_TITLE = "Kahlo Agencia - Tigo";
                 <div class="col-12 col-md-6 mt-5">
                     <img src="../img/trabajos/tigo_diadelpadre-4.jpg" class="img-fluid">
                     <img src="../img/trabajos/tigo_diadelpadre-6.jpg" class="img-fluid mt-5">
+                </div>
+
+                <div class="col-12 col-lg-10 offset-lg-1 col-xl-8 offset-xl-2 txt-trabajo-sub mb-7 mt-7 text-center">
+                <p class="text-white">Gracias a esta colaboración, logramos conectar con una amplia audiencia, generando un alto nivel de interacción y visibilidad para la marca.</p>    
                 </div>
             </div>
         </div>
@@ -69,20 +73,7 @@ $PAGE_TITLE = "Kahlo Agencia - Tigo";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <script defer src="../js/jquery.min.js"></script>
 <script defer src="../js/bootstrap.min.js"></script>

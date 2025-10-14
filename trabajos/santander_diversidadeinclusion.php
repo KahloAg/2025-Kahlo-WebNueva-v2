@@ -23,7 +23,7 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
                     <h1 class="mt-6 mb-0">Santander <br> Diversidad e Inclusión</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                    <p class="text-white text-uppercase font13 lh-21">Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer</p>
+                    <p class="text-white text-uppercase font13 lh-21">Campaña documental que visibiliza la inclusión laboral de personas con discapacidad.</p>
                 </div>
             </div>
         </div>
@@ -42,21 +42,24 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
     <section class="spacer d-flex align-items-center my-50">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <p class="text-white txt-trabajo-20">En Argentina, sólo 1 de cada 3 personas con discapacidad consigue un empleo.<br>El 10% de la población tiene una discapacidad, y de esas personas sólo el 32% tiene trabajo.</p>
-                    <p class="text-white mb-0">Santander nos convocó con una necesidad clara, promover sus oportunidades de empleo y alentar la postulación de personas con discapacidad en la compañía, posicionándose como una organización con foco en la diversidad e inclusión.</p>
+                <div class="col-12 col-lg-5 col-xl-4">
+                    <p class="text-white txt-trabajo-20 mb-0">Junto a Banco Santander lanzamos una campaña que nos invita a mirar distinto. Una campaña que parte de una pregunta incómoda: ¿cuántas oportunidades se pierden por nuestros propios prejuicios?</p>
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 mt-7 mt-lg-0">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-7 mt-lg-0">
                     <img src="../img/trabajos/santander_diversidad-1.jpg" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-6 mt-7 mt-lg-0">
                     <img src="../img/trabajos/santander_diversidad-2.jpg" class="img-fluid">
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5 mt-7 mt-lg-0">
-                    <p class="text-white txt-trabajo-20 mb-0">Nos desafiamos y pusimos en foco nuestros propios prejuicios para desarrollar una campaña que invite a cuestionar la forma en la que se ven las cosas y la importancia de la igualdad de oportunidades en todos los ámbitos de la vida y específicamente en el laboral.</p>
+                <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4 mt-7 mt-lg-0">
+                    <p class="text-white txt-trabajo-20 mb-0">En Argentina, 1 de cada 3 personas con discapacidad consigue empleo. El 10% de la población tiene una discapacidad, pero solo el 32% accede al trabajo. Detrás de esos números hay talento, esfuerzo y ganas que muchas veces no encuentran espacio.</p>
                 </div>
                 <div class="col-12 mt-5">
                     <img src="../img/trabajos/santander_diversidad-3.jpg" class="img-fluid">
+                </div>
+
+                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-15">
+                <p class="text-white txt-trabajo-20 mb-0">Nos propusimos desafiar nuestros propios prejuicios y crear una campaña que ponga a prueba la forma en que vemos a los demás. Un mensaje que muestra que la verdadera inclusión empieza cuando dejamos de asumir, y empezamos a mirar con igualdad.</p>
                 </div>
             </div>
         </div>
@@ -69,20 +72,7 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <script defer src="../js/jquery.min.js"></script>
 <script defer src="../js/bootstrap.min.js"></script>

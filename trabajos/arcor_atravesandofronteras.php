@@ -23,7 +23,7 @@ $PAGE_TITLE = "Kahlo Agencia - Arcor";
                     <h1 class="mt-6 mb-0">Arcor: Un Viaje de<br>Innovación Premiado</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                    <p class="text-white text-uppercase font13 lh-21">Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer</p>
+                    <p class="text-white text-uppercase font13 lh-21">Campaña documental que narra la expansión internacional con enfoque humano y conexión cultural.</p>
                 </div>
             </div>
         </div>
@@ -42,8 +42,8 @@ $PAGE_TITLE = "Kahlo Agencia - Arcor";
     <section class="d-flex align-items-center my-50">
         <div class="container">
             <div class="row">
-                <div class="col-12 txt-trabajo-sub text-center">
-                    <p class="text-white">El documental no solo capturó la esencia de Arcor, sino que también se alzó con el Premio Eikon de Oro, este logro subraya la creatividad y compromiso que desde @kahloagencia tenemos con la excelencia.</p>
+                <div class="col-12 txt-trabajo-sub text-center mb-15 mt-7">
+                    <p class="text-white">Creamos junto a Arcor el documental “Atravesando fronteras: de Argentina a Angola”, que narra su expansión, con foco en la apertura de una gran fábrica y la conexión humana entre los equipos de ambos países. Este proyecto no solo capturó la esencia del relato global de la empresa, sino que también fue galardonado con el Premio Eikon de Oro como reconocimiento a su creatividad y calidad.</p>
                 </div>
             </div>
         </div>
@@ -56,20 +56,7 @@ $PAGE_TITLE = "Kahlo Agencia - Arcor";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <script defer src="../js/jquery.min.js"></script>
 <script defer src="../js/bootstrap.min.js"></script>

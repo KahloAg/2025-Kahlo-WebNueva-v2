@@ -22,8 +22,7 @@
                         <h1 class="mt-6 mb-0">Adecco <br> El CV que no se ve </h1>
                     </div>
                     <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                        <p class="text-white text-uppercase font13 lh-21">Campaña 360 estilo documental testimonial con
-                            motivo del Día Internacional de la Mujer</p>
+                        <p class="text-white text-uppercase font13 lh-21">Campaña que visibiliza historias reales y revaloriza la experiencia humana en el trabajo.</p>
                     </div>
                 </div>
             </div>
@@ -42,17 +41,21 @@
         <section class="spacer d-flex align-items-center my-50">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-12 col-lg-6 col-xl-5">
-                        <p class="text-white txt-trabajo-20">¿Sabías que el trabajo doméstico y de cuidado no remunerado
+                    <div class="col-12 col-lg-10 offset-lg-1 text-center txt-trabajo-sub mt-7 mb-7">
+                        <p class="text-white">¿Sabías que el trabajo doméstico y de cuidado no remunerado
                             equivale al 15,9% de nuestro PBI?<br><br>
-                            Esto implica que es el sector de mayor peso dentro de la industria nacional.
+                            Esto implica que es el sector de mayor peso <br> dentro de la industria nacional.
                         </p>
+                    </div>
+                    <div class="col-12 col-lg-5 col-xl-4">
+
+                        
                         <p class="text-white mb-0">OBJETIVO<br>
                             Demostrar que las personas somos mucho más que nuestras experiencias laborales, y que todas
                             nuestras vivencias contribuyen a formarnos como profesionales</p>
                     </div>
 
-                    <div class="col-12 col-lg-6 offset-xl-1 mt-7 mt-lg-0">
+                    <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-7 mt-lg-0">
                         <img src="../img/trabajos/adecco_elcvquenoseve-1.jpg" class="img-fluid">
                     </div>
 
@@ -63,19 +66,12 @@
                         </video>
                     </div>
 
-                    <div class="col-12 col-lg-6 offset-xl-1 col-xl-5 mt-7 mt-lg-0">
-                        <p class="text-white txt-trabajo-20">El 43% de los empleadores afirma que las habilidades
-                            blandas que desarrollan los gamers son difíciles de enseñar a sus equipos.</p>
+                    <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4 mt-7 mt-lg-0">
+                        
                         <p class="text-white">SOLUCIÓN<br>
-                            Desarrollamos una herramienta capaz de traducir experiencias personales en habilidades para
-                            el CV. Desde deportistas hasta gamers, cada quién tiene habilidades útiles para aportar, y a
-                            través de esta plataforma, las personas pueden seleccionar su actividad y elegir en qué se
-                            especializan.</p>
-                        <p class="text-white">De forma automática la herramienta traducirá dichas experiencias en
-                            habilidades para el CV.
-                        </p>
-                        <p class="text-white mb-0">El traductor le brinda la oportunidad a cada persona de ponerle el
-                            valor que corresponde a sus vivencias, y reinsertarse en el mercado laboral.
+                           Desarrollamos una herramienta que traduce experiencias personales en habilidades para el CV.</br>
+Deportistas, gamers y más pueden elegir su actividad y especialización, y el sistema convierte automáticamente esas vivencias en competencias laborales.</p>
+<p class="text-white">Así, cada persona puede valorizar su recorrido y reinsertarse en el mercado laboral.</p>
                         </p>
                     </div>
 
@@ -97,20 +93,7 @@
 
     <?php include_once("../templates/home/footer.php"); ?>
 
-    <div class="loading-screen" id="loading-screen">
-        <span class="bar top-bar"></span>
-        <span class="bar down-bar"></span>
-        <span class="progress-line"></span>
-        <span class="loading-counter"> </span>
-    </div>
-
-    <div class="bg-noise"></div>
-
-    <div class="progress-wrap">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-        </svg>
-    </div>
+   
 
     <script defer src="../js/jquery.min.js"></script>
     <script defer src="../js/bootstrap.min.js"></script>

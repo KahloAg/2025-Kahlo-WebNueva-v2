@@ -28,7 +28,7 @@ $PAGE_TITLE = "Kahlo Agencia - Liliana";
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
                     <p class="text-white text-uppercase font13 lh-21">
-                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                     Campaña que conecta la cocina con la vida: invita a seguir recetas propias con identidad.
                     </p>
                 </div>
             </div>
@@ -38,8 +38,14 @@ $PAGE_TITLE = "Kahlo Agencia - Liliana";
     <section>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 p-0">
-                    <img src="../img/trabajos/santander_diamujer-1.jpg" class="img-fluid" alt="Hero">
+               <div class="col-12 embed-container">
+                    <iframe
+                        src="https://www.youtube.com/embed/95nDsBO3imw?autoplay=1&mute=1&loop=1&playsinline=1&modestbranding=1&rel=0"
+                        style="width: 100%;" frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
+                        title="Liliana - Seguí tu receta">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -47,24 +53,30 @@ $PAGE_TITLE = "Kahlo Agencia - Liliana";
 
     <section class="d-flex align-items-center my-50">
         <div class="container">
-            <div class="row">
-                <div class="col-12 txt-trabajo-sub text-start">
-                    <p class="text-white">
-                        Con los resultados de dicha investigación, desarrollamos una campaña que invitaba a los usuarios
-                        de Liliana a seguir su propia receta, en la cocina y en la vida. Este concepto creció hasta llegar
-                        a un comercial y se abrió, luego, a vía pública, refugios, transporte público, shoppings, pauta en web
-                        y redes sociales, y PNTs en televisión abierta y por cable.<br><br>
-                        La campaña tuvo una recepción positiva en todas las plataformas en las que fue replicada.
+            <div class="row align-items-center">
+                 <div class="col-12 col-lg-5 col-xl-4">
+                    <p class="text-white mb-0">
+                        “Seguí tu receta” es el nuevo claim de Electrodomésticos Liliana, nacido a partir de una investigación de mercado realizada por la marca con el objetivo de modernizar su comunicación y conectar con un público más joven. Una invitación a seguir tu propia receta, tanto en la cocina como en la vida.
+
                     </p>
                 </div>
 
-                <div class="col-12 col-md-6 mt-5">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-7">
                     <img src="../img/trabajos/liliana_seguitureceta-1.jpg" class="img-fluid" alt="Pieza 1">
                 </div>
-
-                <div class="col-12 col-md-6 mt-5">
-                    <img src="../img/trabajos/liliana_seguitureceta-2.jpg" class="img-fluid" alt="Pieza 2">
+              
+                     <div class="col-12 col-lg-6 mt-7 mt-lg-5 mb-7">
+                    <img src="../img/trabajos/liliana_seguitureceta-2.jpg" class="img-fluid" alt="Pieza 1">
                 </div>
+
+                 <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4">
+                    <p class="text-white mb-0">
+                    El concepto se transformó en una campaña integral que incluyó comercial, vía pública, transporte, shoppings, web, redes y PNTs televisivas. Una propuesta fresca y optimista que consolidó la nueva etapa de Liliana como marca moderna, cercana y actual.
+                    </p>
+                </div>
+
+               
+              
             </div>
         </div>
     </section>
@@ -80,22 +92,7 @@ $PAGE_TITLE = "Kahlo Agencia - Liliana";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<!-- Loader -->
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise"></div>
-
-<!-- back to top -->
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <!-- Scripts -->
 <script defer src="../js/jquery.min.js"></script>

@@ -22724,6 +22724,10 @@ h1 {
 
 .mb-7 {margin-bottom: 7%;}
 
+.mt-15 {margin-top: 15%;}
+
+.mb-15 {margin-bottom: 15%;}
+
 .font30 {
   font-size: 30px;
   line-height: 32px;
@@ -29439,7 +29443,7 @@ section.svg-container:nth-last-of-type(0) svg.radial-progress {
 
 @media only screen and (max-width: 1200px) {
   .team-title-4 .title {
-    font-size: 75px; line-height: 98px;
+    font-size: 71px; line-height: 98px;
   }
 }
 
