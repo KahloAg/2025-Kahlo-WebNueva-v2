@@ -27,7 +27,7 @@ $PAGE_TITLE = "Kahlo Agencia - Holliday";
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
                     <p class="text-white text-uppercase font13 lh-21">
-                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                    Campaña de concientización sobre cardiopatía canina con llamado a prevención y auscultas.
                     </p>
                 </div>
             </div>

@@ -21,13 +21,13 @@ $PAGE_TITLE = "Kahlo Agencia - Personal Pay";
                 <div class="col-lg-8 col-xl-8">
                     <div class="d-flex align-items-center justify-content-between col-xl-8">
                         <img src="../img/personal-pay.png" class="logo-interna" alt="Personal Pay logo">
-                        <p class="text-white font13 mb-0">/MARCA EMPLEADORA/</p>
+                        <p class="text-white font13 mb-0">/PÚBLICO EXTERNO/</p>
                     </div>
                     <h1 class="mt-6 mb-0">Personal Pay <br> Audiologo</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
                     <p class="text-white text-uppercase font13 lh-21">
-                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                     Video animado que acompaña un “audiologo” para reforzar identidad sonora en la app.
                     </p>
                 </div>
             </div>
@@ -50,12 +50,10 @@ $PAGE_TITLE = "Kahlo Agencia - Personal Pay";
     <section class="spacer my-50">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-12 text-center">
-                    <p class="text-white">OBJETIVO</p>
+                <div class="col-12 text-center mt-5">
+                    <p class="text-white">EL DESAFÍO</p>
                     <p class="text-white txt-trabajo-20">
-                        Crear un video animado para complementar el nuevo audiologo de Personal Pay, dándole
-                        protagonismo a la música e incorporando la identidad visual de la compañía.
-                    </p>
+                 Personal Pay lanzó su nuevo audiologo corporativo y nos convocó para crear la animación que lo acompañara. El objetivo fue amplificar su presencia en el entorno digital, integrando sonido, movimiento y marca en una experiencia coherente y moderna.</p>
                 </div>
             </div>
         </div>
@@ -70,30 +68,34 @@ $PAGE_TITLE = "Kahlo Agencia - Personal Pay";
 
         <div class="container mt-7">
             <div class="row align-items-center">
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <p class="text-white txt-trabajo-20">A Todo Ritmo</p>
-                    <p class="text-white mb-0">
-                        Bajos, baterías, sintetizadores y palmas nos inspiraron para diseñar este video super canchero con la estética de la marca.
+                <div class="col-12 col-lg-5 col-xl-4">
+                    <p class="text-white">LA PROPUESTA CREATIVA</p>
+                    <p class="text-white txt-trabajo-20 mb-0">
+                        Diseñamos una animación de audiologo que refleja la energía y el dinamismo de la marca. Cada movimiento fue pensado para potenciar su identidad auditiva, reforzar su branding digital y mejorar la experiencia de usuario dentro de la app.
+
                     </p>
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 mt-7 mt-lg-0">
-                    <img src="../img/trabajos/personalpay_audiologo-2.jpg" class="img-fluid" alt="Frame Audiologo 2">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-7 mt-lg-0">
+                    <img src="../img/trabajos/personalpay_audiologo-2.png" class="img-fluid" alt="Frame Audiologo 2">
                 </div>
 
                 <div class="col-12 col-lg-6 mt-5">
-                    <img src="../img/trabajos/personalpay_audiologo-3.jpg" class="img-fluid" alt="Frame Audiologo 3">
+                    <img src="../img/trabajos/personalpay_audiologo-3.png" class="img-fluid" alt="Frame Audiologo 3">
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5 mt-7 mt-lg-0">
-                    <p class="text-white txt-trabajo-20">¡Subile el volumen!</p>
-                    <p class="text-white mb-0">
-                        Este audiologo, que aparecerá cada vez que las personas usuarias inicien la app, ayuda a transmitir la simplicidad y tecnología que forman parte de la experiencia Personal Pay.
+                <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4 mt-7 mt-lg-0">
+                    <p class="text-white">EL ENFOQUE TÉCNICO Y ESTÉTICO</p>
+                    <p class="text-white txt-trabajo-20 mb-0">
+                       A partir del ritmo y los matices del sonido de marca, desarrollamos una pieza de motion graphics sincronizada con precisión. Líneas, colores y pulsos visuales se combinan para construir una identidad audiovisual clara, ágil y memorable.
+
                     </p>
                 </div>
 
-                <div class="col-12 text-center mt-7">
-                    <img src="../img/trabajos/personalpay_audiologo-4.jpg" class="img-fluid" alt="Grid Audiologo">
+                       <div class="col-12 text-center mb-7 mt-7">
+                    <p class="text-white">EL RESULTADO</p>
+                    <p class="text-white txt-trabajo-20">
+                 El nuevo audiologo animado de Personal Pay consolida su marca sonora en el ecosistema digital, aportando reconocimiento, consistencia y recordación. Una animación breve, moderna y efectiva que fortalece la conexión entre sonido, imagen y marca.</p>
                 </div>
             </div>
         </div>
@@ -109,22 +111,6 @@ $PAGE_TITLE = "Kahlo Agencia - Personal Pay";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<!-- Loader -->
-<div class="loading-screen" id="loading-screen">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
-
-<div class="bg-noise"></div>
-
-<!-- back to top -->
-<div class="progress-wrap">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102" aria-hidden="true">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <!-- Scripts -->
 <script defer src="../js/jquery.min.js"></script>

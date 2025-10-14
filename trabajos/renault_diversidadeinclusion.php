@@ -26,7 +26,7 @@ $PAGE_TITLE = "Kahlo Agencia - Renault Group";
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
                     <p class="text-white text-uppercase font13 lh-21">
-                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                     Proyecto de branding interno que celebra la diversidad e integra gráficamente la inclusión.
                     </p>
                 </div>
             </div>
@@ -37,7 +37,7 @@ $PAGE_TITLE = "Kahlo Agencia - Renault Group";
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 p-0">
-                    <img src="../img/trabajos/renault_diversidadeinclusion-1.jpg" class="img-fluid" alt="Renault Diversidad e Inclusión pieza principal">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-1.png" class="img-fluid" alt="Renault Diversidad e Inclusión pieza principal">
                 </div>
             </div>
         </div>
@@ -49,9 +49,10 @@ $PAGE_TITLE = "Kahlo Agencia - Renault Group";
                 <div class="col-12 col-lg-6 mt-7 mt-lg-0">
                     <img src="../img/trabajos/renault_diversidadeinclusion-2.gif" class="img-fluid" alt="Animación sistema gráfico diversidad Renault">
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5">
-                    <p class="text-white txt-trabajo-20">
-                        Con esta propuesta buscamos desarrollar un sistema conceptual, gráfico y literario en donde cada elemento, desde sus diferencias lograra integrarse, invitando a celebrar la diversidad en todas sus formas.
+                <div class="col-12 col-lg-5 offset-xl-2 offset-xl-1 col-xl-4">
+                    <p class="text-white txt-trabajo-20 mb-0">
+                        El planteo: Construir el branding interno del Programa de Diversidad e Inclusión de Renault nos llevó a cuestionar: ¿qué es verdaderamente la inclusión? ¿Cómo representarla de manera genuina dentro de la compañía?
+
                     </p>
                 </div>
 
@@ -59,17 +60,23 @@ $PAGE_TITLE = "Kahlo Agencia - Renault Group";
                     <img src="../img/trabajos/renault_diversidadeinclusion-3.jpg" class="img-fluid" alt="Aplicaciones del sistema de diversidad Renault">
                 </div>
 
-                <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-0">
-                    <p class="text-white txt-trabajo-20">
-                        El desafío fue lograr un branding que acompañe la transformación cultural de Renault y que invite a las personas a apropiarse y MULTIPLICAR el mensaje de inclusión e igualdad de oportunidades que promueve la compañía.
+                <div class="col-12 col-lg-5 col-xl-4 mt-7 mt-lg-0">
+                    <p class="text-white txt-trabajo-20 mb-0">
+                        La propuesta: Desarrollamos un sistema conceptual, gráfico y literario donde cada elemento —con sus diferencias— se integra y dialoga. La propuesta invita a celebrar la diversidad y visibilizar la igualdad de oportunidades como parte de la cultura corporativa.
                     </p>
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 mt-5">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-5">
                     <img src="../img/trabajos/renault_diversidadeinclusion-4.gif" class="img-fluid" alt="Animación multiplicar mensaje inclusión Renault">
                 </div>
 
-                <div class="col-12 mt-5 d-flex flex-column gap-4">
+                 <div class="col-12 col-lg-10 offset-lg-1 mt-7 text-center">
+                    <p class="text-white txt-trabajo-20 mb-0">
+                        El impacto deseado: El desafío fue acompañar la transformación cultural de Renault y motivar a sus colaboradores a apropiarse y multiplicar el mensaje. Buscamos un branding que empodere el sentido de inclusión y refuerce el compromiso interno con la igualdad.
+                   </p>
+                </div>
+
+                <div class="col-12 mt-7 mb-7 d-flex flex-column gap-4">
                     <img src="../img/trabajos/renault_diversidadeinclusion-5.gif" class="img-fluid" alt="Variación de piezas diversidad Renault 1">
                     <img src="../img/trabajos/renault_diversidadeinclusion-6.gif" class="img-fluid" alt="Variación de piezas diversidad Renault 2">
                 </div>
@@ -84,22 +91,7 @@ $PAGE_TITLE = "Kahlo Agencia - Renault Group";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-<!-- Loader -->
-<div class="loading-screen" id="loading-screen" aria-hidden="true">
-    <span class="bar top-bar"></span>
-    <span class="bar down-bar"></span>
-    <span class="progress-line"></span>
-    <span class="loading-counter"> </span>
-</div>
 
-<div class="bg-noise" aria-hidden="true"></div>
-
-<!-- back to top -->
-<div class="progress-wrap" aria-hidden="true">
-    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
-    </svg>
-</div>
 
 <!-- Scripts -->
 <script defer src="../js/jquery.min.js"></script>
