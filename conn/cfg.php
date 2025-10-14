@@ -12,9 +12,9 @@ if($_SERVER['HTTP_HOST'] == 'localhost:82' || $_SERVER['HTTP_HOST'] == 'localhos
 else
 {
     define("DBSERVERNAME", "localhost");
-	define("DBUSERNAME", "c2110196_sk");
-	define("DBPASSWORD", "poGEve59wi");
-	define("DBNAME", "c2110196_sk");
+	define("DBUSERNAME", "c1850838_actv");
+	define("DBPASSWORD", "de21giKOki");
+	define("DBNAME", "c1850838_actv");
 	define("DEPURAR", 0);
-	define("BASEURL", "https://somoskahlo.com");
+	define("BASEURL", "https://kahloagencia.com/2025/kahlo_web_v2/");
 }
