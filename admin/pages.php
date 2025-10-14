@@ -56,11 +56,16 @@ function handle_video_upload($field,&$error){
     $tmp = $_FILES[$field]['tmp_name'];
     $orig = $_FILES[$field]['name'];
     $ext = strtolower(pathinfo($orig, PATHINFO_EXTENSION));
-    if ($ext !== 'mp4') { $error = 'bad_vid_type'; return null; }
+    $allowed_ext = ['mp4','jpg','jpeg','png'];
+    if (!in_array($ext,$allowed_ext)) { $error = 'bad_vid_type'; return null; }
     $fi = finfo_open(FILEINFO_MIME_TYPE);
     $mime = finfo_file($fi,$tmp);
     finfo_close($fi);
-    if ($mime !== 'video/mp4' && $mime !== 'application/octet-stream') { $error = 'bad_vid_type'; return null; }
+    $ok = false;
+    if ($ext === 'mp4' && ($mime === 'video/mp4' || $mime === 'application/octet-stream')) $ok = true;
+    if (($ext === 'jpg' || $ext === 'jpeg') && $mime === 'image/jpeg') $ok = true;
+    if ($ext === 'png' && $mime === 'image/png') $ok = true;
+    if (!$ok) { $error = 'bad_vid_type'; return null; }
     $dir = __DIR__.'/pages_videos';
     ensure_dir($dir);
     $final = random_filename($ext);
@@ -202,6 +207,11 @@ foreach ($page_files as $pf) {
 $page_options_create = '<option value="" disabled selected>Seleccioná una página</option>' . $page_options_only;
 
 $existing_urls = array_values(array_column($pages, 'page_url'));
+
+function is_image_ext($filename){
+    $e = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+    return in_array($e, ['jpg','jpeg','png']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -264,9 +274,9 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'uploadimg'): ?>
                 <div class="alert alert-danger" style="margin-top:15px">No se pudo subir la imagen.</div>
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'badvid'): ?>
-                <div class="alert alert-danger" style="margin-top:15px">Formato de video inválido. Permitido: mp4.</div>
+                <div class="alert alert-danger" style="margin-top:15px">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'uploadvid'): ?>
-                <div class="alert alert-danger" style="margin-top:15px">No se pudo subir el video.</div>
+                <div class="alert alert-danger" style="margin-top:15px">No se pudo subir el archivo.</div>
             <?php endif; ?>
 
             <div style="margin-top:20px; overflow-x:auto">
@@ -276,7 +286,7 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
                             <th>Página</th>
                             <th>Nombre</th>
                             <th style="width:120px">Logo</th>
-                            <th style="width:120px">Video</th>
+                            <th style="width:120px">Video/Imagen</th>
                             <th style="width:220px">Acciones</th>
                         </tr>
                     </thead>
@@ -291,7 +301,15 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
                                 <td><?= htmlspecialchars(preg_replace('#^trabajos/#','',$row['page_url'] ?? '')) ?></td>
                                 <td><?= htmlspecialchars($row['page_name'] ?? '') ?></td>
                                 <td><?php if (!empty($row['page_logo_overlay'])): ?><img src="../admin/pages_img/<?= htmlspecialchars($row['page_logo_overlay']) ?>" class="mini-thumb"><?php endif; ?></td>
-                                <td><?php if (!empty($row['page_video'])): ?><span class="badge badge-path"><?= htmlspecialchars($row['page_video']) ?></span><?php endif; ?></td>
+                                <td>
+                                    <?php if (!empty($row['page_video'])): ?>
+                                        <?php if (is_image_ext($row['page_video'])): ?>
+                                            <img src="../admin/pages_videos/<?= htmlspecialchars($row['page_video']) ?>" class="mini-thumb">
+                                        <?php else: ?>
+                                            <span class="badge badge-path"><?= htmlspecialchars($row['page_video']) ?></span>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </td>
                                 <td>
                                     <form method="post" action="pages.php" class="d-inline moveForm">
                                         <input type="hidden" name="action" value="move">
@@ -360,10 +378,10 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
                   <div class="alert alert-danger dup-hint" id="badImgCreate">Formato inválido. Permitidos: jpg, jpeg, png, svg.</div>
               </div>
               <div class="form-group">
-                  <label>Video (mp4)</label>
-                  <input type="file" name="page_video_file" id="create_video_file" class="form-control" accept=".mp4,video/mp4">
+                  <label>Video o imagen (mp4, jpg, jpeg, png)</label>
+                  <input type="file" name="page_video_file" id="create_video_file" class="form-control" accept=".mp4,.jpg,.jpeg,.png,video/mp4,image/jpeg,image/png">
                   <div class="help-text">Se guarda en admin/pages_videos/ (DB: solo nombre de archivo)</div>
-                  <div class="alert alert-danger dup-hint" id="badVidCreate">Formato inválido. Permitido: mp4.</div>
+                  <div class="alert alert-danger dup-hint" id="badVidCreate">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
               </div>
           </div>
           <div class="modal-footer">
@@ -403,10 +421,10 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
                   <div id="edit_logo_preview" style="margin-top:8px"></div>
               </div>
               <div class="form-group">
-                  <label>Video (mp4)</label>
-                  <input type="file" name="page_video_file" id="edit_video_file" class="form-control" accept=".mp4,video/mp4">
+                  <label>Video o imagen (mp4, jpg, jpeg, png)</label>
+                  <input type="file" name="page_video_file" id="edit_video_file" class="form-control" accept=".mp4,.jpg,.jpeg,.png,video/mp4,image/jpeg,image/png">
                   <div class="help-text">Dejar vacío para mantener el actual (DB guarda solo nombre)</div>
-                  <div class="alert alert-danger dup-hint" id="badVidEdit">Formato inválido. Permitido: mp4.</div>
+                  <div class="alert alert-danger dup-hint" id="badVidEdit">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
                   <div id="edit_video_preview" style="margin-top:8px"></div>
               </div>
           </div>
@@ -464,7 +482,12 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
                 $('#edit_logo_preview').html('<img class="mini-thumb" src="../admin/pages_img/'+escapeHtml(logo)+'"> <span class="badge badge-path">'+escapeHtml(logo)+'</span>');
             } else { $('#edit_logo_preview').empty(); }
             if (video) {
-                $('#edit_video_preview').html('<span class="badge badge-path">'+escapeHtml(video)+'</span>');
+                var isImg = /\.(jpg|jpeg|png)$/i.test(video);
+                if (isImg) {
+                    $('#edit_video_preview').html('<img class="mini-thumb" src="../admin/pages_videos/'+escapeHtml(video)+'"> <span class="badge badge-path">'+escapeHtml(video)+'</span>');
+                } else {
+                    $('#edit_video_preview').html('<span class="badge badge-path">'+escapeHtml(video)+'</span>');
+                }
             } else { $('#edit_video_preview').empty(); }
 
             if (isBS5) editModal.show(); else $('#editModal').modal('show');
@@ -516,7 +539,7 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
             toggleCreateBtn();
         });
         $('#create_video_file').on('change', function(){
-            var ok = validateExt(this.value, ['mp4']);
+            var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']);
             $('#badVidCreate').toggleClass('show', !ok);
             toggleCreateBtn();
         });
@@ -528,7 +551,7 @@ $existing_urls = array_values(array_column($pages, 'page_url'));
         });
         $('#edit_video_file').on('change', function(){
             if (!this.value) { $('#badVidEdit').removeClass('show'); toggleEditBtn(); return; }
-            var ok = validateExt(this.value, ['mp4']);
+            var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']);
             $('#badVidEdit').toggleClass('show', !ok);
             toggleEditBtn();
         });

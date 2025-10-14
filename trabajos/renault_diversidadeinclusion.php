@@ -1,0 +1,174 @@
+<?php
+// trabajos/renault_diversidad_inclusion.php
+include_once("../_general.php");
+
+$PAGE_URL   = basename($_SERVER['SCRIPT_NAME']);
+$PAGE_TITLE = "Kahlo Agencia - Renault Group";
+?>
+
+<?php include_once("../templates/trabajos/head-info.php"); ?>
+</head>
+
+<body class="index-six">
+
+<?php include_once("../templates/home/navbar.php"); ?>
+
+<main>
+    <section class="d-flex align-items-center min-hv">
+        <div class="container mt-83">
+            <div class="row">
+                <div class="col-lg-8 col-xl-8">
+                    <div class="d-flex align-items-center justify-content-between col-xl-8">
+                        <img src="../img/renault-group.svg" class="logo-interna" alt="Renault Group">
+                        <p class="text-white font13 mb-0">/PÚBLICO INTERNO/</p>
+                    </div>
+                    <h1 class="mt-6 mb-0">Renault Group <br> Diversidad e Inclusión</h1>
+                </div>
+                <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
+                    <p class="text-white text-uppercase font13 lh-21">
+                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-1.jpg" class="img-fluid" alt="Renault Diversidad e Inclusión pieza principal">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="spacer d-flex align-items-center my-50">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-lg-6 mt-7 mt-lg-0">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-2.gif" class="img-fluid" alt="Animación sistema gráfico diversidad Renault">
+                </div>
+                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5">
+                    <p class="text-white txt-trabajo-20">
+                        Con esta propuesta buscamos desarrollar un sistema conceptual, gráfico y literario en donde cada elemento, desde sus diferencias lograra integrarse, invitando a celebrar la diversidad en todas sus formas.
+                    </p>
+                </div>
+
+                <div class="col-12 mt-5">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-3.jpg" class="img-fluid" alt="Aplicaciones del sistema de diversidad Renault">
+                </div>
+
+                <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-0">
+                    <p class="text-white txt-trabajo-20">
+                        El desafío fue lograr un branding que acompañe la transformación cultural de Renault y que invite a las personas a apropiarse y MULTIPLICAR el mensaje de inclusión e igualdad de oportunidades que promueve la compañía.
+                    </p>
+                </div>
+
+                <div class="col-12 col-lg-6 offset-xl-1 mt-5">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-4.gif" class="img-fluid" alt="Animación multiplicar mensaje inclusión Renault">
+                </div>
+
+                <div class="col-12 mt-5 d-flex flex-column gap-4">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-5.gif" class="img-fluid" alt="Variación de piezas diversidad Renault 1">
+                    <img src="../img/trabajos/renault_diversidadeinclusion-6.gif" class="img-fluid" alt="Variación de piezas diversidad Renault 2">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <?php include_once("../templates/trabajos/anterior-siguiente-section.php"); ?>
+
+    <div id="footer-spacer" aria-hidden="true"></div>
+</main>
+
+<?php include_once("../templates/home/footer.php"); ?>
+
+<!-- Loader -->
+<div class="loading-screen" id="loading-screen" aria-hidden="true">
+    <span class="bar top-bar"></span>
+    <span class="bar down-bar"></span>
+    <span class="progress-line"></span>
+    <span class="loading-counter"> </span>
+</div>
+
+<div class="bg-noise" aria-hidden="true"></div>
+
+<!-- back to top -->
+<div class="progress-wrap" aria-hidden="true">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+    </svg>
+</div>
+
+<!-- Scripts -->
+<script defer src="../js/jquery.min.js"></script>
+<script defer src="../js/bootstrap.min.js"></script>
+<script defer src="../js/waypoint.js"></script>
+<script defer src="../js/imagesloaded.pkgd.min.js"></script>
+<script src="../js/gsap.js"></script>
+<script defer src="../js/smoothscroll-varticle.js"></script>
+<script src="../js/smoothscroll.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script defer src="../js/scrolltoplugin.js"></script>
+<script defer src="../js/splittext.js"></script>
+<script defer src="../js/counterup.js"></script>
+<script defer src="../js/waw.js"></script>
+<script defer src="../js/main.js"></script>
+
+<script>
+// Menú móvil / efectos defensivos
+const menuToggle  = document.getElementById("menuToggle");
+const mobileNav   = document.getElementById("mobileNav");
+const mobileLinks = mobileNav ? mobileNav.querySelectorAll("a") : [];
+const header      = document.querySelector("header");
+
+if (menuToggle && mobileNav) {
+  menuToggle.addEventListener("click", () => {
+    menuToggle.classList.toggle("active");
+    mobileNav.classList.toggle("open");
+  });
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      menuToggle.classList.remove("active");
+      mobileNav.classList.remove("open");
+    });
+  });
+}
+
+const mediaQuery = window.matchMedia("(max-width: 992px)");
+function handleScroll() {
+  if (!header) return;
+  if (mediaQuery.matches) {
+    if (window.scrollY > 50) header.classList.add("scrolled");
+    else header.classList.remove("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+}
+window.addEventListener("scroll", handleScroll);
+window.addEventListener("resize", handleScroll);
+handleScroll();
+
+// Altura footer dinámica
+function ajustarAlturaFooter() {
+  const footer = document.querySelector("footer.footer");
+  const main   = document.querySelector("main");
+  if (footer && main) main.style.marginBottom = footer.offsetHeight + "px";
+}
+window.addEventListener("load", ajustarAlturaFooter);
+window.addEventListener("resize", ajustarAlturaFooter);
+
+// Fade-in ítems footer
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll("footer .fade-item");
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("visible"); }),
+    { root: null, threshold: 0.1 }
+  );
+  items.forEach((item) => observer.observe(item));
+});
+</script>
+
+</body>
+</html>

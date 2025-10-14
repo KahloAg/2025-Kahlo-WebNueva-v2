@@ -26,6 +26,20 @@ function k_video($file, $B) {
     return k_asset($file, 'pages_videos', $B);
 }
 
+function k_is_image_bg($file) {
+    if (!$file) return false;
+    $path = parse_url($file, PHP_URL_PATH);
+    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+    return in_array($ext, ['jpg','jpeg','png']);
+}
+
+function k_is_video_bg($file) {
+    if (!$file) return false;
+    $path = parse_url($file, PHP_URL_PATH);
+    $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+    return $ext === 'mp4';
+}
+
 $current_slug = '';
 if (isset($PAGE_URL) && $PAGE_URL !== '') {
     $current_slug = $PAGE_URL;
@@ -60,12 +74,18 @@ if (!$prev) {
     $prev = $prev ? array_values($prev)[0] : null;
 }
 
-$prev_video = $prev ? k_video($prev['page_video'] ?? '', $B) : '';
+$prev_media_file = $prev['page_video'] ?? '';
+$prev_media_url  = $prev ? k_video($prev_media_file, $B) : '';
+$prev_is_img_bg  = k_is_image_bg($prev_media_file);
+$prev_is_vid_bg  = k_is_video_bg($prev_media_file);
 $prev_logo  = $prev ? k_logo($prev['page_logo_overlay'] ?? '', $B) : '';
 $prev_href  = $prev ? k_href($prev['page_url'] ?? '#', $B) : '#';
 $prev_name  = $prev['page_name'] ?? '';
 
-$next_video = $next ? k_video($next['page_video'] ?? '', $B) : '';
+$next_media_file = $next['page_video'] ?? '';
+$next_media_url  = $next ? k_video($next_media_file, $B) : '';
+$next_is_img_bg  = k_is_image_bg($next_media_file);
+$next_is_vid_bg  = k_is_video_bg($next_media_file);
 $next_logo  = $next ? k_logo($next['page_logo_overlay'] ?? '', $B) : '';
 $next_href  = $next ? k_href($next['page_url'] ?? '#', $B) : '#';
 $next_name  = $next['page_name'] ?? '';
@@ -78,13 +98,17 @@ $next_name  = $next['page_name'] ?? '';
                     <a href="<?= htmlspecialchars($prev_href) ?>" class="pli-image-link">
                         <div class="pli-image-holder">
                             <figure class="pli-image">
-                                <?php if ($prev_video): ?>
-                                <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback src="<?= htmlspecialchars($prev_video) ?>"></video>
+                                <?php if ($prev_media_url && $prev_is_vid_bg): ?>
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback src="<?= htmlspecialchars($prev_media_url) ?>"></video>
+                                <?php elseif ($prev_media_url && $prev_is_img_bg): ?>
+                                    <img class="image-blur-target" src="<?= htmlspecialchars($prev_media_url) ?>" alt="image">
+                                <?php elseif ($prev_logo): ?>
+                                    <img class="image-blur-target" src="<?= htmlspecialchars($prev_logo) ?>" alt="image">
                                 <?php endif; ?>
                             </figure>
                             <?php if ($prev_logo): ?>
                             <div class="logo-overlay">
-                                <img src="<?= htmlspecialchars($prev_logo) ?>" class="logo-image" style="height: 34px;">
+                                <img src="<?= htmlspecialchars($prev_logo) ?>" class="logo-image" style="height: 34px;" alt="logo">
                             </div>
                             <?php endif; ?>
                         </div>
@@ -106,13 +130,17 @@ $next_name  = $next['page_name'] ?? '';
                     <a href="<?= htmlspecialchars($next_href) ?>" class="pli-image-link">
                         <div class="pli-image-holder">
                             <figure class="pli-image">
-                                <?php if ($next_video): ?>
-                                <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback src="<?= htmlspecialchars($next_video) ?>"></video>
+                                <?php if ($next_media_url && $next_is_vid_bg): ?>
+                                    <video class="w-100 image-blur-target" autoplay loop muted playsinline disableRemotePlayback src="<?= htmlspecialchars($next_media_url) ?>"></video>
+                                <?php elseif ($next_media_url && $next_is_img_bg): ?>
+                                    <img class="image-blur-target" src="<?= htmlspecialchars($next_media_url) ?>" alt="image">
+                                <?php elseif ($next_logo): ?>
+                                    <img class="image-blur-target" src="<?= htmlspecialchars($next_logo) ?>" alt="image">
                                 <?php endif; ?>
                             </figure>
                             <?php if ($next_logo): ?>
                             <div class="logo-overlay">
-                                <img src="<?= htmlspecialchars($next_logo) ?>" class="logo-image" style="height: 40px;">
+                                <img src="<?= htmlspecialchars($next_logo) ?>" class="logo-image" style="height: 40px;" alt="logo">
                             </div>
                             <?php endif; ?>
                         </div>
