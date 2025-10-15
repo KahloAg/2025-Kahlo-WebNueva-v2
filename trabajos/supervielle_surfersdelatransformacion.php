@@ -26,7 +26,7 @@ $PAGE_TITLE = "Kahlo Agencia - Supervielle";
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
                     <p class="text-white text-uppercase font13 lh-21">
-                        Campaña 360 estilo documental testimonial con motivo del Día Internacional de la Mujer
+                   Serie documental interna que expone el proceso de transformación digital desde dentro.
                     </p>
                 </div>
             </div>
@@ -56,21 +56,30 @@ $PAGE_TITLE = "Kahlo Agencia - Supervielle";
                     <img src="../img/trabajos/supervielle_transformacion-1.jpg" class="img-fluid" alt="Surfers de la Transformación - capítulo 1">
                 </div>
 
-                <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
-                    <p class="text-white">
-                        Con un amplio despliegue de producción y un dedicado trabajo de postproducción lanzamos <strong>#SurfersDeLaTransformación</strong>, una serie de 5 capítulos protagonizados por líderes y colaboradores del banco.
-                    </p>
-                </div>
-
-                <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-5">
+                <div class="col-12 col-lg-5 col-xl-4 offset-xl-2 offset-lg-1">
                     <p class="text-white mb-0">
-                        La serie completa nos permitió mostrar el proceso de transformación digital con un formato original y atractivo. Se publicó un capítulo por semana y cada uno de ellos tuvo grandes niveles de interacción con el público de LinkedIn.
+                        La transformación digital es el nuevo desafío que enfrentan todas las las grandes corporaciones. Para Banco Supervielle, creamos #SurfersDeLaTransformación, la primera serie documental interna exclusiva para LinkedIn, que muestra su camino hacia la modernización.
+
                     </p>
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 mt-lg-5">
+                <div class="col-12 col-lg-5 col-xl-4 mt-7 mt-lg-5">
+                    <p class="text-white mb-0">
+                        Diseñamos una serie de 5 capítulos protagonizados por líderes y colaboradores del banco. Cada episodio revela procesos, reflexiones y acciones concretas de cambio en Supervielle, usando un formato atractivo para audiencias internas y externas.
+                    </p>
+                </div>
+
+                <div class="col-12 col-lg-6 offset-xl-2 offset-lg-1 mt-lg-5">
                     <img src="../img/trabajos/supervielle_transformacion-2.jpg" class="img-fluid" alt="Surfers de la Transformación - making of">
                 </div>
+
+                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-15">
+                   <p class="text-white txt-trabajo-20 mb-0">
+                     Con un despliegue robusto de producción y postproducción, la serie fue publicada semanalmente en LinkedIn y generó elevados niveles de interacción. Una estrategia de comunicación organizacional que convierte transformación digital en contenido relevante y motivador.
+                    </p> 
+                </div>
+
+                
             </div>
         </div>
     </section>
