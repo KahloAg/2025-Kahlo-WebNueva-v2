@@ -58,6 +58,11 @@ if (empty($cur)) {
 $cur = $cur ? array_values($cur)[0] : null;
 if (!$cur) return;
 
+$page_title = isset($cur['page_name']) ? trim((string)$cur['page_name']) : '';
+if ($page_title !== '') {
+    echo '<script>document.title=' . json_encode($page_title) . ';</script>';
+}
+
 $cur_idx = (int)$cur['page_index'];
 
 $next = SelectQuery('pages')->Condition('page_index >', 'i', $cur_idx)->Order('page_index', 'ASC')->Limit(1)->Run();

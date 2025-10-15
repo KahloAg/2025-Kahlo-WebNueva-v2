@@ -283,8 +283,8 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/admin.css" type="text/css">
     <style>
-        .page-toolbar{display:flex;align-items:center;justify-content:space-between;margin:12px 0 8px 0}
-        .page-toolbar h2{margin:0;font-weight:700}
+        .page-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 14px}
+        .page-toolbar h2{margin:0;font-weight:700;color:#111;display:block!important}
         .badge-path{font-size:12px;background:#f3f4f6;border:1px solid #e5e7eb;color:#374151}
         .mini-thumb{width:84px;height:60px;object-fit:contain;border:1px solid #d0d5dd;border-radius:6px;background:conic-gradient(#d7dbe3 0 25%, #eef0f4 0 50%) 0 0/12px 12px,conic-gradient(#eef0f4 0 25%, #d7dbe3 0 50%) 6px 6px/12px 12px}
         .mini-thumb[src$=".png"]{background:conic-gradient(#c6ccd7 0 25%, #e3e7ee 0 50%) 0 0/12px 12px,conic-gradient(#e3e7ee 0 25%, #c6ccd7 0 50%) 6px 6px/12px 12px}
@@ -314,19 +314,18 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         .gallery-item img{max-width:100%;max-height:96px;object-fit:contain}
         .gallery-footer{padding:8px 12px;border-top:1px solid #d6dbe3;font-size:12px;color:#4b5563;background:#f8fafc}
         .close-x{border:none;background:transparent;font-size:22px;line-height:1}
-        .area{min-height:8px}
     </style>
 </head>
 <body>
     <?php ShowAdminNavBar('nav-pages'); ?>
-    <div class="area"></div>
 
     <div class="contenidoAdmin">
         <div class="inicioAdmin jumbotron">
 
+            <!-- TÍTULO + BOTÓN dentro de .inicioAdmin -->
             <div class="page-toolbar">
                 <h2>Páginas</h2>
-                <button class="btn btn-primary" type="button" id="btnCreate">Nueva página</button>
+                <button class="btn btn-danger" type="button" id="btnCreate">Nueva página</button>
             </div>
 
             <?php if (isset($_GET['m']) && $_GET['m'] === 'created'): ?>
@@ -425,7 +424,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         </div>
     </div>
 
-    <div style="width:100px; height: 50px"></div>
+    <div style="width:100px; height:50px"></div>
 
     <!-- CREATE -->
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
