@@ -1,4 +1,4 @@
-<!-- 
+
     <div class="loading-screen" id="loading-screen">
         <span class="bar top-bar"></span>
         <span class="bar down-bar"></span>
@@ -11,8 +11,7 @@
             <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
         </svg>
     </div>
-  back to top end -->
-    <!-- pre loader start -->
+ 
     <div class="rts-cursor cursor-outer" data-default="yes" data-link="yes" data-slider="no">
         <span class="fn-cursor"></span>
     </div>
