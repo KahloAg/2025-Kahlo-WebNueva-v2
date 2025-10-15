@@ -48,3 +48,112 @@
         <li><a href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank">LinkedIn</a></li>
     </ul>
 </div>
+
+<script>
+(function() {
+  var header = document.querySelector('header.header-area');
+
+  var OFFSET_PX = { trabajos: 320, clientes: 0 };
+
+  function headerHeight() {
+    if (!header) return 0;
+    return Math.round(header.getBoundingClientRect().height);
+  }
+
+  function targetTop(el, id) {
+    var y = el.getBoundingClientRect().top + window.pageYOffset;
+    var extra = OFFSET_PX[id] || 0;
+    return y - headerHeight() + extra;
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function animateScrollTo(to, duration) {
+    var start = window.pageYOffset;
+    var diff = to - start;
+    if (diff === 0 || duration <= 0) { window.scrollTo(0, to); return; }
+    var startTime = performance.now();
+    function step(now) {
+      var elapsed = now - startTime;
+      var t = Math.min(1, elapsed / duration);
+      var eased = easeInOutCubic(t);
+      window.scrollTo(0, start + diff * eased);
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function settleScroll(el, id, deadlineMs) {
+    var start = performance.now();
+    function tick() {
+      var desired = targetTop(el, id);
+      var diff = desired - window.pageYOffset;
+      if (Math.abs(diff) <= 2) return;
+      window.scrollTo(0, window.pageYOffset + diff * 0.3);
+      if (performance.now() - start < deadlineMs) requestAnimationFrame(tick);
+      else window.scrollTo(0, desired);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function durationFor(id, to) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 0;
+    var distance = Math.abs(to - window.pageYOffset);
+    var perPx = 0.6;
+    var base = distance * perPx;
+    var mult = 1.1;
+    var dur = base * mult;
+    var min = 700, max = 1400;
+    return Math.max(min, Math.min(max, dur));
+  }
+
+  function smoothTo(el, id) {
+    var to = targetTop(el, id);
+    var dur = durationFor(id, to);
+    animateScrollTo(to, dur);
+    setTimeout(function() { settleScroll(el, id, 600); }, Math.max(100, dur - 50));
+  }
+
+  function handleClick(e) {
+    var link = e.currentTarget;
+    var url = new URL(link.href, window.location.href);
+    if (!url.hash || url.origin !== window.location.origin) return;
+    var id = url.hash.slice(1);
+    var target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    smoothTo(target, id);
+    var menuToggle = document.getElementById('menuToggle');
+    var mobileNav = document.getElementById('mobileNav');
+    if (menuToggle && mobileNav) { menuToggle.classList.remove('active'); mobileNav.classList.remove('open'); }
+    if (history.pushState) history.pushState(null, '', '#' + id);
+  }
+
+  var links = document.querySelectorAll('.navbar-nav-1 a[href*="#"], #mobileNav a[href*="#"]');
+  links.forEach(function(a) { a.addEventListener('click', handleClick); });
+
+  function onLoadHash() {
+    if (!location.hash) return;
+    var id = location.hash.slice(1);
+    var target = document.getElementById(id);
+    if (!target) return;
+    setTimeout(function() { smoothTo(target, id); }, 0);
+  }
+  window.addEventListener('load', onLoadHash);
+
+  window.addEventListener('resize', function() {
+    if (!location.hash) return;
+    var id = location.hash.slice(1);
+    var target = document.getElementById(id);
+    if (!target) return;
+    window.scrollTo(0, targetTop(target, id));
+  });
+})();
+</script>
+
+
+
+
+

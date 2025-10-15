@@ -3,6 +3,7 @@ include_once("_general.php");
 ?>
 
 <?php include_once("templates/home/head-info.php"); ?>
+<link rel="preload" href="img/bg-home.mp4" as="video" type="video/mp4" fetchpriority="high">
 <link rel="stylesheet" href="css/index.css">
 <style>
 .footer {opacity: 0}
