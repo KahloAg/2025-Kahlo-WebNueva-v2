@@ -18,12 +18,12 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                 <div class="col-lg-8 col-xl-8">
                     <div class="d-flex align-items-center justify-content-between col-xl-8">
                         <img src="../img/despegar.png" class="logo-interna">
-                        <p class="text-white font13 mb-0">/PÚBLICO INTERNO/</p>
+                        <p class="text-white font13 mb-0">/PÚBLICO EXTERNO/</p>
                     </div>
-                    <h1 class="mt-6 mb-0">Despegar <br> Comunicación Interna</h1>
+                    <h1 class="mt-6 mb-0">Galicia <br> Evento Aprender del error</h1>
                 </div>
                 <div class="col-9 col-sm-8 col-lg-3 offset-lg-9 mt-5 mt-lg-0">
-                    <p class="text-white text-uppercase font13 lh-21">Implementación del nuevo rebranding en la comunicación interna para unificar cultura y tono.</p>
+                    <p class="text-white text-uppercase font13 lh-21">Campaña 360 interna que promueve aprender del error como motor de crecimiento.</p>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
             <div class="row">
                 <div class="col-12 embed-container">
                     <iframe
-                        src="https://www.youtube.com/embed/3dLu0DaqWTs?autoplay=1&mute=1&loop=1&playsinline=1&modestbranding=1&rel=0"
+                        src="https://www.youtube.com/embed/y9ldAtclBuM?autoplay=1&mute=1&loop=1&playsinline=1&modestbranding=1&rel=0"
                         style="width: 100%;" frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
@@ -49,33 +49,32 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6 mt-7 mt-lg-0">
-                    <img src="../img/trabajos/despegar_beneficios-1.jpg" class="img-fluid">
+                    <img src="../img/trabajos/galicia_aprenderdelerror-1.jpg" class="img-fluid">
                 </div>
                 <div class="col-12 col-lg-6 offset-xl-1 col-xl-5">
-                    <p class="text-white txt-trabajo-20 mb-0">Nuestro desafío fue llevar este nuevo concepto, mucho más emocional y sensorial, a toda su comunicación interna para revalorizar la experiencia de exploración, aprendizaje y recorrido que los colaboradores viven día a día dentro de la compañía.</p>
+                    <p class="text-white txt-trabajo-20 mb-0">El desafío: Banco Galicia nos llamó para acompañar el lanzamiento de su campaña “Error”, una pieza que cambia el eje convencional de defensa del cliente por reconocer fallas propias y promover la transparencia institucional.</p>
                 </div>
 
-                <div class="col-12 mt-5">
-                    <img src="../img/trabajos/despegar_beneficios-2.jpg" class="img-fluid">
+                <div class="col-12 col-lg-6 mt-5">
+                    <img src="../img/trabajos/galicia_aprenderdelerror-2.jpg" class="img-fluid">
                 </div>
 
-                <div class="col-12 mt-5">
-                    <img src="../img/trabajos/despegar_beneficios-3.jpg" class="img-fluid">
+                <div class="col-12 col-lg-6 mt-5">
+                    <img src="../img/trabajos/galicia_aprenderdelerror-3.jpg" class="img-fluid">
                 </div>
 
-                <div class="col-12 mt-5">
-                    <img src="../img/trabajos/despegar_beneficios-4.jpg" class="img-fluid">
-                </div>
+               
 
                 <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-0">
-                    <p class="text-white txt-trabajo-20 mb-0">Resultados: <br>Una comunicación más fortalecida, dinámica, actualizada y coherente. Donde los mensajes para colaboradores continúan con la estructura visual, conceptual y estética de la campaña externa.</p>
+                    <p class="text-white txt-trabajo-20 mb-0">La propuesta creativa: La campaña parte de un gesto arriesgado: visibilizar el error como motor de mejora. Con ese enfoque diseñamos los mensajes, las piezas y los soportes que acompañan esa idea de humildad institucional que conecta desde la honestidad.</p>
                 </div>
 
                 <div class="col-12 col-lg-6 offset-xl-1 mt-5">
-                    <video playsinline autoplay muted loop class="w-100">
-                        <source src="../img/trabajos/despegar_beneficios-5.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                   <img src="../img/trabajos/galicia_aprenderdelerror-4.jpg" class="img-fluid">
+                </div>
+
+                <div class="col-12 col-lg-10 offset-lg-1 mt-15 text-center mb-15">
+                <p class="text-white txt-trabajo-20 mb-0">El impacto buscado: El resultado es una comunicación más cercana, confiable y humana. Esta campaña ayudó a reforzar el branding institucional de Galicia como un banco que escucha, aprende, se comunica y se compromete con sus clientes.</p>    
                 </div>
             </div>
         </div>
