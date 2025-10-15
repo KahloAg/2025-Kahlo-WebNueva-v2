@@ -18,7 +18,7 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                 <div class="col-lg-8 col-xl-8">
                     <div class="d-flex align-items-center justify-content-between col-xl-8">
                         <img src="../img/galicia.png" class="logo-interna">
-                        <p class="text-white font13 mb-0">/PÚBLICO EXTERNO/</p>
+                        <p class="text-white font13 mb-0">/COMUNICACIÓN INTERNA/</p>
                     </div>
                     <h1 class="mt-6 mb-0">Galicia <br> Evento Aprender del error</h1>
                 </div>
