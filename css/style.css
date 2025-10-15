@@ -232,26 +232,31 @@ figure.pli-image {
 .element1 {
   top: 10%;
   left: 15%;
+  background-color: #2C22C7;
 }
 
 .element2 {
   top: 20%;
   right: 10%;
+  background-color: #16ABDE;
 }
 
 .element3 {
   bottom: 20%;
   right: 20%;
+  
 }
 
 .element4 {
   bottom: 40%;
   right: 55%;
+  background: #D61A1A;
 }
 
 .element5 {
   bottom: 15%;
   left: 10%;
+  background: #2A6982;
 }
 
 .before-title {
@@ -29426,6 +29431,7 @@ section.svg-container:nth-last-of-type(0) svg.radial-progress {
 .team-title-4 .title {
   background: linear-gradient(92deg, #FFF 0%, rgba(255, 255, 255, 0) 100%);
   background-clip: text;
+      font-family: 'sharp_groteskbook';
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 140px;
@@ -29436,14 +29442,14 @@ section.svg-container:nth-last-of-type(0) svg.radial-progress {
 
 @media only screen and (min-width: 1200px) and (max-width: 1599px) {
   .team-title-4 .title {
-    font-size: 81px;
-    line-height: 111px;
+    font-size: 79px;
+    line-height: 110px;
   }
 }
 
 @media only screen and (max-width: 1200px) {
   .team-title-4 .title {
-    font-size: 71px; line-height: 98px;
+    font-size: 69px; line-height: 98px;
   }
 }
 
@@ -32713,7 +32719,11 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 992px) {
-
+ .team-title-4 .title
+     {
+        font-size: 55px;
+        line-height: 76px;
+    }
   .txt-next {
     font-size: 28px;
     line-height: 33px;
@@ -32932,7 +32942,7 @@ body.servi-ce-details .rts-footer-two-area {
         font-size: 14px;
     }
         .team-title-4 .title {
-        font-size: 39px;
+        font-size: 37px;
         line-height: 52px;
     }
 }
@@ -33021,6 +33031,7 @@ body.servi-ce-details .rts-footer-two-area {
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 992px) {
+     
   .desktop-menu {
     display: none;
     /* Oculta menú original */

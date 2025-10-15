@@ -57,7 +57,7 @@
             </div>
 
             <div class="col-12 mt-5">
-                <img src="<?= $B ?>/img/logo-footer.svg" class="img-fluid fade-item" alt="Kahlo Agencia">
+             <a href="<?= $B ?>/index.php"> <img src="<?= $B ?>/img/logo-footer.svg" class="img-fluid fade-item" alt="Kahlo Agencia"> </a>
             </div>
         </div>
     </div>
