@@ -17,7 +17,7 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
             <div class="row">
                 <div class="col-lg-8 col-xl-8">
                     <div class="d-flex align-items-center justify-content-between col-xl-8">
-                        <img src="../img/despegar.png" class="logo-interna">
+                        <img src="../img/galicia.png" class="logo-interna">
                         <p class="text-white font13 mb-0">/PÚBLICO EXTERNO/</p>
                     </div>
                     <h1 class="mt-6 mb-0">Galicia <br> Evento Aprender del error</h1>
@@ -38,7 +38,7 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                         style="width: 100%;" frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
-                        title="Liliana - Seguí tu receta">
+                        title="Galicia - Aprender del error">
                     </iframe>
                 </div>
             </div>
@@ -51,8 +51,8 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                 <div class="col-12 col-lg-6 mt-7 mt-lg-0">
                     <img src="../img/trabajos/galicia_aprenderdelerror-1.jpg" class="img-fluid">
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5">
-                    <p class="text-white txt-trabajo-20 mb-0">El desafío: Banco Galicia nos llamó para acompañar el lanzamiento de su campaña “Error”, una pieza que cambia el eje convencional de defensa del cliente por reconocer fallas propias y promover la transparencia institucional.</p>
+                <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4">
+                    <p class="text-white txt-trabajo-20 mb-0">Banco Galicia nos llamó para acompañar el lanzamiento de su campaña “Error”, una pieza que cambia el eje convencional de defensa del cliente por reconocer fallas propias y promover la transparencia institucional.</p>
                 </div>
 
                 <div class="col-12 col-lg-6 mt-5">
@@ -65,16 +65,16 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
 
                
 
-                <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-0">
-                    <p class="text-white txt-trabajo-20 mb-0">La propuesta creativa: La campaña parte de un gesto arriesgado: visibilizar el error como motor de mejora. Con ese enfoque diseñamos los mensajes, las piezas y los soportes que acompañan esa idea de humildad institucional que conecta desde la honestidad.</p>
+                <div class="col-12 col-lg-5 col-xl-4 mt-7 mt-lg-0">
+                    <p class="text-white txt-trabajo-20 mb-0">La campaña parte de un gesto arriesgado: visibilizar el error como motor de mejora. Con ese enfoque diseñamos los mensajes, las piezas y los soportes que acompañan esa idea de humildad institucional que conecta desde la honestidad.</p>
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 mt-5">
+                <div class="col-12 col-lg-6 offset-xl-2 offset-lg-1 mt-5">
                    <img src="../img/trabajos/galicia_aprenderdelerror-4.jpg" class="img-fluid">
                 </div>
 
                 <div class="col-12 col-lg-10 offset-lg-1 mt-15 text-center mb-15">
-                <p class="text-white txt-trabajo-20 mb-0">El impacto buscado: El resultado es una comunicación más cercana, confiable y humana. Esta campaña ayudó a reforzar el branding institucional de Galicia como un banco que escucha, aprende, se comunica y se compromete con sus clientes.</p>    
+                <p class="text-white txt-trabajo-20 mb-0">El resultado es una comunicación más cercana, confiable y humana. Esta campaña ayudó a reforzar el branding institucional de Galicia como un banco que escucha, aprende, se comunica y se compromete con sus clientes.</p>    
                 </div>
             </div>
         </div>

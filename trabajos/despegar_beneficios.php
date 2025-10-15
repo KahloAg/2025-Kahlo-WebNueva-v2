@@ -38,7 +38,7 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                         style="width: 100%;" frameborder="0"
                         allow="autoplay; fullscreen; picture-in-picture"
                         allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
-                        title="Liliana - Seguí tu receta">
+                        title="Despegar - Beneficios">
                     </iframe>
                 </div>
             </div>
@@ -51,7 +51,7 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                 <div class="col-12 col-lg-6 mt-7 mt-lg-0">
                     <img src="../img/trabajos/despegar_beneficios-1.jpg" class="img-fluid">
                 </div>
-                <div class="col-12 col-lg-6 offset-xl-1 col-xl-5">
+                <div class="col-12 col-lg-5 offset-lg-1 offset-xl-2 col-xl-4">
                     <p class="text-white txt-trabajo-20 mb-0">Nuestro desafío fue llevar este nuevo concepto, mucho más emocional y sensorial, a toda su comunicación interna para revalorizar la experiencia de exploración, aprendizaje y recorrido que los colaboradores viven día a día dentro de la compañía.</p>
                 </div>
 
@@ -67,11 +67,11 @@ $PAGE_TITLE = "Kahlo Agencia - Despegar";
                     <img src="../img/trabajos/despegar_beneficios-4.jpg" class="img-fluid">
                 </div>
 
-                <div class="col-12 col-lg-6 col-xl-5 mt-7 mt-lg-0">
+                <div class="col-12 col-lg-5 col-xl-4 mt-7 mt-lg-0">
                     <p class="text-white txt-trabajo-20 mb-0">Resultados: <br>Una comunicación más fortalecida, dinámica, actualizada y coherente. Donde los mensajes para colaboradores continúan con la estructura visual, conceptual y estética de la campaña externa.</p>
                 </div>
 
-                <div class="col-12 col-lg-6 offset-xl-1 mt-5">
+                <div class="col-12 col-lg-6 offset-lg-1 offset-xl-2 mt-5">
                     <video playsinline autoplay muted loop class="w-100">
                         <source src="../img/trabajos/despegar_beneficios-5.mp4" type="video/mp4">
                         Your browser does not support the video tag.
