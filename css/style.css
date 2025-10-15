@@ -19,7 +19,8 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 70px; /* altura del navbar */
+  scroll-padding-top: 70px;
+  /* altura del navbar */
 }
 
 :root {
@@ -92,9 +93,8 @@ html {
   height: 23px;
 }
 
-p
- {
-    margin-bottom: 20px !important;
+p {
+  margin-bottom: 20px !important;
 }
 
 .anim-image-parallax-wrap {
@@ -123,10 +123,9 @@ figure.pli-image {
   pointer-events: none;
 }
 
-.logo-overlay img
- {
-    height: 55px !important;
-    width: auto !important;
+.logo-overlay img {
+  height: 55px !important;
+  width: auto !important;
 }
 
 .pli-image-holder:hover .image-blur-target {
@@ -22725,13 +22724,21 @@ h1 {
   margin-top: 6rem !important;
 }
 
-.mt-7 {margin-top: 7%;}
+.mt-7 {
+  margin-top: 7%;
+}
 
-.mb-7 {margin-bottom: 7%;}
+.mb-7 {
+  margin-bottom: 7%;
+}
 
-.mt-15 {margin-top: 15%;}
+.mt-15 {
+  margin-top: 15%;
+}
 
-.mb-15 {margin-bottom: 15%;}
+.mb-15 {
+  margin-bottom: 15%;
+}
 
 .font30 {
   font-size: 30px;
@@ -24888,12 +24895,6 @@ h1 {
 }
 
 
-
-@media only screen and (max-width: 767px) {
-  p br {
-    display: none;
-  }
-}
 
 .approch-area-left .title-area-left-wrapper .pre-title {
   padding: 7px 16px;
@@ -29431,7 +29432,7 @@ section.svg-container:nth-last-of-type(0) svg.radial-progress {
 .team-title-4 .title {
   background: linear-gradient(92deg, #FFF 0%, rgba(255, 255, 255, 0) 100%);
   background-clip: text;
-      font-family: 'sharp_groteskbook';
+  font-family: 'sharp_groteskbook';
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 140px;
@@ -29449,14 +29450,15 @@ section.svg-container:nth-last-of-type(0) svg.radial-progress {
 
 @media only screen and (max-width: 1200px) {
   .team-title-4 .title {
-    font-size: 69px; line-height: 98px;
+    font-size: 69px;
+    line-height: 98px;
   }
 }
 
 @media only screen and (max-width: 767px) {
   .team-title-4 .title {
     font-size: 59px;
-        line-height: 80px;
+    line-height: 80px;
   }
 }
 
@@ -32673,10 +32675,9 @@ body.servi-ce-details .rts-footer-two-area {
 /*# sourceMappingURL=../maps/style.css.map */
 
 @media (max-width: 1300px) {
-  .logo-overlay img
- {
+  .logo-overlay img {
     height: 45px !important;
-}
+  }
 }
 
 @media (max-width: 1200px) {
@@ -32719,11 +32720,11 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 992px) {
- .team-title-4 .title
-     {
-        font-size: 55px;
-        line-height: 76px;
-    }
+  .team-title-4 .title {
+    font-size: 55px;
+    line-height: 76px;
+  }
+
   .txt-next {
     font-size: 28px;
     line-height: 33px;
@@ -32779,11 +32780,11 @@ body.servi-ce-details .rts-footer-two-area {
     margin: 12% 0;
   }
 
-  footer p
- {
+  footer p {
     line-height: 23px;
     font-size: 14px;
-}
+  }
+
   .txt-next {
     font-size: 24px;
     line-height: 28px;
@@ -32827,16 +32828,18 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 576px) {
-      .embed-container.hmob-video
- {
-        padding-bottom: 120%;
-    }
-  .hidden-xs {display: none;}
+  .embed-container.hmob-video {
+    padding-bottom: 120%;
+  }
 
-  footer p
- {
+  .hidden-xs {
+    display: none;
+  }
+
+  footer p {
     font-size: 15px;
-}
+  }
+
   .team-title-4 .title {
     font-size: 52px;
     line-height: 72px;
@@ -32921,7 +32924,10 @@ body.servi-ce-details .rts-footer-two-area {
     max-height: 40px;
   }
 
-  .h-mob-auto {height: auto !important; min-height: auto !important;}
+  .h-mob-auto {
+    height: auto !important;
+    min-height: auto !important;
+  }
 
   h1 {
     font-size: 56px;
@@ -32930,21 +32936,34 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 486px) {
+  .txt-next {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  p.fs-3.text-black {
+    font-size: 14px !important;
+    line-height: 20px;
+  }
+
   h1 {
     font-size: 45px;
     line-height: 52px;
   }
-      .section-logos h3 {
-        font-size: 37px;
-        line-height: 46px;
-    }
-    footer p {
-        font-size: 14px;
-    }
-        .team-title-4 .title {
-        font-size: 37px;
-        line-height: 52px;
-    }
+
+  .section-logos h3 {
+    font-size: 37px;
+    line-height: 46px;
+  }
+
+  footer p {
+    font-size: 14px;
+  }
+
+  .team-title-4 .title {
+    font-size: 37px;
+    line-height: 52px;
+  }
 }
 
 .header-area {
@@ -33031,7 +33050,7 @@ body.servi-ce-details .rts-footer-two-area {
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 992px) {
-     
+
   .desktop-menu {
     display: none;
     /* Oculta menú original */
