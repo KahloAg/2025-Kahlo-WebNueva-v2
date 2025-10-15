@@ -350,7 +350,7 @@ footer p {
   line-height: 21px;
 }
 
-footer a img {
+footer a img.img-footer {
   -webkit-transition: transform 0.1s ease-out;
   -moz-transition: transform 0.1s ease-out;
   -ms-transition: transform 0.1s ease-out;
@@ -358,7 +358,7 @@ footer a img {
   transition: transform 0.1s ease-out;
 }
 
-footer a:hover img {
+footer a:hover img.img-footer {
   -webkit-transform: translateX(12px);
   -moz-transform: translateX(12px);
   -ms-transform: translateX(12px);

@@ -7,7 +7,7 @@
                     <p class="mb-0 border-bottom pb-4 fade-item">
                         <a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..." target="_blank" class="d-flex align-items-center justify-content-between">
                             CONTACTANOS
-                            <img src="<?= $B ?>/img/arrow-right.svg" style="height: 25px;">
+                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
                         </a>
                     </p>
                 </div>
@@ -16,19 +16,19 @@
                     <p class="mb-3 fade-item">
                         <a target="_blank" href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..." class="d-flex align-items-center">
                             <span>WHATSAPP</span>
-                            <img src="<?= $B ?>/img/arrow-right.svg" style="height: 25px;">
+                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
                         </a>
                     </p>
                     <p class="mb-3 fade-item">
                         <a href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank" class="d-flex align-items-center">
                             <span>LINKEDIN</span>
-                            <img src="<?= $B ?>/img/arrow-right.svg" style="height: 25px;">
+                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
                         </a>
                     </p>
                     <p class="mb-0 fade-item">
                         <a href="https://www.instagram.com/kahloagencia" target="_blank" class="d-flex align-items-center">
                             <span>INSTAGRAM</span>
-                            <img src="<?= $B ?>/img/arrow-right.svg" style="height: 25px;">
+                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
                         </a>
                     </p>
                 </div>
@@ -37,13 +37,13 @@
                     <p class="mb-3 fade-item ps-3 ps-sm-0">
                         <a href="<?= $B ?>/index.php#trabajos" class="d-flex align-items-center">
                             <span>TRABAJOS</span>
-                            <img src="<?= $B ?>/img/arrow-right.svg" style="height: 25px;">
+                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
                         </a>
                     </p>
                     <p class="mb-0 fade-item ps-3 ps-sm-0">
                         <a href="<?= $B ?>/index.php#clientes" class="d-flex align-items-center">
                             <span>CLIENTES</span>
-                            <img src="<?= $B ?>/img/arrow-right.svg" style="height: 25px;">
+                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
                         </a>
                     </p>
                 </div>

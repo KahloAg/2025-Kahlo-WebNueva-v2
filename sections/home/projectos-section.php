@@ -38,7 +38,7 @@ function k_is_video_bg($file) {
 $pages = SelectQuery('pages')->Order('page_index', 'ASC')->Run();
 if (!is_array($pages)) $pages = [];
 ?>
-<div class="rts-case-studies-three rts-section-gap mb-0" id="trabajos">
+<div class="rts-case-studies-three rts-section-gap mb-0 position-relative" id="trabajos" style="z-index:2">
     <div class="container-fluid">
         <div class="row g-24 align-items-center mt--90 mt_md--50 mt_sm--0">
             <?php foreach ($pages as $row):
