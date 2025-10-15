@@ -118,11 +118,13 @@ include_once("_general.php");
     start: "bottom bottom", // cuando el final del main toca el bottom del viewport
     onEnter: () => gsap.to("footer.footer", { 
       opacity: 1, 
+      pointerEvents: "auto", // ✅ activamos clics cuando aparece
       duration: 0.8, 
       ease: "power2.out" 
     }),
     onLeaveBack: () => gsap.to("footer.footer", { 
       opacity: 0, 
+      pointerEvents: "none", // ✅ desactivamos clics cuando desaparece
       duration: 0.3, 
       ease: "power2.in" 
     })

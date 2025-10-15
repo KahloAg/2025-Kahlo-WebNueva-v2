@@ -322,7 +322,7 @@ figure.pli-image {
   /* importante */
   width: 100%;
   background-color: black;
-  pointer-events: none;
+  pointer-events: auto;
   /* no molesta mientras está oculto */
 
   /* Mantiene flujo normal */
