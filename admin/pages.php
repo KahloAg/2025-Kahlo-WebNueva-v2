@@ -282,6 +282,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
     <link rel="stylesheet" href="css/all.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/admin.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         .page-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 14px}
         .page-toolbar h2{margin:0;font-weight:700;color:#111;display:block!important}
