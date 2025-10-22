@@ -17,7 +17,7 @@ mysqli_query($conn, "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
 $_SESSION["conn"] = $conn;
 
 $admin_username = 'admin';
-$admin_password = 'kahloweb2025';
+$admin_password = 'Q3mZ8p1L6vB2a9T4yR7X5';
 
 function getImages($relativeDir) {
     $path = __DIR__ . '/' . $relativeDir;
@@ -53,11 +53,17 @@ function ShowAdminNavBar($selected)
                 <span class="nav-text">Páginas</span>
             </a>
         </li>
+        <li>
+            <a id="nav-card-images" href="card_images.php">
+                <i class="fa fa-images fa-2x"></i>
+                <span class="nav-text">Imágenes de Cards</span>
+            </a>
+        </li>
     </ul>
     <ul class="logout">
         <li>
-           <a href="logout.php">
-                 <i class="fa fa-power-off fa-2x"></i>
+            <a href="logout.php">
+                <i class="fa fa-power-off fa-2x"></i>
                 <span class="nav-text">Salir</span>
             </a>
         </li>
@@ -65,6 +71,7 @@ function ShowAdminNavBar($selected)
   </nav>
   <script>document.getElementById("'.$selected.'").classList.add("btactivo");</script>';
 }
+
 
 if (!isset($PAGE)) {
     $PAGE = '';

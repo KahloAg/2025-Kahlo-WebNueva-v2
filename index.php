@@ -139,7 +139,7 @@ include_once("_general.php");
 
 
 
-
+  <script src="api/cards_images_feed.php"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

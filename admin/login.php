@@ -36,7 +36,7 @@ if ($username !== '' && $password !== '') {
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <div class="fadeIn first">
-      <img style="margin: 15px" src="../assets/img/kahlo.svg" id="icon" alt="Kahlo Web 2.0"/>
+      <img style="margin: 15px" src="../img/logo.svg" id="icon" alt="Kahlo Web 2.0"/>
     </div>
     <form method="post" action="login.php">
       <input type="text" class="fadeIn second" id="username" name="username" placeholder="Username" required>

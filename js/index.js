@@ -1,6 +1,5 @@
 window.addEventListener("load", function () {
     gsap.registerPlugin(ScrollTrigger);
-
     gsap.to(".video-bg", {
         filter: "blur(12px) brightness(0.2)",
         scale: 1.05,
@@ -15,7 +14,6 @@ window.addEventListener("load", function () {
             pinSpacing: false
         }
     });
-
     gsap.to(".black-overlay", {
         opacity: 1,
         scrollTrigger: {
@@ -30,9 +28,7 @@ window.addEventListener("load", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
-
     const blurOverlay = document.querySelector(".blur-overlay");
-
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: ".section-logos",
@@ -41,18 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
             scrub: true,
             pin: true,
             pinSpacing: true,
-            onUpdate: (self) => {
-                blurOverlay.style.opacity = self.progress > 0.5 ? 1 : 0;
-            }
+            onUpdate: (self) => { blurOverlay && (blurOverlay.style.opacity = self.progress > 0.5 ? 1 : 0); }
         }
     });
-
     tl.to(".section-logos", { backgroundColor: "#ffffff", duration: 0.2 }, 0);
-
     tl.to(".section-logos .before-title:first-of-type", { opacity: 1, y: 0, duration: 0.4 }, 0.3);
     tl.to(".section-logos h3", { opacity: 1, y: 0, duration: 0.4 }, "+=0.1");
     tl.to(".section-logos .before-title:last-of-type", { opacity: 1, y: 0, duration: 0.4 }, "+=0.2");
-
     tl.to(".animated-element", { opacity: 1, y: 0, duration: 0.6, stagger: 0.3 }, 1.8);
 });
 
@@ -63,11 +54,10 @@ const MIN_INTERVAL = 450;
 
 const imageOrderState = {
     idxByKey: {},
-    defaultList: Array.from({ length: 15 }, (_, i) => `img/${i + 1}.jpg`)
+    defaultList: Array.isArray(window.CARDS_IMAGES && window.CARDS_IMAGES._default) ? window.CARDS_IMAGES._default : []
 };
 
 let lastSpot = null;
-
 const activePieces = new WeakMap();
 
 cards.forEach(card => {
@@ -101,19 +91,30 @@ cards.forEach(card => {
     });
 });
 
+function normalizeCategory(cat) {
+    const c = String(cat || '').toLowerCase().trim();
+    if (c === 'publi') return 'publicidad';
+    if (c === 'comu') return 'comunicacion';
+    if (c === 'marca') return 'marca';
+    if (c === 'publicidad' || c === 'comunicacion' || c === 'marca') return c;
+    return '';
+}
+
 function nextSequentialImage(category) {
+    const normalized = normalizeCategory(category);
     let list = null;
     let key = "__default__";
-    try {
-        if (window.CARDS_IMAGES && category && Array.isArray(window.CARDS_IMAGES[category]) && window.CARDS_IMAGES[category].length > 0) {
-            list = window.CARDS_IMAGES[category];
-            key = `cat:${category}`;
-        } else if (window.CARDS_IMAGES && Array.isArray(window.CARDS_IMAGES._default) && window.CARDS_IMAGES._default.length > 0) {
-            list = window.CARDS_IMAGES._default;
-            key = "__default__";
+    if (normalized && window.CARDS_IMAGES && Array.isArray(window.CARDS_IMAGES[normalized]) && window.CARDS_IMAGES[normalized].length > 0) {
+        list = window.CARDS_IMAGES[normalized];
+        key = `cat:${normalized}`;
+    } else if (window.CARDS_IMAGES && Array.isArray(window.CARDS_IMAGES._default) && window.CARDS_IMAGES._default.length > 0) {
+        list = window.CARDS_IMAGES._default;
+        key = "__default__";
+        if (normalized) {
+            console.debug(`[cards] Categoría sin imágenes (${normalized}), usando _default (${list.length})`);
         }
-    } catch (e) {}
-    if (!list) list = imageOrderState.defaultList;
+    }
+    if (!list || list.length === 0) return '';
     if (typeof imageOrderState.idxByKey[key] !== 'number') imageOrderState.idxByKey[key] = 0;
     const i = imageOrderState.idxByKey[key] % list.length;
     const url = list[i];
@@ -128,7 +129,7 @@ function pickPositionAvoidingOverlap(vw, vh, w, h, pad) {
     let bestScore = -1;
     for (let t = 0; t < 12; t++) {
         const x = Math.floor(pad + Math.random() * Math.max(1, vw - pad * 2 - w));
-        const y = Math.floor(pad + Math.random() * Math.max(1, vh - pad * 2 - h));
+        const y = Math.floor(pad + Math.random() * Math.max(1, vh) - pad * 2 - h);
         if (!lastSpot) return { x, y };
         const cx = x + w / 2;
         const cy = y + h / 2;
@@ -137,16 +138,14 @@ function pickPositionAvoidingOverlap(vw, vh, w, h, pad) {
         const dist = Math.hypot(dx, dy);
         const score = dist;
         if (dist >= minDist) return { x, y };
-        if (score > bestScore) {
-            bestScore = score;
-            best = { x, y };
-        }
+        if (score > bestScore) { bestScore = score; best = { x, y }; }
     }
     return best || { x: pad, y: pad };
 }
 
 function createTrailPieceForCard(category, card) {
     const url = nextSequentialImage(category);
+    if (!url) return;
     const piece = new Image();
     piece.className = 'trail-piece';
     piece.style.position = 'fixed';
@@ -260,11 +259,8 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!key) return;
             const inClass = clasesIn[key][1];
             const outClass = clasesOut[key][1];
-            if (scrollDir === 'down' && !el.classList.contains(inClass)) {
-                animateIn(el, key);
-            } else if (scrollDir === 'up' && !el.classList.contains(outClass)) {
-                animateOut(el, key);
-            }
+            if (scrollDir === 'down' && !el.classList.contains(inClass)) animateIn(el, key);
+            else if (scrollDir === 'up' && !el.classList.contains(outClass)) animateOut(el, key);
         });
     });
 

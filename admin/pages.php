@@ -62,6 +62,23 @@ function handle_video_upload($field,&$error){
     return $final;
 }
 
+function handle_poster_upload($field,&$error){
+    $error = '';
+    if (!isset($_FILES[$field]) || ($_FILES[$field]['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) return null;
+    if ($_FILES[$field]['error'] !== UPLOAD_ERR_OK) { $error = 'error_poster'; return null; }
+    $tmp = $_FILES[$field]['tmp_name'];
+    $orig = $_FILES[$field]['name'];
+    $ext = strtolower(pathinfo($orig, PATHINFO_EXTENSION));
+    $allowed = ['jpg','jpeg','png'];
+    if (!in_array($ext,$allowed)) { $error = 'bad_poster_type'; return null; }
+    $fi = finfo_open(FILEINFO_MIME_TYPE); $mime = finfo_file($fi,$tmp); finfo_close($fi);
+    if (!in_array($mime, ['image/jpeg','image/png'])) { $error = 'bad_poster_type'; return null; }
+    $dir = __DIR__.'/pages_videos'; ensure_dir($dir);
+    $final = random_filename($ext); $abs = $dir.'/'.$final;
+    if (!move_uploaded_file($tmp, $abs)) { $error = 'error_poster'; return null; }
+    return $final;
+}
+
 function list_dir_files($dir, $allowed_ext){
     $out = [];
     if ($dir && is_dir($dir)) {
@@ -104,7 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($page_url === '' || $page_name === '') { header('Location: pages.php?m=invalid'); exit; }
         if (page_url_exists($page_url)) { header('Location: pages.php?m=dup'); exit; }
 
-        $imgErr = ''; $vidErr = '';
+        $imgErr = ''; $vidErr = ''; $posterErr = '';
+
         $uploaded_img = handle_image_upload('page_logo_overlay_file',$imgErr);
         if ($imgErr === 'bad_img_type') { header('Location: pages.php?m=badimg'); exit; }
         if ($imgErr === 'error_img') { header('Location: pages.php?m=uploadimg'); exit; }
@@ -133,14 +151,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($imgChoiceErr === 'copy_error') { header('Location: pages.php?m=uploadvid'); exit; }
         }
 
+        $uploaded_poster = handle_poster_upload('page_video_poster_file',$posterErr);
+        if ($posterErr === 'bad_poster_type') { header('Location: pages.php?m=badposter'); exit; }
+        if ($posterErr === 'error_poster') { header('Location: pages.php?m=uploadposter'); exit; }
+
+        $posterChoiceErr = ''; $copied_poster = null;
+        if ($uploaded_poster === null) {
+            if (!empty($_POST['page_video_poster_choice'])) {
+                $copied_poster = copy_choice_to_store('img', $_POST['page_video_poster_choice'], 'pages_videos', ['jpg','jpeg','png'], $posterChoiceErr);
+            }
+            if ($posterChoiceErr === 'bad_type') { header('Location: pages.php?m=badposter'); exit; }
+            if ($posterChoiceErr === 'copy_error') { header('Location: pages.php?m=uploadposter'); exit; }
+        }
+
         $final_logo = $uploaded_img !== null ? $uploaded_img : ($copied_logo ?? '');
         $final_video = $uploaded_vid !== null ? $uploaded_vid : ($copied_fondo ?? '');
+        $final_poster = $uploaded_poster !== null ? $uploaded_poster : ($copied_poster ?? '');
 
         InsertQuery('pages')
             ->Value('page_url', 's', $page_url)
             ->Value('page_name', 's', $page_name)
             ->Value('page_logo_overlay', 's', $final_logo)
             ->Value('page_video', 's', $final_video)
+            ->Value('page_video_poster', 's', $final_poster)
             ->Run();
         global $conn; $new_id = mysqli_insert_id($conn);
         if ($new_id > 0) UpdateQuery('pages')->Value('page_index', 'i', $new_id)->Condition('page_id =', 'i', $new_id)->Run();
@@ -158,8 +191,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $current = get_page_by_id($page_id);
         $keep_img = $current ? ($current['page_logo_overlay'] ?? '') : '';
         $keep_vid = $current ? ($current['page_video'] ?? '') : '';
+        $keep_poster = $current ? ($current['page_video_poster'] ?? '') : '';
 
-        $imgErr = ''; $vidErr = '';
+        $imgErr = ''; $vidErr = ''; $posterErr = '';
+
         $uploaded_img = handle_image_upload('page_logo_overlay_file',$imgErr);
         if ($imgErr === 'bad_img_type') { header('Location: pages.php?m=badimg'); exit; }
         if ($imgErr === 'error_img') { header('Location: pages.php?m=uploadimg'); exit; }
@@ -188,14 +223,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($imgChoiceErr === 'copy_error') { header('Location: pages.php?m=uploadvid'); exit; }
         }
 
+        $uploaded_poster = handle_poster_upload('page_video_poster_file',$posterErr);
+        if ($posterErr === 'bad_poster_type') { header('Location: pages.php?m=badposter'); exit; }
+        if ($posterErr === 'error_poster') { header('Location: pages.php?m=uploadposter'); exit; }
+
+        $posterChoiceErr = ''; $copied_poster = null;
+        if ($uploaded_poster === null) {
+            if (!empty($_POST['page_video_poster_choice'])) {
+                $copied_poster = copy_choice_to_store('img', $_POST['page_video_poster_choice'], 'pages_videos', ['jpg','jpeg','png'], $posterChoiceErr);
+            }
+            if ($posterChoiceErr === 'bad_type') { header('Location: pages.php?m=badposter'); exit; }
+            if ($posterChoiceErr === 'copy_error') { header('Location: pages.php?m=uploadposter'); exit; }
+        }
+
         $final_logo = $uploaded_img !== null ? $uploaded_img : ($copied_logo !== null ? $copied_logo : $keep_img);
         $final_video = $uploaded_vid !== null ? $uploaded_vid : ($copied_fondo !== null ? $copied_fondo : $keep_vid);
+        $final_poster = $uploaded_poster !== null ? $uploaded_poster : ($copied_poster !== null ? $copied_poster : $keep_poster);
 
         UpdateQuery('pages')
             ->Value('page_url', 's', $page_url)
             ->Value('page_name', 's', $page_name)
             ->Value('page_logo_overlay', 's', $final_logo)
             ->Value('page_video', 's', $final_video)
+            ->Value('page_video_poster', 's', $final_poster)
             ->Condition('page_id =', 'i', $page_id)
             ->Run();
         header('Location: pages.php?m=updated'); exit;
@@ -322,8 +372,6 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
 
     <div class="contenidoAdmin">
         <div class="inicioAdmin jumbotron">
-
-            <!-- TÍTULO + BOTÓN dentro de .inicioAdmin -->
             <div class="page-toolbar">
                 <h2>Páginas</h2>
                 <button class="btn btn-danger" type="button" id="btnCreate">Nueva página</button>
@@ -349,6 +397,10 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                 <div class="alert alert-danger" style="margin-top:10px">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'uploadvid'): ?>
                 <div class="alert alert-danger" style="margin-top:10px">No se pudo subir el archivo.</div>
+            <?php elseif (isset($_GET['m']) && $_GET['m'] === 'badposter'): ?>
+                <div class="alert alert-danger" style="margin-top:10px">Poster inválido. Permitidos: jpg, jpeg, png.</div>
+            <?php elseif (isset($_GET['m']) && $_GET['m'] === 'uploadposter'): ?>
+                <div class="alert alert-danger" style="margin-top:10px">No se pudo subir el poster.</div>
             <?php endif; ?>
 
             <div style="margin-top:10px; overflow-x:auto">
@@ -359,12 +411,13 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                             <th>Nombre</th>
                             <th style="width:160px">Logo</th>
                             <th style="width:180px">Video/Imagen</th>
+                            <th style="width:160px">Poster</th>
                             <th style="width:220px">Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="pagesBody">
                     <?php if (count($pages) === 0): ?>
-                        <tr><td colspan="5">No hay páginas cargadas</td></tr>
+                        <tr><td colspan="6">No hay páginas cargadas</td></tr>
                     <?php else: foreach ($pages as $row): ?>
                         <tr data-id="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
                             <td><?= htmlspecialchars(preg_replace('#^trabajos/#','',$row['page_url'] ?? '')) ?></td>
@@ -390,6 +443,15 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                                 <?php endif; ?>
                             </td>
                             <td>
+                                <?php if (!empty($row['page_video_poster'])): ?>
+                                    <?php
+                                        $posVal = $row['page_video_poster'];
+                                        $posSrc = strpos($posVal,'/') !== false ? '../'.ltrim($posVal,'/') : '../admin/pages_videos/'.htmlspecialchars($posVal);
+                                        echo '<img src="'.htmlspecialchars($posSrc).'" class="mini-thumb"> <span class="badge badge-path">'.htmlspecialchars(basename($posVal)).'</span>';
+                                    ?>
+                                <?php endif; ?>
+                            </td>
+                            <td>
                                 <form method="post" action="pages.php" class="d-inline moveForm">
                                     <input type="hidden" name="action" value="move">
                                     <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
@@ -409,6 +471,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                                     data-name="<?= htmlspecialchars($row['page_name'] ?? '') ?>"
                                     data-logo="<?= htmlspecialchars($row['page_logo_overlay'] ?? '') ?>"
                                     data-video="<?= htmlspecialchars($row['page_video'] ?? '') ?>"
+                                    data-poster="<?= htmlspecialchars($row['page_video_poster'] ?? '') ?>"
                                     type="button">Editar</button>
 
                                 <form method="post" action="pages.php" style="display:inline" onsubmit="return confirm('¿Eliminar esta página?')">
@@ -427,7 +490,6 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
 
     <div style="width:100px; height:50px"></div>
 
-    <!-- CREATE -->
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <form method="post" action="pages.php" class="modal-content" id="createForm" enctype="multipart/form-data">
@@ -489,6 +551,23 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                   <div class="alert alert-danger dup-hint" id="badVidCreate">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
               </div>
 
+              <div class="form-group">
+                  <label>Poster del video</label>
+                  <div class="picker-split">
+                      <div class="option-card">
+                          <div class="option-head"><div class="option-badge">A</div><div class="option-title">Elegí del ordenador</div></div>
+                          <input type="file" name="page_video_poster_file" id="create_poster_file" class="form-control" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+                      </div>
+                      <div class="option-card">
+                          <div class="option-head"><div class="option-badge">B</div><div class="option-title">Elegí imagen de /img</div></div>
+                          <button type="button" class="btn btn-outline-secondary w-100 choose-btn" data-gallery="posters" data-target="create_poster_choice">Abrir galería</button>
+                          <div class="help-text" id="create_poster_choice_label" style="margin-top:6px"></div>
+                          <input type="hidden" name="page_video_poster_choice" id="create_poster_choice">
+                      </div>
+                  </div>
+                  <div class="alert alert-danger dup-hint" id="badPosterCreate">Poster inválido. Permitidos: jpg, jpeg, png.</div>
+              </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light cancel-create" data-dismiss="modal" data-bs-dismiss="modal">Cancelar</button>
@@ -498,7 +577,6 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
       </div>
     </div>
 
-    <!-- EDIT -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <form method="post" action="pages.php" class="modal-content" id="editForm" enctype="multipart/form-data">
@@ -563,6 +641,24 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                   <div id="edit_video_preview" style="margin-top:8px"></div>
               </div>
 
+              <div class="form-group">
+                  <label>Poster del video</label>
+                  <div class="picker-split">
+                      <div class="option-card">
+                          <div class="option-head"><div class="option-badge">A</div><div class="option-title">Elegí del ordenador</div></div>
+                          <input type="file" name="page_video_poster_file" id="edit_poster_file" class="form-control" accept=".jpg,.jpeg,.png,image/jpeg,image/png">
+                      </div>
+                      <div class="option-card">
+                          <div class="option-head"><div class="option-badge">B</div><div class="option-title">Elegí imagen de /img</div></div>
+                          <button type="button" class="btn btn-outline-secondary w-100 choose-btn" data-gallery="posters" data-target="edit_poster_choice">Abrir galería</button>
+                          <div class="help-text" id="edit_poster_choice_label" style="margin-top:6px"></div>
+                          <input type="hidden" name="page_video_poster_choice" id="edit_poster_choice">
+                      </div>
+                  </div>
+                  <div class="alert alert-danger dup-hint" id="badPosterEdit">Poster inválido. Permitidos: jpg, jpeg, png.</div>
+                  <div id="edit_poster_preview" style="margin-top:8px"></div>
+              </div>
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-light cancel-edit" data-dismiss="modal" data-bs-dismiss="modal">Cancelar</button>
@@ -623,17 +719,17 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         }
 
         $('#btnCreate').on('click', function(){
-            $('#dupCreate,#badImgCreate,#badVidCreate').removeClass('show');
+            $('#dupCreate,#badImgCreate,#badVidCreate,#badPosterCreate').removeClass('show');
             $('#createForm')[0].reset();
-            $('#create_logo_choice_label,#create_logo_choice_img_label,#create_video_choice_label').text('');
+            $('#create_logo_choice_label,#create_logo_choice_img_label,#create_video_choice_label,#create_poster_choice_label').text('');
             openModal(document.getElementById('createModal'));
         });
         $('.close-create, .cancel-create').on('click', function(){ closeModal(document.getElementById('createModal')); hideGallery(); });
 
         $('.btn-edit').on('click', function(){
-            $('#dupEdit,#badImgEdit,#badVidEdit').removeClass('show');
+            $('#dupEdit,#badImgEdit,#badVidEdit,#badPosterEdit').removeClass('show');
             var id = $(this).data('id'), url = $(this).data('url'), name = $(this).data('name');
-            var logo = $(this).data('logo'), video = $(this).data('video');
+            var logo = $(this).data('logo'), video = $(this).data('video'), poster = $(this).data('poster');
             var urlPlain = String(url).replace(/^trabajos\//,'');
             $('#edit_id').val(id); $('#edit_name').val(name);
             var $sel = $('#edit_url');
@@ -650,8 +746,12 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                 if (isImg) $('#edit_video_preview').html('<img class="mini-thumb" src="'+escapeHtml(vidSrc)+'"> <span class="badge badge-path">'+escapeHtml(video.split('/').pop())+'</span>');
                 else $('#edit_video_preview').html('<span class="badge badge-path">'+escapeHtml(video.split('/').pop())+'</span>');
             } else { $('#edit_video_preview').empty(); }
+            if (poster) {
+                var posSrc = poster.indexOf('/') !== -1 ? '../'+poster.replace(/^\/+/,'') : '../admin/pages_videos/'+poster;
+                $('#edit_poster_preview').html('<img class="mini-thumb" src="'+escapeHtml(posSrc)+'"> <span class="badge badge-path">'+escapeHtml(poster.split('/').pop())+'</span>');
+            } else { $('#edit_poster_preview').empty(); }
 
-            $('#edit_logo_choice_label,#edit_logo_choice_img_label,#edit_video_choice_label').text('');
+            $('#edit_logo_choice_label,#edit_logo_choice_img_label,#edit_video_choice_label,#edit_poster_choice_label').text('');
             openModal(document.getElementById('editModal'));
         });
         $('.close-edit, .cancel-edit').on('click', function(){ closeModal(document.getElementById('editModal')); hideGallery(); });
@@ -665,8 +765,8 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         $('#create_url').on('change input', function(){ $('#dupCreate').toggleClass('show', isDup($(this).val(), '')); toggleCreateBtn(); });
         $('#edit_url').on('change input', function(){ var orig = $('#edit_url').data('original') || ''; $('#dupEdit').toggleClass('show', isDup($(this).val(), orig)); toggleEditBtn(); });
 
-        function toggleCreateBtn(){ $('#btnCreateSave').prop('disabled', $('#dupCreate').hasClass('show') || $('#badImgCreate').hasClass('show') || $('#badVidCreate').hasClass('show')); }
-        function toggleEditBtn(){ $('#btnEditSave').prop('disabled', $('#dupEdit').hasClass('show') || $('#badImgEdit').hasClass('show') || $('#badVidEdit').hasClass('show')); }
+        function toggleCreateBtn(){ $('#btnCreateSave').prop('disabled', $('#dupCreate').hasClass('show') || $('#badImgCreate').hasClass('show') || $('#badVidCreate').hasClass('show') || $('#badPosterCreate').hasClass('show')); }
+        function toggleEditBtn(){ $('#btnEditSave').prop('disabled', $('#dupEdit').hasClass('show') || $('#badImgEdit').hasClass('show') || $('#badVidEdit').hasClass('show') || $('#badPosterEdit').hasClass('show')); }
 
         $('#create_logo_file').on('change', function(){
             var ok = validateExt(this.value, ['jpg','jpeg','png','svg']); $('#badImgCreate').toggleClass('show', !ok);
@@ -676,6 +776,11 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         $('#create_video_file').on('change', function(){
             var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']); $('#badVidCreate').toggleClass('show', !ok);
             if (ok && this.files && this.files[0]) { $('#create_video_choice').val(''); $('#create_video_choice_label').text(''); }
+            toggleCreateBtn();
+        });
+        $('#create_poster_file').on('change', function(){
+            var ok = validateExt(this.value, ['jpg','jpeg','png']); $('#badPosterCreate').toggleClass('show', !ok);
+            if (ok && this.files && this.files[0]) { $('#create_poster_choice').val(''); $('#create_poster_choice_label').text(''); }
             toggleCreateBtn();
         });
         $('#edit_logo_file').on('change', function(){
@@ -688,6 +793,12 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
             if (!this.value) { $('#badVidEdit').removeClass('show'); toggleEditBtn(); return; }
             var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']); $('#badVidEdit').toggleClass('show', !ok);
             if (ok && this.files && this.files[0]) { $('#edit_video_choice').val(''); $('#edit_video_choice_label').text(''); }
+            toggleEditBtn();
+        });
+        $('#edit_poster_file').on('change', function(){
+            if (!this.value) { $('#badPosterEdit').removeClass('show'); toggleEditBtn(); return; }
+            var ok = validateExt(this.value, ['jpg','jpeg','png']); $('#badPosterEdit').toggleClass('show', !ok);
+            if (ok && this.files && this.files[0]) { $('#edit_poster_choice').val(''); $('#edit_poster_choice_label').text(''); }
             toggleEditBtn();
         });
 
@@ -713,11 +824,12 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
             var items, basePath, title, hint;
             if (type === 'logos'){ items = window.K_LOGOS || []; basePath = '../img/logos/'; title = 'Logos'; hint = 'Origen: /img/logos'; }
             else if (type === 'logos_img'){ items = (window.K_FONDOS || []).filter(function(n){ return !isMp4(n); }); basePath = '../img/'; title = 'Logos desde /img'; hint = 'Origen: /img'; }
+            else if (type === 'posters'){ items = (window.K_FONDOS || []).filter(function(n){ return !isMp4(n); }); basePath = '../img/'; title = 'Posters (imágenes)'; hint = 'Origen: /img'; }
             else { items = window.K_FONDOS || []; basePath = '../img/'; title = 'Imágenes/Videos'; hint = 'Origen: /img'; }
             galleryTitle.text(title); galleryHint.text(hint);
             items.forEach(function(name){
                 var card = $('<div class="gallery-item"></div>');
-                if (isMp4(name)) card.text(name); else card.append($('<img>').attr('src', basePath + name));
+                if (isMp4(name) && type !== 'posters') card.text(name); else card.append($('<img>').attr('src', basePath + name));
                 card.on('click', function(){
                     currentTargetInput.val(name);
                     $('#'+targetInputId+'_label').text(name);
@@ -729,8 +841,10 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                         var other2 = targetInputId.indexOf('create') === 0 ? $('#create_logo_choice_img') : $('#edit_logo_choice_img');
                         other2.val(''); $('#'+other2.attr('id')+'_label').text('');
                         var fileInput2 = targetInputId.indexOf('create') === 0 ? $('#create_logo_file') : $('#edit_logo_file'); fileInput2.val('');
+                    } else if (targetInputId.indexOf('poster_choice') !== -1){
+                        var fileInput3 = targetInputId.indexOf('create') === 0 ? $('#create_poster_file') : $('#edit_poster_file'); fileInput3.val('');
                     } else {
-                        var fileInput3 = targetInputId.indexOf('create') === 0 ? $('#create_video_file') : $('#edit_video_file'); fileInput3.val('');
+                        var fileInput4 = targetInputId.indexOf('create') === 0 ? $('#create_video_file') : $('#edit_video_file'); fileInput4.val('');
                     }
                     hideGallery();
                 });
