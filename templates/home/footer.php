@@ -4,10 +4,10 @@
         <div class="container py-5">
             <div class="row align-items-end gx-5 pt-5">
                 <div class="col-12 col-sm-4 col-md-3 mb-5 mb-sm-0">
-                    <p class="mb-0 border-bottom pb-4 fade-item">
-                        <a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..." target="_blank" class="d-flex align-items-center justify-content-between">
-                            CONTACTANOS
-                            <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;">
+                    <p class="mb-0 fade-item">
+                        <a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..." target="_blank" class="d-flex align-items-center justify-content-between rts-btn btn-radious btn-white text-black">
+                            Contactanos
+                           <!-- <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;"> -->
                         </a>
                     </p>
                 </div>
