@@ -31,7 +31,7 @@ include_once("_general.php");
     <?php include_once("sections/home/marcas-section.php"); ?>
 
 
-    <?php include_once("templates/home/footer.php"); ?>
+    <?php include_once("templates/home/footer-index.php"); ?>
 
     <?php include_once("templates/home/loading-miscelaneos.php"); ?>
 
@@ -99,14 +99,19 @@ include_once("_general.php");
   handleScroll(); // ejecutar al cargar
 
   // --- Ajustar altura footer dinámicamente ---
-  function ajustarAlturaFooter() {
-    const footer = document.querySelector("footer.footer");
-    const main = document.querySelector("#main");
-    if (footer && main) {
+ function ajustarAlturaFooter() {
+  const footer = document.querySelector("footer.footer");
+  const main = document.querySelector("#main");
+  if (footer && main) {
+    if (window.matchMedia("(min-width: 993px)").matches) {
       const footerHeight = footer.offsetHeight;
       main.style.marginBottom = footerHeight + "px";
+    } else {
+      main.style.marginBottom = "0"; // no tocar en mobile
     }
   }
+}
+
 
   window.addEventListener("load", ajustarAlturaFooter);
   window.addEventListener("resize", ajustarAlturaFooter);

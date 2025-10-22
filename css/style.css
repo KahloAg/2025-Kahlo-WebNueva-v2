@@ -33050,7 +33050,7 @@ body.servi-ce-details .rts-footer-two-area {
 
 /* ====== RESPONSIVE ====== */
 @media (max-width: 992px) {
-
+  .footer.relative-mob {position: relative !important}
   .desktop-menu {
     display: none;
     /* Oculta menú original */
