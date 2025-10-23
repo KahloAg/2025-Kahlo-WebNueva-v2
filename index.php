@@ -1,13 +1,12 @@
 <?php
 include_once("_general.php");
-
 ?>
 
 <?php include_once("templates/home/head-info.php"); ?>
 <link rel="preload" href="img/bg-home.mp4" as="video" type="video/mp4" fetchpriority="high">
 <link rel="stylesheet" href="css/index.css">
 <style>
-.footer {opacity: 0}
+.footer {opacity: 0; pointer-events: none}
 </style>
 
 </head>
@@ -17,10 +16,8 @@ include_once("_general.php");
 
     <?php include_once("templates/home/navbar.php"); ?>
 
-    
     <?php include_once("templates/home/navbar_video_section.php"); ?>
 
-    
     <?php include_once("sections/home/frases-animadas.php"); ?>
 
     <?php include_once("sections/home/cards-3-main-section.php"); ?>
@@ -31,6 +28,7 @@ include_once("_general.php");
 
     <?php include_once("sections/home/marcas-section.php"); ?>
 
+    <div id="footer-sentinel"></div>
 
     <?php include_once("templates/home/footer-index.php"); ?>
 
@@ -40,10 +38,8 @@ include_once("_general.php");
     <script defer src="js/bootstrap.min.js"></script>
     <script defer src="js/waypoint.js"></script>
     <script defer src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/gsap.js"></script>
     <script defer src="js/smoothscroll-varticle.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="js/smoothscroll.js"></script>
     <script defer src="js/scrolltoplugin.js"></script>
     <script defer src="js/splittext.js"></script>
     <script defer src="js/scrollmagic.js"></script>
@@ -57,90 +53,93 @@ include_once("_general.php");
     window.CARDS_IMAGES = <?php echo json_encode($cardsImages, JSON_UNESCAPED_SLASHES); ?>;
     </script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-<script>
-  const menuToggle = document.getElementById("menuToggle");
-  const mobileNav = document.getElementById("mobileNav");
-  const mobileLinks = mobileNav.querySelectorAll("a");
-  const header = document.querySelector("header");
+    <script>
+    gsap.registerPlugin(ScrollTrigger);
 
-  // --- Abrir/cerrar con hamburguesa ---
-  menuToggle.addEventListener("click", () => {
-    menuToggle.classList.toggle("active");
-    mobileNav.classList.toggle("open");
-  });
+    const menuToggle = document.getElementById("menuToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    const mobileLinks = mobileNav ? mobileNav.querySelectorAll("a") : [];
+    const header = document.querySelector("header");
 
-  // --- Cerrar al hacer click en un link del menú ---
-  mobileLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      menuToggle.classList.remove("active");
-      mobileNav.classList.remove("open");
-    });
-  });
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("active");
+        mobileNav.classList.toggle("open");
+      });
+      mobileLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("active");
+          mobileNav.classList.remove("open");
+        });
+      });
+    }
 
-  // --- Header scrolled solo en mobile ---
-  const mediaQuery = window.matchMedia("(max-width: 992px)");
+    const mqMobile = window.matchMedia("(max-width: 992px)");
 
-  function handleScroll() {
-    if (mediaQuery.matches) {
-      if (window.scrollY > 50) {
-        header.classList.add("scrolled");
+    function handleScrollHeader() {
+      if (!header) return;
+      if (mqMobile.matches) {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
       } else {
         header.classList.remove("scrolled");
       }
-    } else {
-      header.classList.remove("scrolled"); // reset en desktop
     }
-  }
 
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleScroll);
-  handleScroll(); // ejecutar al cargar
+    window.addEventListener("scroll", handleScrollHeader);
+    window.addEventListener("resize", handleScrollHeader);
+    handleScrollHeader();
 
-  // --- Ajustar altura footer dinámicamente ---
- function ajustarAlturaFooter() {
-  const footer = document.querySelector("footer.footer");
-  const main = document.querySelector("#main");
-  if (footer && main) {
-    if (window.matchMedia("(min-width: 993px)").matches) {
-      const footerHeight = footer.offsetHeight;
-      main.style.marginBottom = footerHeight + "px";
-    } else {
-      main.style.marginBottom = "0"; // no tocar en mobile
+    function ajustarAlturaFooter() {
+      const footer = document.querySelector("footer.footer");
+      const main = document.querySelector("#main");
+      if (!footer || !main) return;
+      if (window.matchMedia("(min-width: 993px)").matches) {
+        const h = footer.offsetHeight;
+        main.style.marginBottom = h + "px";
+      } else {
+        main.style.marginBottom = "0";
+      }
     }
-  }
-}
 
+    function refrescarLayout() {
+      ajustarAlturaFooter();
+      ScrollTrigger.refresh();
+    }
 
-  window.addEventListener("load", ajustarAlturaFooter);
-  window.addEventListener("resize", ajustarAlturaFooter);
+    window.addEventListener("load", refrescarLayout);
+    window.addEventListener("resize", refrescarLayout);
 
-  // --- Fade reveal del footer con ScrollTrigger ---
-  gsap.registerPlugin(ScrollTrigger);
+    if (typeof imagesLoaded === "function") {
+      imagesLoaded(document.body, function() {
+        refrescarLayout();
+      });
+    }
 
-  ScrollTrigger.create({
-    trigger: "#main",
-    start: "bottom bottom", // cuando el final del main toca el bottom del viewport
-    onEnter: () => gsap.to("footer.footer", { 
-      opacity: 1, 
-      pointerEvents: "auto", // ✅ activamos clics cuando aparece
-      duration: 0.8, 
-      ease: "power2.out" 
-    }),
-    onLeaveBack: () => gsap.to("footer.footer", { 
-      opacity: 0, 
-      pointerEvents: "none", // ✅ desactivamos clics cuando desaparece
-      duration: 0.3, 
-      ease: "power2.in" 
-    })
-  });
-</script>
+    const footerEl = document.querySelector("footer.footer");
+    if (footerEl && typeof ResizeObserver !== "undefined") {
+      const ro = new ResizeObserver(() => {
+        refrescarLayout();
+      });
+      ro.observe(footerEl);
+    }
 
+    ScrollTrigger.create({
+      trigger: "#footer-sentinel",
+      start: "top bottom",
+      onEnter: () => gsap.to("footer.footer", { opacity: 1, pointerEvents: "auto", duration: 0.8, ease: "power2.out" }),
+      onLeaveBack: () => gsap.to("footer.footer", { opacity: 0, pointerEvents: "none", duration: 0.3, ease: "power2.in" }),
+      invalidateOnRefresh: true
+    });
+    </script>
 
-
-  <script src="api/cards_images_feed.php"></script>
+    <script src="api/cards_images_feed.php"></script>
     <script src="js/index.js"></script>
 </body>
 </html>
