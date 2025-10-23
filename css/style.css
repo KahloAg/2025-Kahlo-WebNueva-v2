@@ -32606,6 +32606,7 @@ body.servi-ce-details .rts-footer-two-area {
   z-index: 2;
   background-color: #000;
   transform: none !important;
+  margin-top: -2px;
 
 }
 
