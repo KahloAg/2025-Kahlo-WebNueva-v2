@@ -1,5 +1,6 @@
 <?php
 include_once("_general.php");
+
 ?>
 
 <?php include_once("templates/home/head-info.php"); ?>

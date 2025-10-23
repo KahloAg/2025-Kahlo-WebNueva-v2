@@ -1,9 +1,24 @@
-<?php $B = rtrim(BASEURL, '/'); ?>
+<?php
+$B = rtrim(BASEURL, '/');
+
+// Detectar si es España sin que la función imprima "si/no" en el output
+$__ES = false;
+if (function_exists('detectar_origen')) {
+    ob_start();
+    $__res = detectar_origen('esp'); // devuelve 'si' o 'no' pero también hace echo, por eso el buffer
+    ob_end_clean();
+    $__ES = ($__res === 'si');
+}
+
+// Elegir logo según país
+$__LOGO_SRC = $__ES ? ($B . '/img/dra_house.png') : ($B . '/img/logo-white.svg');
+?>
+
 <header class="header-area header-one py-4">
     <div class="container">
         <div class="header-wrapper">
             <a href="<?= $B ?>/index.php" class="logo">
-                <img src="<?= $B ?>/img/logo-white.svg" alt="logo">
+                <img src="<?= htmlspecialchars($__LOGO_SRC, ENT_QUOTES, 'UTF-8') ?>" alt="logo">
             </a>
             <div class="header-right desktop-menu">
                 <nav class="nav-area">
@@ -48,6 +63,7 @@
         <li><a href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank">LinkedIn</a></li>
     </ul>
 </div>
+
 
 <script>
 (function() {

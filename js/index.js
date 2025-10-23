@@ -1,3 +1,16 @@
+(function(){
+  var flag='loader_seen_once';
+  var sels=['#loading-screen','.bg-noise','.progress-wrap','.rts-cursor.cursor-outer','.rts-cursor.cursor-inner'];
+  if(localStorage.getItem(flag)==='1'){
+    document.addEventListener('DOMContentLoaded',function(){sels.forEach(function(sel){var el=document.querySelector(sel);if(el)el.remove();});});
+  }else{
+    window.addEventListener('load',function(){
+      localStorage.setItem(flag,'1');
+      sels.forEach(function(sel){var el=document.querySelector(sel);if(el)el.style.display='none';});
+    });
+  }
+})();
+
 window.addEventListener("load", function () {
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(".video-bg", {

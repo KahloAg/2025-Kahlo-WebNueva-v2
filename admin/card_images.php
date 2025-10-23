@@ -223,6 +223,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ->Value('img_url', 's', $final_img)
             ->Value('img_card_type', 's', $img_card_type)
             ->Run();
+        global $conn; $new_id = mysqli_insert_id($conn);
+        if ($new_id > 0) UpdateQuery('card_images')->Value('img_index', 'i', $new_id)->Condition('img_id =', 'i', $new_id)->Run();
 
         header('Location: card_images.php?m=created'); exit;
 
@@ -262,10 +264,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $img_id = (int)($_POST['img_id'] ?? 0);
         if ($img_id > 0) DeleteQuery('card_images')->Condition('img_id =', 'i', $img_id)->Run();
         header('Location: card_images.php?m=deleted'); exit;
+
+    } elseif ($action === 'move') {
+        $ajax = isset($_POST['ajax']);
+        $img_id = (int)($_POST['img_id'] ?? 0);
+        $dir = $_POST['dir'] ?? '';
+        $curRows = SelectQuery('card_images')->Condition('img_id =','i',$img_id)->Limit(1)->Run();
+        $cur = $curRows ? array_values($curRows)[0] : null;
+        if ($cur) {
+            $curIdx = (int)$cur['img_index'];
+            if ($dir === 'up') {
+                $prev = SelectQuery('card_images')->Condition('img_index <','i',$curIdx)->Order('img_index','DESC')->Limit(1)->Run();
+                $prev = $prev ? array_values($prev)[0] : null;
+                if ($prev) {
+                    $prevIdx = (int)$prev['img_index'];
+                    UpdateQuery('card_images')->Value('img_index','i',$prevIdx)->Condition('img_id =','i',$cur['img_id'])->Run();
+                    UpdateQuery('card_images')->Value('img_index','i',$curIdx)->Condition('img_id =','i',$prev['img_id'])->Run();
+                }
+            } elseif ($dir === 'down') {
+                $next = SelectQuery('card_images')->Condition('img_index >','i',$curIdx)->Order('img_index','ASC')->Limit(1)->Run();
+                $next = $next ? array_values($next)[0] : null;
+                if ($next) {
+                    $nextIdx = (int)$next['img_index'];
+                    UpdateQuery('card_images')->Value('img_index','i',$nextIdx)->Condition('img_id =','i',$cur['img_id'])->Run();
+                    UpdateQuery('card_images')->Value('img_index','i',$curIdx)->Condition('img_id =','i',$next['img_id'])->Run();
+                }
+            }
+        }
+        if ($ajax) {
+            $ordered = SelectQuery('card_images')->Order('img_index','ASC')->Run();
+            $ids = []; foreach ($ordered as $r) $ids[] = (int)$r['img_id'];
+            header('Content-Type: application/json'); echo json_encode(['ok'=>true,'order'=>$ids]); exit;
+        } else { header('Location: card_images.php?m=reordered'); exit; }
     }
 }
 
-$images = SelectQuery('card_images')->Order('img_id', 'DESC')->Run();
+$images = SelectQuery('card_images')->Order('img_index', 'ASC')->Run();
 if (!is_array($images)) $images = [];
 
 $img_dir_abs = realpath(__DIR__.'/../img');
@@ -287,6 +321,9 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png']);
     <style>
         .page-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 14px}
         .page-toolbar h2{margin:0;font-weight:700;color:#111;display:block!important}
+        .pillbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+        .pill{border:1px solid #d1d5db;border-radius:999px;padding:6px 12px;background:#f9fafb;cursor:pointer;font-size:14px}
+        .pill.active{background:#111827;color:#fff;border-color:#111827}
         .mini-thumb{width:120px;height:80px;object-fit:cover;border:1px solid #d0d5dd;border-radius:6px;background:#f3f4f6}
         .badge-path{font-size:12px;background:#f3f4f6;border:1px solid #e5e7eb;color:#374151}
         .table td,.table th{vertical-align:middle}
@@ -304,6 +341,12 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png']);
         .gallery-item img{max-width:100%;max-height:96px;object-fit:contain}
         .gallery-footer{padding:8px 12px;border-top:1px solid #d6dbe3;font-size:12px;color:#4b5563;background:#f8fafc}
         .close-x{border:none;background:transparent;font-size:22px;line-height:1}
+        .btn-move{padding:4px 8px}
+        .arrow-only{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1}
+        .moving-out{opacity:.3; transform:translateY(-6px); transition:opacity .25s ease, transform .25s ease}
+        .moving-out.down{transform:translateY(6px)}
+        .moving-in{animation:flashRow .25s ease}
+        @keyframes flashRow{0%{background:#fff4cc}100%{background:transparent}}
     </style>
 </head>
 <body>
@@ -316,6 +359,13 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png']);
                 <button class="btn btn-danger" type="button" id="btnCreate">Nueva imagen</button>
             </div>
 
+            <div class="pillbar">
+                <button class="pill active" data-filter="all">Todas</button>
+                <button class="pill" data-filter="publicidad">Publicidad</button>
+                <button class="pill" data-filter="comunicacion">Comunicación</button>
+                <button class="pill" data-filter="marca">Marca</button>
+            </div>
+
             <?php if (isset($_GET['m']) && $_GET['m'] === 'created'): ?>
                 <div class="alert alert-success" style="margin-top:10px">Imagen creada</div>
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'updated'): ?>
@@ -326,26 +376,28 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png']);
                 <div class="alert alert-danger" style="margin-top:10px">Formato inválido. Permitidos: jpg, jpeg, png.</div>
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'uploadimg'): ?>
                 <div class="alert alert-danger" style="margin-top:10px">No se pudo procesar la imagen.</div>
+            <?php elseif (isset($_GET['m']) && $_GET['m'] === 'reordered'): ?>
+                <div class="alert alert-info" style="margin-top:10px">Orden actualizado</div>
             <?php elseif (isset($_GET['m']) && $_GET['m'] === 'invalid'): ?>
                 <div class="alert alert-danger" style="margin-top:10px">Datos incompletos.</div>
             <?php endif; ?>
 
             <div style="margin-top:10px; overflow-x:auto">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="cardImagesTable">
                     <thead>
                         <tr>
                             <th style="width:150px">Imagen</th>
                             <th>Archivo</th>
                             <th>Peso (KB)</th>
                             <th>Tipo</th>
-                            <th style="width:220px">Acciones</th>
+                            <th style="width:240px">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="cardImagesBody">
                         <?php if (count($images) === 0): ?>
                             <tr><td colspan="5">No hay imágenes cargadas</td></tr>
                         <?php else: foreach ($images as $row): ?>
-                            <tr>
+                            <tr data-id="<?= htmlspecialchars($row['img_id'] ?? '') ?>" data-type="<?= htmlspecialchars($row['img_card_type'] ?? '') ?>">
                                 <td>
                                     <?php if (!empty($row['img_url'])): ?>
                                         <img src="<?= htmlspecialchars('../admin/cards_images/'.($row['img_url'])) ?>" class="mini-thumb">
@@ -355,6 +407,19 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png']);
                                 <td><?= htmlspecialchars(format_size_kb_label($row['img_url'] ?? '')) ?></td>
                                 <td><?= htmlspecialchars($row['img_card_type'] ?? '') ?></td>
                                 <td>
+                                    <form method="post" action="card_images.php" class="d-inline moveForm">
+                                        <input type="hidden" name="action" value="move">
+                                        <input type="hidden" name="img_id" value="<?= htmlspecialchars($row['img_id'] ?? '') ?>">
+                                        <input type="hidden" name="dir" value="up">
+                                        <button class="btn btn-sm btn-outline-secondary btn-move arrow-only" title="Subir" type="submit">▲</button>
+                                    </form>
+                                    <form method="post" action="card_images.php" class="d-inline moveForm">
+                                        <input type="hidden" name="action" value="move">
+                                        <input type="hidden" name="img_id" value="<?= htmlspecialchars($row['img_id'] ?? '') ?>">
+                                        <input type="hidden" name="dir" value="down">
+                                        <button class="btn btn-sm btn-outline-secondary btn-move arrow-only" title="Bajar" type="submit">▼</button>
+                                    </form>
+
                                     <button
                                         class="btn btn-sm btn-secondary btn-edit"
                                         data-id="<?= htmlspecialchars($row['img_id'] ?? '') ?>"
@@ -578,6 +643,31 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png']);
         $(document).on('click','.choose-btn',function(){ showGallery($(this).data('gallery'), $(this).data('target')); });
         $('#galleryClose').on('click', hideGallery);
         $(window).on('keydown', function(e){ if (e.key === 'Escape') hideGallery(); });
+
+        $('.pill').on('click', function(){
+            $('.pill').removeClass('active');
+            $(this).addClass('active');
+            var f = $(this).data('filter');
+            $('#cardImagesBody tr').each(function(){
+                var t = ($(this).data('type') || '').toString().toLowerCase();
+                if (f === 'all' || t === f) $(this).show(); else $(this).hide();
+            });
+        });
+
+        function animateMove($row, dir){
+            $row.addClass('moving-out' + (dir === 'down' ? ' down' : ''));
+            setTimeout(function(){
+                if (dir === 'up') { var $prev = $row.prev('tr'); if ($prev.length) $row.insertBefore($prev); }
+                else { var $next = $row.next('tr'); if ($next.length) $row.insertAfter($next); }
+                $row.removeClass('moving-out down').addClass('moving-in');
+                setTimeout(function(){ $row.removeClass('moving-in'); }, 250);
+            }, 250);
+        }
+        $('#cardImagesBody').on('submit', '.moveForm', function(ev){
+            ev.preventDefault();
+            var $f=$(this), dir=$f.find('input[name="dir"]').val(), $row=$f.closest('tr');
+            $.post('card_images.php', $f.serialize()+'&ajax=1', function(resp){ if (!resp || !resp.ok) return; animateMove($row, dir); }, 'json');
+        });
     });
     </script>
 </body>
