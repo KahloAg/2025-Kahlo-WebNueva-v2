@@ -60,14 +60,13 @@ if (!is_array($pages)) $pages = [];
                             <figure class="pli-image">
                                 <?php if ($videoUrl && $isVidBg): ?>
                                     <div class="video-wrap">
-                                        <?php if ($hasPoster): ?>
-                                            <img class="poster-overlay" src="<?= htmlspecialchars($posterUrl) ?>" alt="">
-                                        <?php endif; ?>
                                         <video class="proj-video w-100 image-blur-target"
                                                playsinline
                                                muted
                                                loop
+                                               autoplay
                                                preload="metadata"
+                                               <?= $hasPoster ? 'poster="'.htmlspecialchars($posterUrl).'"' : '' ?>
                                                data-src="<?= htmlspecialchars($videoUrl) ?>">
                                         </video>
                                     </div>
@@ -95,9 +94,7 @@ if (!is_array($pages)) $pages = [];
 
 <style>
 .video-wrap{position:relative}
-.video-wrap img.poster-overlay{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .2s;pointer-events:none}
-.video-wrap.playing img.poster-overlay{opacity:0}
-.proj-video{display:block;width:100%;height:auto;background:#000}
+.proj-video{display:block;width:100%;height:auto;background:#000;object-fit:cover}
 </style>
 
 <script>
@@ -109,19 +106,15 @@ document.addEventListener('DOMContentLoaded',function(){
     if(v.dataset.started) return;
     v.dataset.started=1;
 
-    v.loop = true;          // forzamos loop por JS
-    v.muted = true;         // asegura autoplay
-    v.playsInline = true;   // iOS inline
+    v.loop=true;
+    v.muted=true;
+    v.playsInline=true;
+    v.autoplay=true;
 
     if(!v.src && v.dataset.src){ v.src=v.dataset.src; }
-    v.addEventListener('playing',function(){ w.classList.add('playing'); });
-    v.addEventListener('waiting',function(){ w.classList.remove('playing'); });
-
-    // fallback extra: si por algo no respeta loop
     v.addEventListener('ended', function(){
-      try{ v.currentTime = 0; v.play().catch(function(){}); }catch(e){}
+      try{ v.currentTime=0; v.play().catch(function(){}); }catch(e){}
     });
-
     v.addEventListener('canplay',function(){ v.play().catch(function(){}); },{once:true});
     v.load();
   }
