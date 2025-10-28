@@ -36,7 +36,7 @@ function k_is_video_bg($file) {
     return $ext === 'mp4';
 }
 
-$pages = SelectQuery('pages')->Order('page_index', 'ASC')->Run();
+$pages = SelectQuery('pages')->Condition("page_active =", "i", 0)->Order('page_index', 'ASC')->Run();
 if (!is_array($pages)) $pages = [];
 ?>
 <div class="rts-case-studies-three rts-section-gap mb-0 position-relative" id="trabajos" style="z-index:2">

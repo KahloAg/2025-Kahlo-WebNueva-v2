@@ -174,6 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ->Value('page_logo_overlay', 's', $final_logo)
             ->Value('page_video', 's', $final_video)
             ->Value('page_video_poster', 's', $final_poster)
+            ->Value('page_active', 'i', 0)
             ->Run();
         global $conn; $new_id = mysqli_insert_id($conn);
         if ($new_id > 0) UpdateQuery('pages')->Value('page_index', 'i', $new_id)->Condition('page_id =', 'i', $new_id)->Run();
@@ -278,6 +279,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     UpdateQuery('pages')->Value('page_index', 'i', $nextIdx)->Condition('page_id =', 'i', $cur['page_id'])->Run();
                     UpdateQuery('pages')->Value('page_index', 'i', $curIdx)->Condition('page_id =', 'i', $next['page_id'])->Run();
                 }
+            } elseif ($dir === 'top') {
+                $minRow = SelectQuery('pages')->Order('page_index', 'ASC')->Limit(1)->Run();
+                $minRow = $minRow ? array_values($minRow)[0] : null;
+                $minIdx = $minRow ? (int)$minRow['page_index'] : 0;
+                if ($curIdx > $minIdx) UpdateQuery('pages')->Value('page_index', 'i', $minIdx - 1)->Condition('page_id =', 'i', $cur['page_id'])->Run();
+            } elseif ($dir === 'bottom') {
+                $maxRow = SelectQuery('pages')->Order('page_index', 'DESC')->Limit(1)->Run();
+                $maxRow = $maxRow ? array_values($maxRow)[0] : null;
+                $maxIdx = $maxRow ? (int)$maxRow['page_index'] : 0;
+                if ($curIdx < $maxIdx) UpdateQuery('pages')->Value('page_index', 'i', $maxIdx + 1)->Condition('page_id =', 'i', $cur['page_id'])->Run();
             }
         }
         if ($ajax) {
@@ -285,6 +296,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $ids = []; foreach ($ordered as $r) $ids[] = (int)$r['page_id'];
             header('Content-Type: application/json'); echo json_encode(['ok'=>true,'order'=>$ids]); exit;
         } else { header('Location: pages.php?m=reordered'); exit; }
+    } elseif ($action === 'toggle_active') {
+        $ajax = isset($_POST['ajax']);
+        $page_id = (int)($_POST['page_id'] ?? 0);
+        $cur = get_page_by_id($page_id);
+        if ($cur) {
+            $curVal = isset($cur['page_active']) ? (int)$cur['page_active'] : 0;
+            $newVal = $curVal === 0 ? 1 : 0;
+            UpdateQuery('pages')->Value('page_active', 'i', $newVal)->Condition('page_id =', 'i', $page_id)->Run();
+            if ($ajax) { header('Content-Type: application/json'); echo json_encode(['ok'=>true,'new'=>$newVal,'label'=>$newVal===0?'Activo':'Inactivo']); exit; }
+            header('Location: pages.php'); exit;
+        } else {
+            if ($ajax) { header('Content-Type: application/json'); echo json_encode(['ok'=>false]); exit; }
+            header('Location: pages.php'); exit;
+        }
     }
 }
 
@@ -340,14 +365,6 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         .mini-thumb{width:84px;height:60px;object-fit:contain;border:1px solid #d0d5dd;border-radius:6px;background:conic-gradient(#d7dbe3 0 25%, #eef0f4 0 50%) 0 0/12px 12px,conic-gradient(#eef0f4 0 25%, #d7dbe3 0 50%) 6px 6px/12px 12px}
         .mini-thumb[src$=".png"]{background:conic-gradient(#c6ccd7 0 25%, #e3e7ee 0 50%) 0 0/12px 12px,conic-gradient(#e3e7ee 0 25%, #c6ccd7 0 50%) 6px 6px/12px 12px}
         .logo-bg{background:#cbd2e1;border-radius:8px;padding:2px;display:inline-block}
-        .btn-move{padding:4px 8px}
-        .arrow-only{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1}
-        .moving-out{opacity:.3; transform:translateY(-6px); transition:opacity .25s ease, transform .25s ease}
-        .moving-out.down{transform:translateY(6px)}
-        .moving-in{animation:flashRow .25s ease}
-        @keyframes flashRow{0%{background:#fff4cc}100%{background:transparent}}
-        .dup-hint{display:none;margin-top:8px}
-        .dup-hint.show{display:block}
         .table td,.table th{vertical-align:middle}
         .help-text{font-size:12px;color:#6b7280;margin-top:4px}
         .modal-dialog{max-width:980px}
@@ -365,6 +382,16 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         .gallery-item img{max-width:100%;max-height:96px;object-fit:contain}
         .gallery-footer{padding:8px 12px;border-top:1px solid #d6dbe3;font-size:12px;color:#4b5563;background:#f8fafc}
         .close-x{border:none;background:transparent;font-size:22px;line-height:1}
+        .btn-move{padding:0}
+        .icon-only{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;line-height:1}
+        .icon-btn{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;padding:0}
+        .status-btn{min-width:92px}
+        .moving-out{opacity:.3; transform:translateY(-6px); transition:opacity .25s ease, transform .25s ease}
+        .moving-out.down{transform:translateY(6px)}
+        .moving-in{animation:flashRow .25s ease}
+        @keyframes flashRow{0%{background:#fff4cc}100%{background:transparent}}
+        .dup-hint{display:none !important;margin-top:8px}
+        .dup-hint.show{display:block !important}
     </style>
 </head>
 <body>
@@ -413,11 +440,12 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                             <th style="width:180px">Video/Imagen</th>
                             <th style="width:160px">Poster</th>
                             <th style="width:220px">Acciones</th>
+                            <th style="width:120px">Estado</th>
                         </tr>
                     </thead>
                     <tbody id="pagesBody">
                     <?php if (count($pages) === 0): ?>
-                        <tr><td colspan="6">No hay páginas cargadas</td></tr>
+                        <tr><td colspan="7">No hay páginas cargadas</td></tr>
                     <?php else: foreach ($pages as $row): ?>
                         <tr data-id="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
                             <td><?= htmlspecialchars(preg_replace('#^trabajos/#','',$row['page_url'] ?? '')) ?></td>
@@ -452,32 +480,56 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <form method="post" action="pages.php" class="d-inline moveForm">
-                                    <input type="hidden" name="action" value="move">
-                                    <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
-                                    <input type="hidden" name="dir" value="up">
-                                    <button class="btn btn-sm btn-outline-secondary btn-move arrow-only" title="Subir" type="submit">▲</button>
-                                </form>
-                                <form method="post" action="pages.php" class="d-inline moveForm">
-                                    <input type="hidden" name="action" value="move">
-                                    <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
-                                    <input type="hidden" name="dir" value="down">
-                                    <button class="btn btn-sm btn-outline-secondary btn-move arrow-only" title="Bajar" type="submit">▼</button>
-                                </form>
+                                <div class="btn-group" role="group" aria-label="Mover">
+                                    <form method="post" action="pages.php" class="d-inline moveForm">
+                                        <input type="hidden" name="action" value="move">
+                                        <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
+                                        <input type="hidden" name="dir" value="up">
+                                        <button class="btn btn-sm btn-outline-secondary btn-move icon-only" title="Subir" type="submit"><i class="fa-solid fa-chevron-up"></i></button>
+                                    </form>
+                                    <form method="post" action="pages.php" class="d-inline moveForm">
+                                        <input type="hidden" name="action" value="move">
+                                        <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
+                                        <input type="hidden" name="dir" value="down">
+                                        <button class="btn btn-sm btn-outline-secondary btn-move icon-only" title="Bajar" type="submit"><i class="fa-solid fa-chevron-down"></i></button>
+                                    </form>
+                                    <form method="post" action="pages.php" class="d-inline moveForm">
+                                        <input type="hidden" name="action" value="move">
+                                        <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
+                                        <input type="hidden" name="dir" value="top">
+                                        <button class="btn btn-sm btn-outline-secondary btn-move icon-only" title="Subir al tope" type="submit"><i class="fa-solid fa-angles-up"></i></button>
+                                    </form>
+                                    <form method="post" action="pages.php" class="d-inline moveForm">
+                                        <input type="hidden" name="action" value="move">
+                                        <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
+                                        <input type="hidden" name="dir" value="bottom">
+                                        <button class="btn btn-sm btn-outline-secondary btn-move icon-only" title="Bajar al final" type="submit"><i class="fa-solid fa-angles-down"></i></button>
+                                    </form>
+                                </div>
 
-                                <button class="btn btn-sm btn-secondary btn-edit"
+                                <button class="btn btn-sm btn-outline-secondary icon-btn btn-edit"
                                     data-id="<?= htmlspecialchars($row['page_id'] ?? '') ?>"
                                     data-url="<?= htmlspecialchars($row['page_url'] ?? '') ?>"
                                     data-name="<?= htmlspecialchars($row['page_name'] ?? '') ?>"
                                     data-logo="<?= htmlspecialchars($row['page_logo_overlay'] ?? '') ?>"
                                     data-video="<?= htmlspecialchars($row['page_video'] ?? '') ?>"
                                     data-poster="<?= htmlspecialchars($row['page_video_poster'] ?? '') ?>"
-                                    type="button">Editar</button>
+                                    type="button" title="Editar"><i class="fa-solid fa-pen"></i></button>
 
                                 <form method="post" action="pages.php" style="display:inline" onsubmit="return confirm('¿Eliminar esta página?')">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
-                                    <button class="btn btn-sm btn-danger" type="submit">Eliminar</button>
+                                    <button class="btn btn-sm btn-outline-danger icon-btn" type="submit" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </td>
+                            <td>
+                                <?php $isInactive = isset($row['page_active']) ? (int)$row['page_active'] === 1 : false; ?>
+                                <form method="post" action="pages.php" class="d-inline toggleActiveForm">
+                                    <input type="hidden" name="action" value="toggle_active">
+                                    <input type="hidden" name="page_id" value="<?= htmlspecialchars($row['page_id'] ?? '') ?>">
+                                    <button type="submit" class="btn btn-sm status-btn <?= $isInactive ? 'btn-outline-secondary' : 'btn-success' ?> toggle-active-btn">
+                                        <?= $isInactive ? 'Inactivo' : 'Activo' ?>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -504,7 +556,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                   <select name="page_url" id="create_url" class="form-control" required>
                       <?= $page_options_create ?>
                   </select>
-                  <div class="alert alert-danger dup-hint" id="dupCreate">Ya existe una página con esa URL.</div>
+                  <div class="alert alert-danger dup-hint" id="dupCreate" style="display:none">Ya existe una página con esa URL.</div>
               </div>
               <div class="form-group">
                   <label>Nombre</label>
@@ -531,7 +583,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                           <input type="hidden" name="page_logo_overlay_choice_img" id="create_logo_choice_img">
                       </div>
                   </div>
-                  <div class="alert alert-danger dup-hint" id="badImgCreate">Formato inválido. Permitidos: jpg, jpeg, png, svg.</div>
+                  <div class="alert alert-danger dup-hint" id="badImgCreate" style="display:none">Formato inválido. Permitidos: jpg, jpeg, png, svg.</div>
               </div>
 
               <div class="form-group">
@@ -548,7 +600,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                           <input type="hidden" name="page_video_choice" id="create_video_choice">
                       </div>
                   </div>
-                  <div class="alert alert-danger dup-hint" id="badVidCreate">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
+                  <div class="alert alert-danger dup-hint" id="badVidCreate" style="display:none">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
               </div>
 
               <div class="form-group">
@@ -565,7 +617,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                           <input type="hidden" name="page_video_poster_choice" id="create_poster_choice">
                       </div>
                   </div>
-                  <div class="alert alert-danger dup-hint" id="badPosterCreate">Poster inválido. Permitidos: jpg, jpeg, png.</div>
+                  <div class="alert alert-danger dup-hint" id="badPosterCreate" style="display:none">Poster inválido. Permitidos: jpg, jpeg, png.</div>
               </div>
 
           </div>
@@ -592,7 +644,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                   <select name="page_url" id="edit_url" class="form-control" required>
                       <?= $page_options_only ?>
                   </select>
-                  <div class="alert alert-danger dup-hint" id="dupEdit">Ya existe una página con esa URL.</div>
+                  <div class="alert alert-danger dup-hint" id="dupEdit" style="display:none">Ya existe una página con esa URL.</div>
               </div>
               <div class="form-group">
                   <label>Nombre</label>
@@ -619,7 +671,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                           <input type="hidden" name="page_logo_overlay_choice_img" id="edit_logo_choice_img">
                       </div>
                   </div>
-                  <div class="alert alert-danger dup-hint" id="badImgEdit">Formato inválido. Permitidos: jpg, jpeg, png, svg.</div>
+                  <div class="alert alert-danger dup-hint" id="badImgEdit" style="display:none">Formato inválido. Permitidos: jpg, jpeg, png, svg.</div>
                   <div id="edit_logo_preview" style="margin-top:8px"></div>
               </div>
 
@@ -637,7 +689,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                           <input type="hidden" name="page_video_choice" id="edit_video_choice">
                       </div>
                   </div>
-                  <div class="alert alert-danger dup-hint" id="badVidEdit">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
+                  <div class="alert alert-danger dup-hint" id="badVidEdit" style="display:none">Formato inválido. Permitidos: mp4, jpg, jpeg, png.</div>
                   <div id="edit_video_preview" style="margin-top:8px"></div>
               </div>
 
@@ -655,7 +707,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                           <input type="hidden" name="page_video_poster_choice" id="edit_poster_choice">
                       </div>
                   </div>
-                  <div class="alert alert-danger dup-hint" id="badPosterEdit">Poster inválido. Permitidos: jpg, jpeg, png.</div>
+                  <div class="alert alert-danger dup-hint" id="badPosterEdit" style="display:none">Poster inválido. Permitidos: jpg, jpeg, png.</div>
                   <div id="edit_poster_preview" style="margin-top:8px"></div>
               </div>
 
@@ -677,16 +729,20 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         <div class="gallery-footer" id="galleryHint"></div>
     </div>
 
-    <script>
-    window.EXISTING_URLS = <?php echo json_encode($existing_urls, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
-    window.K_LOGOS = <?php echo json_encode($logos_files, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
-    window.K_FONDOS = <?php echo json_encode($img_files, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
-    </script>
+    <script id="data-existing-urls" type="application/json"><?= json_encode($existing_urls, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script>
+    <script id="data-logos" type="application/json"><?= json_encode($logos_files, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script>
+    <script id="data-fondos" type="application/json"><?= json_encode($img_files, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) ?></script>
+
     <script src="../js/jquery-3.5.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script>
+    window.EXISTING_URLS = JSON.parse(document.getElementById('data-existing-urls').textContent || '[]');
+    window.K_LOGOS = JSON.parse(document.getElementById('data-logos').textContent || '[]');
+    window.K_FONDOS = JSON.parse(document.getElementById('data-fondos').textContent || '[]');
+
     function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
     function validateExt(name, allowed){ if(!name) return true; var ext = name.split('.').pop().toLowerCase(); return allowed.indexOf(ext) !== -1; }
+    function setAlert(id, show){ var $el=$('#'+id); if(show){ $el.addClass('show').show(); } else { $el.removeClass('show').hide(); } }
 
     function fallbackShowModal(el){
         var $el = $(el);
@@ -719,15 +775,21 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         }
 
         $('#btnCreate').on('click', function(){
-            $('#dupCreate,#badImgCreate,#badVidCreate,#badPosterCreate').removeClass('show');
             $('#createForm')[0].reset();
+            setAlert('dupCreate', false);
+            setAlert('badImgCreate', false);
+            setAlert('badVidCreate', false);
+            setAlert('badPosterCreate', false);
             $('#create_logo_choice_label,#create_logo_choice_img_label,#create_video_choice_label,#create_poster_choice_label').text('');
             openModal(document.getElementById('createModal'));
         });
         $('.close-create, .cancel-create').on('click', function(){ closeModal(document.getElementById('createModal')); hideGallery(); });
 
         $('.btn-edit').on('click', function(){
-            $('#dupEdit,#badImgEdit,#badVidEdit,#badPosterEdit').removeClass('show');
+            setAlert('dupEdit', false);
+            setAlert('badImgEdit', false);
+            setAlert('badVidEdit', false);
+            setAlert('badPosterEdit', false);
             var id = $(this).data('id'), url = $(this).data('url'), name = $(this).data('name');
             var logo = $(this).data('logo'), video = $(this).data('video'), poster = $(this).data('poster');
             var urlPlain = String(url).replace(/^trabajos\//,'');
@@ -762,59 +824,78 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
             if (excludeUrl) urls = urls.filter(function(u){ return String(u) !== excludeUrl; });
             return urls.indexOf(url) !== -1;
         }
-        $('#create_url').on('change input', function(){ $('#dupCreate').toggleClass('show', isDup($(this).val(), '')); toggleCreateBtn(); });
-        $('#edit_url').on('change input', function(){ var orig = $('#edit_url').data('original') || ''; $('#dupEdit').toggleClass('show', isDup($(this).val(), orig)); toggleEditBtn(); });
+        $('#create_url').on('change input', function(){ setAlert('dupCreate', isDup($(this).val(), '')); toggleCreateBtn(); });
+        $('#edit_url').on('change input', function(){ var orig = $('#edit_url').data('original') || ''; setAlert('dupEdit', isDup($(this).val(), orig)); toggleEditBtn(); });
 
         function toggleCreateBtn(){ $('#btnCreateSave').prop('disabled', $('#dupCreate').hasClass('show') || $('#badImgCreate').hasClass('show') || $('#badVidCreate').hasClass('show') || $('#badPosterCreate').hasClass('show')); }
         function toggleEditBtn(){ $('#btnEditSave').prop('disabled', $('#dupEdit').hasClass('show') || $('#badImgEdit').hasClass('show') || $('#badVidEdit').hasClass('show') || $('#badPosterEdit').hasClass('show')); }
 
         $('#create_logo_file').on('change', function(){
-            var ok = validateExt(this.value, ['jpg','jpeg','png','svg']); $('#badImgCreate').toggleClass('show', !ok);
+            var ok = validateExt(this.value, ['jpg','jpeg','png','svg']); setAlert('badImgCreate', !ok);
             if (ok && this.files && this.files[0]) { $('#create_logo_choice,#create_logo_choice_img').val(''); $('#create_logo_choice_label,#create_logo_choice_img_label').text(''); }
             toggleCreateBtn();
         });
         $('#create_video_file').on('change', function(){
-            var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']); $('#badVidCreate').toggleClass('show', !ok);
+            var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']); setAlert('badVidCreate', !ok);
             if (ok && this.files && this.files[0]) { $('#create_video_choice').val(''); $('#create_video_choice_label').text(''); }
             toggleCreateBtn();
         });
         $('#create_poster_file').on('change', function(){
-            var ok = validateExt(this.value, ['jpg','jpeg','png']); $('#badPosterCreate').toggleClass('show', !ok);
+            var ok = validateExt(this.value, ['jpg','jpeg','png']); setAlert('badPosterCreate', !ok);
             if (ok && this.files && this.files[0]) { $('#create_poster_choice').val(''); $('#create_poster_choice_label').text(''); }
             toggleCreateBtn();
         });
         $('#edit_logo_file').on('change', function(){
-            if (!this.value) { $('#badImgEdit').removeClass('show'); toggleEditBtn(); return; }
-            var ok = validateExt(this.value, ['jpg','jpeg','png','svg']); $('#badImgEdit').toggleClass('show', !ok);
+            if (!this.value) { setAlert('badImgEdit', false); toggleEditBtn(); return; }
+            var ok = validateExt(this.value, ['jpg','jpeg','png','svg']); setAlert('badImgEdit', !ok);
             if (ok && this.files && this.files[0]) { $('#edit_logo_choice,#edit_logo_choice_img').val(''); $('#edit_logo_choice_label,#edit_logo_choice_img_label').text(''); }
             toggleEditBtn();
         });
         $('#edit_video_file').on('change', function(){
-            if (!this.value) { $('#badVidEdit').removeClass('show'); toggleEditBtn(); return; }
-            var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']); $('#badVidEdit').toggleClass('show', !ok);
+            if (!this.value) { setAlert('badVidEdit', false); toggleEditBtn(); return; }
+            var ok = validateExt(this.value, ['mp4','jpg','jpeg','png']); setAlert('badVidEdit', !ok);
             if (ok && this.files && this.files[0]) { $('#edit_video_choice').val(''); $('#edit_video_choice_label').text(''); }
             toggleEditBtn();
         });
         $('#edit_poster_file').on('change', function(){
-            if (!this.value) { $('#badPosterEdit').removeClass('show'); toggleEditBtn(); return; }
-            var ok = validateExt(this.value, ['jpg','jpeg','png']); $('#badPosterEdit').toggleClass('show', !ok);
+            if (!this.value) { setAlert('badPosterEdit', false); toggleEditBtn(); return; }
+            var ok = validateExt(this.value, ['jpg','jpeg','png']); setAlert('badPosterEdit', !ok);
             if (ok && this.files && this.files[0]) { $('#edit_poster_choice').val(''); $('#edit_poster_choice_label').text(''); }
             toggleEditBtn();
         });
 
         function animateMove($row, dir){
-            $row.addClass('moving-out' + (dir === 'down' ? ' down' : ''));
+            $row.addClass('moving-out' + (dir === 'down' || dir === 'bottom' ? ' down' : ''));
             setTimeout(function(){
-                if (dir === 'up') { var $prev = $row.prev('tr'); if ($prev.length) $row.insertBefore($prev); }
-                else { var $next = $row.next('tr'); if ($next.length) $row.insertAfter($next); }
+                if (dir === 'up') {
+                    var $prev = $row.prev('tr'); if ($prev.length) $row.insertBefore($prev);
+                } else if (dir === 'down') {
+                    var $next = $row.next('tr'); if ($next.length) $row.insertAfter($next);
+                } else if (dir === 'top') {
+                    var $tbody = $row.parent(); $row.prependTo($tbody);
+                } else if (dir === 'bottom') {
+                    var $tbody2 = $row.parent(); $row.appendTo($tbody2);
+                }
                 $row.removeClass('moving-out down').addClass('moving-in');
                 setTimeout(function(){ $row.removeClass('moving-in'); }, 250);
             }, 250);
         }
+
         $('#pagesBody').on('submit', '.moveForm', function(ev){
             ev.preventDefault();
             var $f=$(this), dir=$f.find('input[name="dir"]').val(), $row=$f.closest('tr');
             $.post('pages.php', $f.serialize()+'&ajax=1', function(resp){ if (!resp || !resp.ok) return; animateMove($row, dir); }, 'json');
+        });
+
+        $('#pagesBody').on('submit', '.toggleActiveForm', function(ev){
+            ev.preventDefault();
+            var $f=$(this), $btn=$f.find('.toggle-active-btn');
+            $.post('pages.php', $f.serialize()+'&ajax=1', function(resp){
+                if (!resp || !resp.ok) return;
+                var isActive = resp.new === 0;
+                $btn.text(isActive ? 'Activo' : 'Inactivo');
+                $btn.toggleClass('btn-success', isActive).toggleClass('btn-outline-secondary', !isActive);
+            }, 'json');
         });
 
         var galleryPanel = $('#galleryPanel'), galleryGrid = $('#galleryGrid'), galleryTitle = $('#galleryTitle'), galleryHint = $('#galleryHint'), currentTargetInput = null;
@@ -853,6 +934,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
             galleryPanel.show();
         }
         function hideGallery(){ galleryPanel.hide(); }
+
         $(document).on('click','.choose-btn',function(){ showGallery($(this).data('gallery'), $(this).data('target')); });
         $('#galleryClose').on('click', hideGallery);
         $(window).on('keydown', function(e){ if (e.key === 'Escape') hideGallery(); });

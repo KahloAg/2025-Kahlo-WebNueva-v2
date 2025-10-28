@@ -1,0 +1,17 @@
+<IfModule mod_headers.c>
+FileETag MTime Size
+Header set Vary "Accept-Encoding"
+
+<FilesMatch "\.(?:html|php)$">
+Header set Cache-Control "no-store"
+</FilesMatch>
+
+<FilesMatch "\.(?:css|js|avif|webp|jpg|jpeg|png|gif|svg|woff2|woff|ttf|otf)$">
+Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+<FilesMatch "\.(?:mp4|webm|ogg)$">
+Header set Cache-Control "public, max-age=2592000"
+Header set Accept-Ranges "bytes"
+</FilesMatch>
+</IfModule>

@@ -1,24 +1,27 @@
 <?php
 $B = rtrim(BASEURL, '/');
 
-// Detectar si es España sin que la función imprima "si/no" en el output
-$__ES = false;
+$__IS_ARG = false;
 if (function_exists('detectar_origen')) {
     ob_start();
-    $__res = detectar_origen('esp'); // devuelve 'si' o 'no' pero también hace echo, por eso el buffer
+    $__res = detectar_origen('esp');
     ob_end_clean();
-    $__ES = ($__res === 'si');
+    $__IS_ARG = ($__res === 'si');
 }
 
-// Elegir logo según país
-$__LOGO_SRC = $__ES ? ($B . '/img/dra_house.png') : ($B . '/img/logo-white.svg');
+$__LOGO_SRC = $__IS_ARG ? ($B . '/img/logo-kahlo-dra.png') : ($B . '/img/logo-white.svg');
+$__LOGO_SRCSET = $__IS_ARG ? ($B . '/img/logo-kahlo-dra@2x.png 2x') : '';
 ?>
+<style>
+.header-area .logo img.logo-img{display:block;height:44px;width:auto;max-width:100%}
+@media (max-width:991px){.header-area .logo img.logo-img{height:36px}}
+</style>
 
 <header class="header-area header-one py-4">
     <div class="container">
         <div class="header-wrapper">
             <a href="<?= $B ?>/index.php" class="logo">
-                <img src="<?= htmlspecialchars($__LOGO_SRC, ENT_QUOTES, 'UTF-8') ?>" alt="logo">
+                <img src="<?= htmlspecialchars($__LOGO_SRC, ENT_QUOTES, 'UTF-8') ?>" <?= $__LOGO_SRCSET ? 'srcset="'.htmlspecialchars($__LOGO_SRCSET, ENT_QUOTES, 'UTF-8').'"' : '' ?> alt="logo" decoding="async" loading="eager" class="logo-img" height="44">
             </a>
             <div class="header-right desktop-menu">
                 <nav class="nav-area">
@@ -34,12 +37,12 @@ $__LOGO_SRC = $__ES ? ($B . '/img/dra_house.png') : ($B . '/img/logo-white.svg')
                         </li>
                         <li class="menu-item main-nav-on">
                             <a class="menu-link" href="https://www.instagram.com/kahloagencia/" target="_blank">
-                                <img src="<?= $B ?>/img/ig.svg" height="25" alt="Instagram">
+                                <img src="<?= $B ?>/img/ig.svg" height="22" alt="Instagram">
                             </a>
                         </li>
                         <li class="menu-item main-nav-on">
                             <a class="menu-link" href="https://www.linkedin.com/company/kahlo-agencia/" target="_blank">
-                                <img src="<?= $B ?>/img/in.svg" height="25" alt="LinkedIn">
+                                <img src="<?= $B ?>/img/in.svg" height="22" alt="LinkedIn">
                             </a>
                         </li>
                     </ul>
@@ -64,11 +67,9 @@ $__LOGO_SRC = $__ES ? ($B . '/img/dra_house.png') : ($B . '/img/logo-white.svg')
     </ul>
 </div>
 
-
 <script>
 (function() {
   var header = document.querySelector('header.header-area');
-
   var OFFSET_PX = { trabajos: 320, clientes: 0 };
 
   function headerHeight() {
@@ -168,8 +169,3 @@ $__LOGO_SRC = $__ES ? ($B . '/img/dra_house.png') : ($B . '/img/logo-white.svg')
   });
 })();
 </script>
-
-
-
-
-

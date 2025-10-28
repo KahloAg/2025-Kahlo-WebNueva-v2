@@ -1,5 +1,26 @@
-<?php $B = rtrim(BASEURL, '/'); ?>
-<footer class="footer relative-mob" id="footer">
+<?php
+$B = rtrim(BASEURL, '/');
+
+$__IS_ARG = false;
+if (function_exists('detectar_origen')) {
+    ob_start();
+    $__res = detectar_origen('esp');
+    ob_end_clean();
+    $__IS_ARG = ($__res === 'si');
+}
+
+$__FOOTER_LOGO_SRC = $__IS_ARG ? ($B . '/img/logo-kahlo-dra.svg') : ($B . '/img/logo-footer.svg');
+$__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
+?>
+<style>
+.footer .footer-logo{display:block;width:auto;max-width:100%}
+.footer .footer-logo--wide{height:auto!important;width:88vw!important;max-width:none;margin-left:auto;margin-right:auto;transform:translateX(-3vw)}
+@media (max-width:991px){
+  .footer .footer-logo--wide{width:94vw!important;transform:translateX(-2vw)}
+}
+</style>
+
+<footer class="footer" id="footer">
     <div class="footer-container">
         <div class="container py-5">
             <div class="row align-items-end gx-5 pt-5">
@@ -7,7 +28,6 @@
                     <p class="mb-0 fade-item">
                         <a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..." target="_blank" class="d-flex align-items-center justify-content-between rts-btn btn-radious btn-white text-black">
                             Contactanos
-                           <!-- <img src="<?= $B ?>/img/arrow-right.svg" class="img-footer" style="height: 25px;"> -->
                         </a>
                     </p>
                 </div>
@@ -57,7 +77,14 @@
             </div>
 
             <div class="col-12 mt-5">
-             <a href="<?= $B ?>/index.php"> <img src="<?= $B ?>/img/logo-footer.svg" class="img-fluid fade-item" alt="Kahlo Agencia"> </a>
+                <a href="<?= $B ?>/index.php">
+                    <img
+                        src="<?= htmlspecialchars($__FOOTER_LOGO_SRC, ENT_QUOTES, 'UTF-8') ?>"
+                        class="fade-item <?= $__FOOTER_LOGO_CLASS ?>"
+                        alt="Kahlo Agencia"
+                        decoding="async"
+                        loading="lazy">
+                </a>
             </div>
         </div>
     </div>
