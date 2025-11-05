@@ -18,6 +18,12 @@ $__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
 @media (max-width:991px){
   .footer .footer-logo--wide{width:94vw!important;transform:translateX(-2vw)}
 }
+.footer .madrid-wrap{position:relative;display:inline-block;text-align:right}
+.footer .madrid-badge{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:12px;width:62px;height:auto}
+@media (max-width:991px){
+  .footer .madrid-badge{width:49px;margin-left:8px;top:0;transform:none}
+  .footer .madrid-wrap{padding-right:54px}
+}
 </style>
 
 <footer class="footer relative-mob" id="footer">
@@ -71,8 +77,11 @@ $__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
                 <div class="col-12 col-md-3 text-md-end mt-5 mt-md-0 d-flex-mob justify-content-between">
                     <p class="mb-4 d-flex-mob align-items-start fade-item">BUENOS AIRES <br>
                         Aguirre 540 2ºB <br> ARGENTINA</p>
-                    <p class="mb-0 d-flex-mob align-items-start fade-item">MADRID<br>
-                        Calle Campo Real, 9 <br>ESPAÑA</p>
+                    <div class="madrid-wrap fade-item">
+                        <p class="mb-0 d-flex-mob align-items-start">MADRID<br>
+                            Calle Campo Real, 9 <br>ESPAÑA</p>
+                        <img src="<?= $B ?>/img/dra_house.png" alt="Dra. House" class="madrid-badge" decoding="async" loading="lazy">
+                    </div>
                 </div>
             </div>
 
