@@ -4,7 +4,7 @@
     url('../fonts/sharpgrotesk-book20-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
+ font-display:swap;
 }
 
 
@@ -14,7 +14,7 @@
     url('../fonts/sharpgrotesk-medium20-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
+ font-display:swap;
 }
 
 html {
