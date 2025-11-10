@@ -20189,9 +20189,10 @@ body.coming-soon {
 .scrolltext-wrapper h2.title {
   width: 500vw;
   min-width: max-content;
-  font-size: 40px;
+  font-size: 65px;
   line-height: 70px;
   font-weight: 400;
+  text-transform: none
 }
 
 
@@ -25182,7 +25183,7 @@ h1 {
 
 .main-wrapper-case-studies .title span {
 
-  color: #5d5d5d;
+  color: #ffffff;
 }
 
 .container-full-150 {

@@ -51,7 +51,10 @@
         </div>
     </div>
 
-     <div class="container-full">
+     
+</div>
+
+<div class="container-full">
             <div class="col-lg-12">
                 <div class="main-wrapper-case-studies scrolltext-wrapper">
                     <div class="scrollingText">
@@ -117,5 +120,4 @@
                 </div>
             </div>
         </div>
-</div>
 <!-- project area end -->
