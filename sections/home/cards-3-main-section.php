@@ -50,5 +50,72 @@
             </div>
         </div>
     </div>
+
+     <div class="container-full">
+            <div class="col-lg-12">
+                <div class="main-wrapper-case-studies scrolltext-wrapper">
+                    <div class="scrollingText">
+                        <h2 class="title">
+                            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
+                            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
+                            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
+                            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
+                        </h2>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="main-wrapper-case-studies scrolltext-wrapper">
+                    <div class="scrollingText-three">
+                        <h2 class="title">
+                            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
+                            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
+                            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
+                            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
+                        </h2>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="main-wrapper-case-studies scrolltext-wrapper">
+                    <div class="scrollingText">
+                        <h2 class="title">
+                            Gestión integral / <span>Gestión integral</span> / Gestión integral /
+                           Gestión integral / <span>Gestión integral</span> / Gestión integral /
+                           Gestión integral / <span>Gestión integral</span> / Gestión integral /
+                           Gestión integral / <span>Gestión integral</span> / Gestión integral /
+                        </h2>
+                    </div>
+                    
+                </div>
+
+                 <div class="main-wrapper-case-studies scrolltext-wrapper">
+                    <div class="scrollingText-three">
+                        <h2 class="title">
+                            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
+                            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
+                            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
+                            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
+                        </h2>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="main-wrapper-case-studies scrolltext-wrapper">
+                    <div class="scrollingText">
+                        <h2 class="title">
+                            Desarrollos digitales & Gaming / <span>Desarrollos digitales & Gaming</span> / Desarrollos digitales & Gaming /
+                            Desarrollos digitales & Gaming / <span>Desarrollos digitales & Gaming</span> / Desarrollos digitales & Gaming /
+                            Desarrollos digitales & Gaming / <span>Desarrollos digitales & Gaming</span> / Desarrollos digitales & Gaming /
+                            Desarrollos digitales & Gaming / <span>Desarrollos digitales & Gaming</span> / Desarrollos digitales & Gaming /
+                        </h2>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
 </div>
 <!-- project area end -->

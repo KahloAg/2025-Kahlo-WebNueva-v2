@@ -20189,13 +20189,11 @@ body.coming-soon {
 .scrolltext-wrapper h2.title {
   width: 500vw;
   min-width: max-content;
+  font-size: 40px;
+  line-height: 70px;
+  font-weight: 400;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1599px) {
-  .scrolltext-wrapper h2.title {
-    margin-bottom: 100px !important;
-  }
-}
 
 .service-area-main-wrapper-style-one {
   display: block;
@@ -25183,9 +25181,8 @@ h1 {
 }
 
 .main-wrapper-case-studies .title span {
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #74787C;
-  color: #0E0E0E;
+
+  color: #5d5d5d;
 }
 
 .container-full-150 {
