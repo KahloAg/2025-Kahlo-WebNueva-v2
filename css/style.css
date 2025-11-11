@@ -20189,10 +20189,11 @@ body.coming-soon {
 .scrolltext-wrapper h2.title {
   width: 500vw;
   min-width: max-content;
-  font-size: 65px;
-  line-height: 70px;
+  font-size: 69px;
+  line-height: 76px;
   font-weight: 400;
-  text-transform: none
+  text-transform: none;
+  font-family: 'sharp_groteskbook';
 }
 
 
