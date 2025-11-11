@@ -16,5 +16,6 @@ else
 	define("DBPASSWORD", "de21giKOki");
 	define("DBNAME", "c1850838_actv");
 	define("DEPURAR", 0);
-	define("BASEURL", "https://kahloagencia.com/2025/kahlo_web_v2/");
+	define('BASEURL', (isset($_SERVER['HTTP_HOST']) ? 'https://' . $_SERVER['HTTP_HOST'] . '/' : '/'));
+
 }

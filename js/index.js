@@ -12,9 +12,11 @@
 })();
 
 window.addEventListener("load",function(){
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.to(".video-bg",{filter:"blur(12px) brightness(0.2)",scale:1.05,opacity:0,scrollTrigger:{trigger:".degrade",start:"top top",endTrigger:".next-section",end:"top top",scrub:true,pin:true,pinSpacing:false}});
-  gsap.to(".black-overlay",{opacity:1,scrollTrigger:{trigger:".degrade",endTrigger:".next-section",start:"top top",end:"top top",scrub:true}});
+  if(window.gsap&&window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".video-bg",{filter:"blur(12px) brightness(0.2)",scale:1.05,opacity:0,scrollTrigger:{trigger:".degrade",start:"top top",endTrigger:".next-section",end:"top top",scrub:true,pin:true,pinSpacing:false}});
+    gsap.to(".black-overlay",{opacity:1,scrollTrigger:{trigger:".degrade",endTrigger:".next-section",start:"top top",end:"top top",scrub:true}});
+  }
 });
 
 document.addEventListener("DOMContentLoaded",function(){
@@ -39,11 +41,8 @@ document.addEventListener("DOMContentLoaded",function(){
         for(const piece of set){
           if(piece.__timeout)clearTimeout(piece.__timeout);
           if(piece.isConnected){
-            gsap.to(piece,{opacity:0,duration:0.3,onComplete:function(){
-              piece.remove();
-              const s=activePieces.get(card);
-              if(s)s.delete(piece);
-            }});
+            if(window.gsap){gsap.to(piece,{opacity:0,duration:0.3,onComplete:function(){piece.remove();const s=activePieces.get(card);if(s)s.delete(piece);}});}
+            else{piece.remove();const s=activePieces.get(card);if(s)s.delete(piece);}
           }
         }
         set.clear();
@@ -123,7 +122,7 @@ document.addEventListener("DOMContentLoaded",function(){
       const w=piece.naturalWidth||MAX;
       const h=piece.naturalHeight||MAX;
       const ratio=Math.min(MAX/w,MAX/h,1);
-      const sizeBoost=gsap.utils.random(1.35,1.6)*0.8;
+      const sizeBoost=(window.gsap?gsap.utils.random(1.35,1.6):1.45)*0.8;
       const finalW=Math.round(w*ratio*sizeBoost);
       const finalH=Math.round(h*ratio*sizeBoost);
       piece.style.width=finalW+'px';
@@ -135,13 +134,10 @@ document.addEventListener("DOMContentLoaded",function(){
       const cy=pos.y+finalH/2;
       lastSpot={x:cx,y:cy};
       piece.style.visibility='visible';
-      gsap.fromTo(piece,{opacity:0,scale:0.88},{opacity:1,scale:1,duration:0.9,ease:"power3.out"});
+      if(window.gsap){gsap.fromTo(piece,{opacity:0,scale:0.88},{opacity:1,scale:1,duration:0.9,ease:"power3.out"});}else{piece.style.opacity='1';}
       piece.__timeout=setTimeout(function(){
-        gsap.to(piece,{opacity:0,duration:0.3,onComplete:function(){
-          piece.remove();
-          const s=activePieces.get(card);
-          if(s)s.delete(piece);
-        }});
+        if(window.gsap){gsap.to(piece,{opacity:0,duration:0.3,onComplete:function(){piece.remove();const s=activePieces.get(card);if(s)s.delete(piece);}});}
+        else{piece.remove();const s=activePieces.get(card);if(s)s.delete(piece);}
       },2000);
     });
   }
@@ -192,7 +188,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 
-gsap.registerPlugin(ScrollTrigger);
+if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
 
 function initFooterScroll(){
   const mainElement=document.querySelector("#main");
@@ -204,32 +200,36 @@ function initFooterScroll(){
   let lastSectionBottom=lastSection.getBoundingClientRect().bottom;
   let viewportHeight=window.innerHeight;
   let adjustment=Math.max(0,viewportHeight-lastSectionBottom);
-  gsap.to(mainElement,{y:-(footerHeight+adjustment),ease:"none",scrollTrigger:{trigger:mainElement,start:"bottom bottom",end:"bottom top",scrub:true}});
+  if(window.gsap&&window.ScrollTrigger){
+    gsap.to(mainElement,{y:-(footerHeight+adjustment),ease:"none",scrollTrigger:{trigger:mainElement,start:"bottom bottom",end:"bottom top",scrub:true}});
+  }
   document.body.style.overflowX='hidden';
 }
 
 console.clear();
-gsap.registerPlugin(ScrollTrigger);
+if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
 
-const cardsWrappers=gsap.utils.toArray(".card-wrapper");
-const tarjetas=gsap.utils.toArray(".tarjeta");
+const cardsWrappers=window.gsap?gsap.utils.toArray(".card-wrapper"):Array.from(document.querySelectorAll(".card-wrapper"));
+const tarjetas=window.gsap?gsap.utils.toArray(".tarjeta"):Array.from(document.querySelectorAll(".tarjeta"));
 
-cardsWrappers.forEach(function(wrapper,i){
-  const tarjeta=tarjetas[i];
-  let scale=1;
-  let rotation=0;
-  if(i!==tarjetas.length-1){
-    scale=0.9+0.025*i;
-    rotation=-10;
-  }
-  gsap.to(tarjeta,{scale:scale,rotationX:rotation,transformOrigin:"top center",ease:"none",scrollTrigger:{trigger:wrapper,start:"top "+(80+10*i),end:"bottom 550",endTrigger:".wrapper",scrub:true,pin:wrapper,pinSpacing:false,onUpdate:function(self){
-    if(i===tarjetas.length-1){tarjeta.style.filter="none";}
-    else{
-      const blurAmount=gsap.utils.mapRange(0,1,0,3,self.progress);
-      tarjeta.style.filter="blur("+blurAmount+"px)";
+if(window.gsap&&window.ScrollTrigger){
+  cardsWrappers.forEach(function(wrapper,i){
+    const tarjeta=tarjetas[i];
+    let scale=1;
+    let rotation=0;
+    if(i!==tarjetas.length-1){
+      scale=0.9+0.025*i;
+      rotation=-10;
     }
-  },markers:false,id:i+1}});
-});
+    gsap.to(tarjeta,{scale:scale,rotationX:rotation,transformOrigin:"top center",ease:"none",scrollTrigger:{trigger:wrapper,start:"top "+(80+10*i),end:"bottom 550",endTrigger:".wrapper",scrub:true,pin:wrapper,pinSpacing:false,onUpdate:function(self){
+      if(i===tarjetas.length-1){tarjeta.style.filter="none";}
+      else{
+        const blurAmount=gsap.utils.mapRange(0,1,0,3,self.progress);
+        tarjeta.style.filter="blur("+blurAmount+"px)";
+      }
+    },markers:false,id:i+1}});
+  });
+}
 
 (function(factory){
   if(window.jQuery){factory(window.jQuery);}
@@ -246,8 +246,9 @@ cardsWrappers.forEach(function(wrapper,i){
 
   function resolveCfg(){
     var $zone=$('#trabajos');
-    var base=($zone.attr('data-baseurl')||window.BASEURL||'').replace(/\/+$/,'');
-    var api=$zone.attr('data-api')||window.API_PAGES_URL||(base?base+'/api/pages.php':'/api/pages.php');
+    var origin=location.origin;
+    var api=$zone.attr('data-api')||'/api/pages.php';
+    var base=origin.replace(/\/+$/,'');
     return{base:base,api:api,$zone:$zone,$row:$zone.find('.row')};
   }
 
@@ -311,6 +312,7 @@ cardsWrappers.forEach(function(wrapper,i){
     if(!url)return'#';
     if(/^https?:\/\//i.test(url))return url;
     var u=String(url).replace(/^\/+/,'');
+
     if(u.indexOf('trabajos/')!==0)u='trabajos/'+u;
     return base+'/'+u;
   }
@@ -416,15 +418,17 @@ cardsWrappers.forEach(function(wrapper,i){
   function initLogosSection(){
     if(logosStarted)return;
     logosStarted=true;
-    gsap.registerPlugin(ScrollTrigger);
-    const blurOverlay=document.querySelector(".blur-overlay");
-    const tl=gsap.timeline({scrollTrigger:{trigger:".section-logos",start:"top top",end:"+=170%",scrub:true,pin:true,pinSpacing:true,onUpdate:function(self){if(blurOverlay)blurOverlay.style.opacity=self.progress>0.5?1:0;}}});
-    tl.to(".section-logos",{backgroundColor:"#ffffff",duration:0.15},0);
-    tl.to(".section-logos .before-title:first-of-type",{opacity:1,y:0,duration:0.35},0.1);
-    tl.to(".section-logos h3",{opacity:1,y:0,duration:0.35},"+=0.05");
-    tl.to(".section-logos .before-title:last-of-type",{opacity:1,y:0,duration:0.35},"+=0.05");
-    tl.to(".animated-element",{opacity:1,y:0,duration:0.45,stagger:0.18},0.8);
-    if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
+    if(window.gsap&&window.ScrollTrigger){
+      gsap.registerPlugin(ScrollTrigger);
+      const blurOverlay=document.querySelector(".blur-overlay");
+      const tl=gsap.timeline({scrollTrigger:{trigger:".section-logos",start:"top top",end:"+=170%",scrub:true,pin:true,pinSpacing:true,onUpdate:function(self){if(blurOverlay)blurOverlay.style.opacity=self.progress>0.5?1:0;}}});
+      tl.to(".section-logos",{backgroundColor:"#ffffff",duration:0.15},0);
+      tl.to(".section-logos .before-title:first-of-type",{opacity:1,y:0,duration:0.35},0.1);
+      tl.to(".section-logos h3",{opacity:1,y:0,duration:0.35},"+=0.05");
+      tl.to(".section-logos .before-title:last-of-type",{opacity:1,y:0,duration:0.35},"+=0.05");
+      tl.to(".animated-element",{opacity:1,y:0,duration:0.45,stagger:0.18},0.8);
+      setTimeout(function(){ScrollTrigger.refresh();},0);
+    }
   }
 
   $(document).on('click','#trabajos .trabajos-overlay .retry',function(e){
