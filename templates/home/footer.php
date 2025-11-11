@@ -19,7 +19,7 @@ $__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
   .footer .footer-logo--wide{width:94vw!important;transform:translateX(-2vw)}
 }
 .footer .madrid-wrap{position:relative;display:inline-block;text-align:right}
-.footer .madrid-badge{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:12px;width:62px;height:auto}
+.footer .madrid-badge{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:12px;width:62px;height:auto;z-index:2;cursor:pointer}
 @media (max-width:991px){
   .footer .madrid-badge{width:49px;margin-left:8px;top:0;transform:none}
   .footer .madrid-wrap{padding-right:54px}
@@ -80,7 +80,9 @@ $__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
                     <div class="madrid-wrap fade-item">
                         <p class="mb-0 d-flex-mob align-items-start">MADRID<br>
                             Calle Campo Real, 9 <br>ESPAÑA</p>
-                        <img src="<?= $B ?>/img/dra_house.png" alt="Dra. House" class="madrid-badge" decoding="async" loading="lazy">
+                        <a href="https://drahouse.com/" target="_blank" rel="noopener" aria-label="Abrir sitio de Dra. House">
+                            <img src="<?= $B ?>/img/dra_house.png" alt="Dra. House" class="madrid-badge" decoding="async" loading="lazy">
+                        </a>
                     </div>
                 </div>
             </div>

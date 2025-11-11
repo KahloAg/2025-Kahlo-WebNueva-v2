@@ -39,7 +39,7 @@ $TITLE = isset($PAGE_TITLE) ? $PAGE_TITLE : 'Kahlo Agencia';
 <meta property="og:title" content="Kahlo Agencia">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kahloagencia.com/img/metadata_2025.jpg">
-<meta property="og:url" content="https://kahloagencia.com/2025/kahlo_web_v2/">
+<meta property="og:url" content="https://kahloagencia.com/">
 <meta property="og:description" content="Somos una agencia creativa global que construye, con corazón y cabeza, conversaciones de valor entre las marcas y sus diferentes audiencias.">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-40531441-1"></script>
