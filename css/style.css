@@ -32685,6 +32685,7 @@ body.servi-ce-details .rts-footer-two-area {
     font-size: 34px;
   }
 
+  .scrolltext-wrapper h2.title {font-size: 58px; line-height: 67px;}
 
   .section-logos h3 {
     font-size: 70px;
@@ -32729,6 +32730,8 @@ body.servi-ce-details .rts-footer-two-area {
     font-size: 28px;
     line-height: 33px;
   }
+
+  .scrolltext-wrapper h2.title {font-size: 48px; line-height: 51px;}
 
   .txt-next img {
     height: 20px !important;
@@ -32831,6 +32834,9 @@ body.servi-ce-details .rts-footer-two-area {
   .embed-container.hmob-video {
     padding-bottom: 120%;
   }
+
+    .scrolltext-wrapper h2.title {font-size: 28px; line-height: 30px;}
+
 
   .hidden-xs {
     display: none;
