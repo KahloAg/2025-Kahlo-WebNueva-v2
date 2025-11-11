@@ -1,3 +1,4 @@
+<!-- project area start -->
 <div class="rts-project-area-7 rts-section-gap rts-team__area">
   <div class="container mt--100">
     <div class="row">
@@ -113,3 +114,4 @@
     </div>
   </div>
 </div>
+<!-- project area end -->

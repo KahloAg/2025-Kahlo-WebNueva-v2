@@ -14,8 +14,15 @@
 window.addEventListener("load",function(){
   if(window.gsap&&window.ScrollTrigger){
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to(".video-bg",{filter:"blur(12px) brightness(0.2)",scale:1.05,opacity:0,scrollTrigger:{trigger:".degrade",start:"top top",endTrigger:".next-section",end:"top top",scrub:true,pin:true,pinSpacing:false}});
-    gsap.to(".black-overlay",{opacity:1,scrollTrigger:{trigger:".degrade",endTrigger:".next-section",start:"top top",end:"top top",scrub:true}});
+    var hasDegrade=document.querySelector(".degrade");
+    var hasNext=document.querySelector(".next-section");
+    if(hasDegrade&&hasNext){
+      gsap.to(".video-bg",{filter:"blur(12px) brightness(0.2)",scale:1.05,opacity:0,scrollTrigger:{trigger:".degrade",start:"top top",endTrigger:".next-section",end:"top top",scrub:true,pin:true,pinSpacing:false}});
+      gsap.to(".black-overlay",{opacity:1,scrollTrigger:{trigger:".degrade",endTrigger:".next-section",start:"top top",end:"top top",scrub:true}});
+    }else if(hasDegrade){
+      gsap.to(".video-bg",{filter:"blur(12px) brightness(0.2)",scale:1.05,opacity:0,scrollTrigger:{trigger:".degrade",start:"top top",end:"+=120%",scrub:true,pin:false,pinSpacing:true}});
+      gsap.to(".black-overlay",{opacity:1,scrollTrigger:{trigger:".degrade",start:"top top",end:"+=120%",scrub:true}});
+    }
   }
 });
 
@@ -63,7 +70,7 @@ document.addEventListener("DOMContentLoaded",function(){
     let key="__default__";
     if(normalized&&window.CARDS_IMAGES&&Array.isArray(window.CARDS_IMAGES[normalized])&&window.CARDS_IMAGES[normalized].length>0){
       list=window.CARDS_IMAGES[normalized];
-      key=`cat:${normalized}`;
+      key="cat:"+normalized;
     }else if(window.CARDS_IMAGES&&Array.isArray(window.CARDS_IMAGES._default)&&window.CARDS_IMAGES._default.length>0){
       list=window.CARDS_IMAGES._default;
       key="__default__";
@@ -212,7 +219,7 @@ if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
 const cardsWrappers=window.gsap?gsap.utils.toArray(".card-wrapper"):Array.from(document.querySelectorAll(".card-wrapper"));
 const tarjetas=window.gsap?gsap.utils.toArray(".tarjeta"):Array.from(document.querySelectorAll(".tarjeta"));
 
-if(window.gsap&&window.ScrollTrigger){
+if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
   cardsWrappers.forEach(function(wrapper,i){
     const tarjeta=tarjetas[i];
     let scale=1;
@@ -243,13 +250,38 @@ if(window.gsap&&window.ScrollTrigger){
   var io=null;
   var footerStarted=false;
   var logosStarted=false;
+  var flowStarted=false;
+
+  function joinClean(){
+    var out='',i=0;
+    for(i=0;i<arguments.length;i++){
+      var p=String(arguments[i]||'');
+      if(!p)continue;
+      if(i===0)out=p.replace(/\/+$/,'');
+      else out=(out+'/'+p.replace(/^\/+/,'')).replace(/([^:]\/)\/+/g,'$1');
+    }
+    return out;
+  }
+
+  function guessBase(){
+    var baseTag=document.querySelector('base[href]');
+    if(baseTag)return String(baseTag.getAttribute('href')).replace(/\/+$/,'');
+    if(typeof window.BASEURL==='string'&&window.BASEURL.length)return String(window.BASEURL).replace(/\/+$/,'');
+    var parts=location.pathname.split('/').filter(Boolean);
+    if(parts.length>0)return location.origin+'/'+parts[0];
+    return location.origin;
+  }
 
   function resolveCfg(){
     var $zone=$('#trabajos');
-    var origin=location.origin;
-    var api=$zone.attr('data-api')||'/api/pages.php';
-    var base=origin.replace(/\/+$/,'');
-    return{base:base,api:api,$zone:$zone,$row:$zone.find('.row')};
+    var baseAttr=$zone.attr('data-base');
+    var base=(baseAttr&&baseAttr.length?baseAttr:guessBase());
+    base=String(base).replace(/\/+$/,'');
+    var apiAttr=$zone.attr('data-api');
+    var api=apiAttr&&apiAttr.length?apiAttr:joinClean(base,'api/pages.php');
+    var $row=$zone.find('.row');
+    if(!$row.length)$row=$('<div class="row"></div>').appendTo($zone);
+    return{base:base,api:api,$zone:$zone,$row:$row};
   }
 
   function wait(ms){return new Promise(function(res){setTimeout(res,ms);});}
@@ -262,7 +294,7 @@ if(window.gsap&&window.ScrollTrigger){
     document.head.appendChild(s);
   }
 
-  function overlay($zone,state,msg){
+  function overlay($zone,state,msgHtml){
     ensureStyles();
     var $ov=$zone.children('.trabajos-overlay');
     if(!$ov.length){
@@ -275,7 +307,7 @@ if(window.gsap&&window.ScrollTrigger){
       html='<div class="spinner" aria-label="cargando"></div><div class="msg">Cargando trabajos…</div>';
     }else if(state==='error'){
       $ov.addClass('error');
-      html='<div class="msg">'+(msg||'No pudimos cargar los proyectos')+'</div><button class="retry">Reintentar</button>';
+      html=msgHtml||'<div class="msg">No pudimos cargar los proyectos</div><button class="retry">Reintentar</button>';
     }else{
       $ov.remove();
       return;
@@ -283,13 +315,40 @@ if(window.gsap&&window.ScrollTrigger){
     $ov.find('.tbox').html(html);
   }
 
+  function previewText(x,limit){
+    if(!x)return '';
+    var s=String(x);
+    if(s.length<=limit)return s;
+    return s.slice(0,limit)+'…';
+  }
+
+  function explainAjaxError(cfg,xhr,status,err){
+    var reason='';
+    if(status==='timeout') reason='Timeout de la petición';
+    else if(status==='parsererror') reason='La respuesta no es JSON válido';
+    else if(xhr&&xhr.status===0) reason='Sin respuesta. Ruta inválida o CORS';
+    else reason=(xhr&&xhr.status?xhr.status+' '+(xhr.statusText||''):status||'Error desconocido');
+    var body=previewText(xhr&&xhr.responseText,380);
+    var html='<div class="msg" style="text-align:left;max-width:520px">'+
+      '<strong>No pudimos cargar los proyectos</strong><br><small>Diagnóstico visible</small><hr style="opacity:.25">'+
+      '<div><b>Base:</b> '+cfg.base+'</div>'+
+      '<div><b>API:</b> '+cfg.api+'</div>'+
+      '<div><b>Estado:</b> '+reason+'</div>'+
+      '<div><b>jQuery status:</b> '+(status||'-')+'</div>'+
+      (err?('<div><b>Error:</b> '+err+'</div>'):'')+
+      (body?('<div style="margin-top:8px"><b>Respuesta:</b><pre style="white-space:pre-wrap;max-height:180px;overflow:auto;margin:6px 0 0">'+$('<div>').text(body).html()+'</pre></div>'):'')+
+      '<div style="margin-top:10px"><button class="retry">Reintentar</button></div>'+
+    '</div>';
+    return html;
+  }
+
   function kAsset(base,file,subdir){
     if(!file)return'';
     var p=String(file).trim();
     if(/^https?:\/\//i.test(p))return p;
-    if(p[0]==='/')return base+p;
-    if(p.indexOf('/')!==-1)return base+'/'+p;
-    return base+'/admin/'+subdir+'/'+p;
+    if(p[0]==='/')return joinClean(base,p);
+    if(p.indexOf('/')!==-1)return joinClean(base,p);
+    return joinClean(base,'admin',subdir,p);
   }
   function kLogo(base,file){return kAsset(base,file,'pages_img');}
   function kVideo(base,file){return kAsset(base,file,'pages_videos');}
@@ -312,9 +371,8 @@ if(window.gsap&&window.ScrollTrigger){
     if(!url)return'#';
     if(/^https?:\/\//i.test(url))return url;
     var u=String(url).replace(/^\/+/,'');
-
     if(u.indexOf('trabajos/')!==0)u='trabajos/'+u;
-    return base+'/'+u;
+    return joinClean(base,u);
   }
 
   function buildCard(base,row){
@@ -342,7 +400,7 @@ if(window.gsap&&window.ScrollTrigger){
     }else if(hasPoster){
       $('<img class="image-blur-target" alt="image">').attr('src',posterUrl).attr('data-src',posterUrl).appendTo($fig);
     }else if(logoUrl){
-      $('<img class="image-blur-target" alt="image">').attr('src',logoUrl).attr('data-src',logoUrl).appendTo($fig);
+      $('<img class="image-blur-target" alt="logo">').attr('src',logoUrl).attr('data-src',logoUrl).appendTo($fig);
     }
     if(logoUrl){
       var $overlay=$('<div class="logo-overlay"></div>').appendTo($holder);
@@ -384,32 +442,36 @@ if(window.gsap&&window.ScrollTrigger){
   function render(base,$row,list){
     $row.empty();
     if(!list||!list.length){
-      overlay($row.closest('#trabajos'),'error','No pudimos cargar los proyectos');
-      if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
-      return;
+      overlay($row.closest('#trabajos'),'error','<div class="msg"><strong>No pudimos cargar los proyectos</strong><br><small>La API respondió vacío</small><div style="margin-top:10px"><button class="retry">Reintentar</button></div></div>');
+    }else{
+      var frag=$(document.createDocumentFragment());
+      for(var i=0;i<list.length;i++){frag.append(buildCard(base,list[i]));}
+      $row.append(frag);
+      initObserver();
+      overlay($row.closest('#trabajos'),null);
     }
-    var frag=$(document.createDocumentFragment());
-    for(var i=0;i<list.length;i++){frag.append(buildCard(base,list[i]));}
-    $row.append(frag);
-    initObserver();
     if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
-    overlay($row.closest('#trabajos'),null);
   }
 
   function fetchProjectsOnce(){
     return new Promise(function(resolve){
       var cfg=resolveCfg();
-      if(!cfg.$zone.length){resolve(false);return;}
+      if(!cfg.$zone.length){
+        resolve(false);
+        return;
+      }
       overlay(cfg.$zone,'loading');
-      $.ajax({url:cfg.api,dataType:'json',cache:true}).done(function(resp){
+      $.ajax({url:cfg.api,dataType:'json',cache:true,timeout:15000})
+      .done(function(resp){
         var list=[];
         if(resp&&resp.ok&&Array.isArray(resp.data))list=resp.data;
         else if(Array.isArray(resp))list=resp;
         render(cfg.base,cfg.$row,list);
         resolve(true);
-      }).fail(function(xhr,status,err){
-        overlay(cfg.$zone,'error','No pudimos cargar los proyectos');
-        console.error('[trabajos] error AJAX',{url:cfg.api,status:xhr&&xhr.status,statusText:xhr&&xhr.statusText,response:xhr&&xhr.responseText,jqStatus:status,error:err});
+      })
+      .fail(function(xhr,status,err){
+        var html=explainAjaxError(cfg,xhr,status,err);
+        overlay(cfg.$zone,'error',html);
         resolve(false);
       });
     });
@@ -433,17 +495,25 @@ if(window.gsap&&window.ScrollTrigger){
 
   $(document).on('click','#trabajos .trabajos-overlay .retry',function(e){
     e.preventDefault();
-    fetchProjectsOnce().then(function(){if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}});
+    runHomeFlow();
   });
 
-  window.addEventListener('load',async function(){
-    await wait(3000);
-    await fetchProjectsOnce();
+  async function runHomeFlow(){
+    if(flowStarted)return;
+    flowStarted=true;
+    var ok=await fetchProjectsOnce();
     if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
-    await wait(3000);
+    await wait(400);
     initLogosSection();
     if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
-    await wait(3000);
+    await wait(400);
     if(!footerStarted){initFooterScroll();footerStarted=true;}
-  });
+  }
+
+  if(document.readyState==='complete'||document.readyState==='interactive'){
+    runHomeFlow();
+  }else{
+    document.addEventListener('DOMContentLoaded',runHomeFlow,{once:true});
+  }
+  window.addEventListener('load',function(){ setTimeout(runHomeFlow,0); });
 });
