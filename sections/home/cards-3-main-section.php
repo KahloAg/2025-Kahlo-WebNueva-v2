@@ -59,10 +59,10 @@
       <div class="main-wrapper-case-studies scrolltext-wrapper">
         <div class="scrollingText">
           <h2 class="title">
-            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
-            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
-            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
-            Diagnóstico y estrategia / <span>Diagnóstico y estrategia</span> / Diagnóstico y estrategia /
+            Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px">
+            Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px">
+            Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px">
+            Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px"> Diagnóstico y estrategia <img src="img/service-1.svg" style="height: 30px">
           </h2>
         </div>
       </div>
@@ -70,10 +70,10 @@
       <div class="main-wrapper-case-studies scrolltext-wrapper">
         <div class="scrollingText-three">
           <h2 class="title">
-            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
-            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
-            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
-            <span>Creatividad de Campañas 360</span> / Creatividad de Campañas 360 / Creatividad de Campañas 360 /
+            Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px">
+            Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px">
+            Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px">
+            Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px"> Creatividad de Campañas 360 <img src="img/service-2.svg" style="height: 35px">
           </h2>
         </div>
       </div>
@@ -81,10 +81,10 @@
       <div class="main-wrapper-case-studies scrolltext-wrapper">
         <div class="scrollingText">
           <h2 class="title">
-            Gestión integral / <span>Gestión integral</span> / Gestión integral /
-            Gestión integral / <span>Gestión integral</span> / Gestión integral /
-            Gestión integral / <span>Gestión integral</span> / Gestión integral /
-            Gestión integral / <span>Gestión integral</span> / Gestión integral /
+            Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px">
+            Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px">
+            Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px">
+            Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px"> Gestión integral <img src="img/service-3.svg" style="height: 30px">
           </h2>
         </div>
       </div>
@@ -92,10 +92,10 @@
       <div class="main-wrapper-case-studies scrolltext-wrapper">
         <div class="scrollingText-three">
           <h2 class="title">
-            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
-            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
-            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
-            Producciones audiovisuales y eventos / Producciones audiovisuales y eventos / <span>Producciones audiovisuales y eventos</span> /
+            Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px">
+            Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px">
+            Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px">
+            Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px"> Producciones audiovisuales y eventos <img src="img/service-4.svg" style="height: 30px">
           </h2>
         </div>
       </div>
@@ -103,10 +103,10 @@
       <div class="main-wrapper-case-studies scrolltext-wrapper">
         <div class="scrollingText">
           <h2 class="title">
-            Desarrollos digitales &amp; Gaming / <span>Desarrollos digitales &amp; Gaming</span> / Desarrollos digitales &amp; Gaming /
-            Desarrollos digitales &amp; Gaming / <span>Desarrollos digitales &amp; Gaming</span> / Desarrollos digitales &amp; Gaming /
-            Desarrollos digitales &amp; Gaming / <span>Desarrollos digitales &amp; Gaming</span> / Desarrollos digitales &amp; Gaming /
-            Desarrollos digitales &amp; Gaming / <span>Desarrollos digitales &amp; Gaming</span> / Desarrollos digitales &amp; Gaming /
+            Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px">
+            Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px">
+            Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px">
+            Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px"> Desarrollos digitales &amp; Gaming <img src="img/service-5.svg" style="height: 35px">
           </h2>
         </div>
       </div>
