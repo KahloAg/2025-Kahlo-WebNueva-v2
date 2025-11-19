@@ -93,6 +93,15 @@ function list_dir_files($dir, $allowed_ext){
     return array_values(array_unique($out));
 }
 
+function get_file_size_kb_label($absPath){
+    if (!$absPath || !is_file($absPath)) return '';
+    $bytes = @filesize($absPath);
+    if ($bytes === false) return '';
+    $kb = $bytes / 1024;
+    $kbRounded = round($kb, 0);
+    return $kbRounded . ' KB';
+}
+
 function copy_choice_to_store($base_rel, $filename, $dest_subdir, $allowed_ext, &$error){
     $error = '';
     $filename = trim($filename ?? '');
@@ -377,7 +386,7 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
         .gallery-panel{position:fixed;top:80px;right:16px;width:560px;max-width:92vw;height:72vh;background:#fff;border:1px solid #cfd4dc;border-radius:10px;box-shadow:0 12px 44px rgba(17,24,39,.22);display:none;z-index:2000;overflow:auto}
         .gallery-head{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #d6dbe3}
         .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:12px}
-        .gallery-item{border:1px solid #cfd4dc;border-radius:10px;padding:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;height:110px;background:#e1e4ea;transition:transform .08s ease;font-size:12px;color:#111}
+        .gallery-item{border:1px solid #cfd4dc;border-radius:10px;padding:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;height:110px;background:#e1e4ea;transition:transform .08s.ease;font-size:12px;color:#111}
         .gallery-item:hover{transform:scale(1.02)}
         .gallery-item img{max-width:100%;max-height:96px;object-fit:contain}
         .gallery-footer{padding:8px 12px;border-top:1px solid #d6dbe3;font-size:12px;color:#4b5563;background:#f8fafc}
@@ -452,20 +461,43 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                             <td><?= htmlspecialchars($row['page_name'] ?? '') ?></td>
                             <td>
                                 <?php if (!empty($row['page_logo_overlay'])): ?>
-                                    <?php $logoVal = $row['page_logo_overlay']; $logoSrc = strpos($logoVal,'/') !== false ? '../'.ltrim($logoVal,'/') : '../admin/pages_img/'.htmlspecialchars($logoVal); ?>
+                                    <?php
+                                        $logoVal = $row['page_logo_overlay'];
+                                        $logoIsPath = strpos($logoVal,'/') !== false;
+                                        $logoSrc = $logoIsPath ? '../'.ltrim($logoVal,'/') : '../admin/pages_img/'.htmlspecialchars($logoVal);
+                                        if ($logoIsPath) {
+                                            $logoAbs = realpath(__DIR__.'/../'.ltrim($logoVal,'/'));
+                                        } else {
+                                            $logoAbs = __DIR__.'/pages_img/'.$logoVal;
+                                        }
+                                        $logoSize = get_file_size_kb_label($logoAbs);
+                                    ?>
                                     <span class="logo-bg"><img src="<?= htmlspecialchars($logoSrc) ?>" class="mini-thumb"></span>
+                                    <?php if ($logoSize !== ''): ?>
+                                        <div class="help-text">Peso: <?= htmlspecialchars($logoSize) ?></div>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </td>
                             <td>
                                 <?php if (!empty($row['page_video'])): ?>
                                     <?php
-                                        $vidVal = $row['page_video']; $isPath = strpos($vidVal,'/') !== false;
+                                        $vidVal = $row['page_video'];
+                                        $isPath = strpos($vidVal,'/') !== false;
                                         $isImg = $isPath ? preg_match('/\.(jpg|jpeg|png)$/i',$vidVal) : is_image_ext($vidVal);
+                                        if ($isPath) {
+                                            $vidAbs = realpath(__DIR__.'/../'.ltrim($vidVal,'/'));
+                                        } else {
+                                            $vidAbs = __DIR__.'/pages_videos/'.$vidVal;
+                                        }
+                                        $vidSize = get_file_size_kb_label($vidAbs);
                                         if ($isImg) {
                                             $src = $isPath ? '../'.ltrim($vidVal,'/') : '../admin/pages_videos/'.htmlspecialchars($vidVal);
                                             echo '<img src="'.htmlspecialchars($src).'" class="mini-thumb"> <span class="badge badge-path">'.htmlspecialchars(basename($vidVal)).'</span>';
                                         } else {
                                             echo '<span class="badge badge-path">'.htmlspecialchars(basename($vidVal)).'</span>';
+                                        }
+                                        if ($vidSize !== '') {
+                                            echo '<div class="help-text">Peso: '.htmlspecialchars($vidSize).'</div>';
                                         }
                                     ?>
                                 <?php endif; ?>
@@ -474,8 +506,18 @@ $img_files = list_dir_files($img_dir_abs ?: '', ['jpg','jpeg','png','mp4','svg']
                                 <?php if (!empty($row['page_video_poster'])): ?>
                                     <?php
                                         $posVal = $row['page_video_poster'];
-                                        $posSrc = strpos($posVal,'/') !== false ? '../'.ltrim($posVal,'/') : '../admin/pages_videos/'.htmlspecialchars($posVal);
+                                        $posIsPath = strpos($posVal,'/') !== false;
+                                        $posSrc = $posIsPath ? '../'.ltrim($posVal,'/') : '../admin/pages_videos/'.htmlspecialchars($posVal);
+                                        if ($posIsPath) {
+                                            $posAbs = realpath(__DIR__.'/../'.ltrim($posVal,'/'));
+                                        } else {
+                                            $posAbs = __DIR__.'/pages_videos/'.$posVal;
+                                        }
+                                        $posSize = get_file_size_kb_label($posAbs);
                                         echo '<img src="'.htmlspecialchars($posSrc).'" class="mini-thumb"> <span class="badge badge-path">'.htmlspecialchars(basename($posVal)).'</span>';
+                                        if ($posSize !== '') {
+                                            echo '<div class="help-text">Peso: '.htmlspecialchars($posSize).'</div>';
+                                        }
                                     ?>
                                 <?php endif; ?>
                             </td>

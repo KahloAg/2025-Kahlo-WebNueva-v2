@@ -155,7 +155,21 @@ function detectar_origen($pais, $forceRefresh = false){
     $target = $map[$p] ?? (strlen($p) === 2 ? strtoupper($p) : '');
 
     $cc = '';
-    if (!$forceRefresh && !empty($_SESSION['geo_country_code']) && strlen($_SESSION['geo_country_code']) === 2) {
+
+    $overrideCode = '';
+    if (isset($_GET['country'])) {
+        $c = strtolower(trim($_GET['country']));
+        if (isset($map[$c])) {
+            $overrideCode = $map[$c];
+        } elseif (strlen($c) === 2) {
+            $overrideCode = strtoupper($c);
+        }
+    }
+
+    if ($overrideCode !== '') {
+        $cc = $overrideCode;
+        $_SESSION['geo_country_code'] = $cc;
+    } elseif (!$forceRefresh && !empty($_SESSION['geo_country_code']) && strlen($_SESSION['geo_country_code']) === 2) {
         $cc = strtoupper($_SESSION['geo_country_code']);
     } else {
         if (!empty($_SERVER['HTTP_CF_IPCOUNTRY']) && strlen($_SERVER['HTTP_CF_IPCOUNTRY']) === 2) {
@@ -174,6 +188,7 @@ function detectar_origen($pais, $forceRefresh = false){
     echo $out;
     return $out;
 }
+
 
 
 
