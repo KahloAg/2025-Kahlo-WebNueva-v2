@@ -86,7 +86,8 @@
                     </div>
 
                     <div class="col-12 col-lg-10 offset-lg-1 text-start txt-trabajo-sub mt-15 mb-7">
-                    <p class="text-white mb-0">RESULTADOS<br><br> Se registró un aumento del tráfico tanto en tiendas como en canales digitales durante la semana previa a Navidad, impulsado por una ejecución que convirtió la promo en experiencia.</p>                     
+                    <p class="text-green">RESULTADOS</p>
+                    <p class="text-white mb-0">Se registró un aumento del tráfico tanto en tiendas como en canales digitales durante la semana previa a Navidad, impulsado por una ejecución que convirtió la promo en experiencia.</p>                     
                     </div>
 
                     </div>

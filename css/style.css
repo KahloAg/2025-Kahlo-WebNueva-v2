@@ -402,6 +402,10 @@ footer a:hover img.img-footer {
   background-color: #a8ff1d !important;
 }
 
+.text-green {
+  color: #a8ff1d;
+}
+
 .rounded-4 {
   border-radius: 20px;
 }
