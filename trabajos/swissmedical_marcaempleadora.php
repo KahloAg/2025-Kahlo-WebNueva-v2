@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-xl-8">
                         <div class="d-flex align-items-center justify-content-between col-xl-8">
-                            <img src="../img/tigo.svg" class="logo-interna">
+                            <img src="../img/swissmedical.svg" class="logo-interna">
                             <p class="text-white font13 mb-0">/MARCA EMPLEADORA/</p>
                         </div>
                         <h1 class="mt-6 mb-0">Swiss Medical <br>
