@@ -73,7 +73,7 @@ $PAGE_TITLE = "Kahlo Agencia - Supervielle";
                     <img src="../img/trabajos/supervielle_transformacion-2.jpg" class="img-fluid" alt="Surfers de la Transformación - making of">
                 </div>
 
-                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-15">
+                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-5">
                    <p class="text-white txt-trabajo-20 mb-0">
                      Con un despliegue robusto de producción y postproducción, la serie fue publicada semanalmente en LinkedIn y generó elevados niveles de interacción. Una estrategia de comunicación organizacional que convierte transformación digital en contenido relevante y motivador.
                     </p> 
@@ -110,18 +110,21 @@ $PAGE_TITLE = "Kahlo Agencia - Supervielle";
 
 <!-- Scripts -->
 <script defer src="../js/jquery.min.js"></script>
-<script defer src="../js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script defer src="../js/waypoint.js"></script>
 <script defer src="../js/imagesloaded.pkgd.min.js"></script>
-<script src="../js/gsap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="../js/smoothscroll-varticle.js"></script>
 <script src="../js/smoothscroll.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script defer src="../js/scrolltoplugin.js"></script>
 <script defer src="../js/splittext.js"></script>
+    <script defer src="../js/scrollmagic.js"></script>
 <script defer src="../js/counterup.js"></script>
 <script defer src="../js/waw.js"></script>
-<script defer src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script defer src="../js/main.js"></script>
 
 <script>
 // Menú móvil con chequeos defensivos
@@ -144,7 +147,8 @@ if (menuToggle && mobileNav) {
 }
 
 // Efecto de header al hacer scroll (sólo mobile)
-const mediaQuery = window.matchMedia("(max-width: 992px)");
+const header = document.querySelector("header");
+        const mediaQuery = window.matchMedia("(max-width: 992px)");
 function handleScroll() {
   if (!header) return;
   if (mediaQuery.matches) {
@@ -160,11 +164,19 @@ handleScroll();
 
 // Altura del footer dinámica
 function ajustarAlturaFooter() {
-  const footer = document.querySelector("footer.footer");
-  const main   = document.querySelector("main");
-  if (footer && main) main.style.marginBottom = footer.offsetHeight + "px";
-}
-window.addEventListener("load", ajustarAlturaFooter);
+            const footer = document.querySelector("footer.footer");
+            const main = document.querySelector("main");
+            if (footer && main) {
+                if (window.innerWidth > 991) {
+                    const footerHeight = footer.offsetHeight;
+                    main.style.marginBottom = footerHeight + "px";
+                } else {
+                    main.style.marginBottom = "0px";
+                }
+            }
+        }
+
+        window.addEventListener("load", ajustarAlturaFooter);
 window.addEventListener("resize", ajustarAlturaFooter);
 
 // Fade-in de ítems del footer

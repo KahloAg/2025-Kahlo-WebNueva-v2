@@ -198,20 +198,40 @@ document.addEventListener('DOMContentLoaded',function(){
 if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);
 
 function initFooterScroll(){
+  const isMobile = window.matchMedia("(max-width: 991px)").matches;
   const mainElement=document.querySelector("#main");
-  const footerElement=document.querySelector("footer");
-  if(!mainElement||!footerElement)return;
+  const footerElement=document.querySelector("footer.footer") || document.querySelector("footer");
+  if(!footerElement) return;
+
+  if(isMobile){
+    footerElement.classList.add("relative-mob");
+    footerElement.style.setProperty("opacity","1","important");
+    footerElement.style.setProperty("visibility","visible","important");
+    footerElement.style.setProperty("pointer-events","auto","important");
+    if(mainElement){
+      mainElement.style.transform="none";
+      mainElement.style.marginBottom="0";
+    }
+    return;
+  }
+
+  if(!mainElement) return;
+
   let footerHeight=footerElement.offsetHeight;
   const lastSection=mainElement.querySelector("section:last-of-type");
-  if(!lastSection)return;
+  if(!lastSection) return;
+
   let lastSectionBottom=lastSection.getBoundingClientRect().bottom;
   let viewportHeight=window.innerHeight;
   let adjustment=Math.max(0,viewportHeight-lastSectionBottom);
+
   if(window.gsap&&window.ScrollTrigger){
     gsap.to(mainElement,{y:-(footerHeight+adjustment),ease:"none",scrollTrigger:{trigger:mainElement,start:"bottom bottom",end:"bottom top",scrub:true}});
   }
+
   document.body.style.overflowX='hidden';
 }
+
 
 console.clear();
 if(window.gsap&&window.ScrollTrigger)gsap.registerPlugin(ScrollTrigger);

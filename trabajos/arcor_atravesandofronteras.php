@@ -11,7 +11,7 @@ $PAGE_TITLE = "Kahlo Agencia - Arcor";
 
 <?php include_once("../templates/home/navbar.php"); ?>
 
-<main>
+<main id="main">
     <section class="d-flex align-items-center min-hv">
         <div class="container mt-83">
             <div class="row">
@@ -42,7 +42,7 @@ $PAGE_TITLE = "Kahlo Agencia - Arcor";
     <section class="d-flex align-items-center my-50">
         <div class="container">
             <div class="row">
-                <div class="col-12 txt-trabajo-sub text-center mb-15 mt-7">
+                <div class="col-12 txt-trabajo-sub text-center mb-5 mt-7">
                     <p class="text-white">Creamos junto a Arcor el documental “Atravesando fronteras: de Argentina a Angola”, que narra su expansión, con foco en la apertura de una gran fábrica y la conexión humana entre los equipos de ambos países. Este proyecto no solo capturó la esencia del relato global de la empresa, sino que también fue galardonado con el Premio Eikon de Oro como reconocimiento a su creatividad y calidad.</p>
                 </div>
             </div>
@@ -56,37 +56,79 @@ $PAGE_TITLE = "Kahlo Agencia - Arcor";
 
 <?php include_once("../templates/home/footer.php"); ?>
 
-
-
 <script defer src="../js/jquery.min.js"></script>
-<script defer src="../js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script defer src="../js/waypoint.js"></script>
 <script defer src="../js/imagesloaded.pkgd.min.js"></script>
-<script src="../js/gsap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="../js/smoothscroll-varticle.js"></script>
 <script src="../js/smoothscroll.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script defer src="../js/scrolltoplugin.js"></script>
 <script defer src="../js/splittext.js"></script>
+<script defer src="../js/scrollmagic.js"></script>
 <script defer src="../js/counterup.js"></script>
 <script defer src="../js/waw.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
 <script defer src="../js/main.js"></script>
 
 <script>
-const menuToggle=document.getElementById("menuToggle");
-const mobileNav=document.getElementById("mobileNav");
-const mobileLinks=mobileNav?mobileNav.querySelectorAll("a"):[];
-const header=document.querySelector("header");
-if(menuToggle&&mobileNav){menuToggle.addEventListener("click",()=>{menuToggle.classList.toggle("active");mobileNav.classList.toggle("open")});mobileLinks.forEach(link=>{link.addEventListener("click",()=>{menuToggle.classList.remove("active");mobileNav.classList.remove("open")})})}
-const mediaQuery=window.matchMedia("(max-width: 992px)");
-function handleScroll(){if(!header)return;if(mediaQuery.matches){if(window.scrollY>50){header.classList.add("scrolled")}else{header.classList.remove("scrolled")}}else{header.classList.remove("scrolled")}}
-window.addEventListener("scroll",handleScroll);
-window.addEventListener("resize",handleScroll);
-handleScroll();
-function ajustarAlturaFooter(){const footer=document.querySelector("footer.footer");const main=document.querySelector("main");if(footer&&main){const footerHeight=footer.offsetHeight;main.style.marginBottom=footerHeight+"px"}}
-window.addEventListener("load",ajustarAlturaFooter);
-window.addEventListener("resize",ajustarAlturaFooter);
-document.addEventListener("DOMContentLoaded",()=>{const items=document.querySelectorAll("footer .fade-item");const observer=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add("visible")}})},{root:null,threshold:0.1});items.forEach((item)=>observer.observe(item))});
+    const header = document.querySelector("header");
+    const mediaQuery = window.matchMedia("(max-width: 992px)");
+
+    function handleScroll() {
+        if (!header) return;
+        if (mediaQuery.matches) {
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        } else {
+            header.classList.remove("scrolled");
+        }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    handleScroll();
+
+    function ajustarAlturaFooter() {
+            const footer = document.querySelector("footer.footer");
+            const main = document.querySelector("main");
+            if (footer && main) {
+                if (window.innerWidth > 991) {
+                    const footerHeight = footer.offsetHeight;
+                    main.style.marginBottom = footerHeight + "px";
+                } else {
+                    main.style.marginBottom = "0px";
+                }
+            }
+        }
+
+        window.addEventListener("load", ajustarAlturaFooter);
+    window.addEventListener("resize", ajustarAlturaFooter);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll("footer .fade-item");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            {
+                root: null,
+                threshold: 0.1,
+            }
+        );
+
+        items.forEach((item) => observer.observe(item));
+    });
 </script>
 </body>
 </html>

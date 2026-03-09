@@ -40,6 +40,9 @@
 
 ==================================================*/
 
+
+gsap.config({ nullTargetWarn: false });
+
 (function ($) {
   'use strict';
   let device_width = window.innerWidth;
@@ -48,6 +51,7 @@
   };
 
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+  gsap.config({ nullTargetWarn: false });
 
   var rtsJs = {
     m: function (e) {
@@ -953,20 +957,24 @@
     tiltAnimation: function (e) {
       $(document).ready(function () {
         "use strict";
-        $(".card-tilt").tilt({
-          maxTilt: 4,
-          perspective: 1000,
-          easing: "cubic-bezier(.03,.98,.52,.99)",
-          speed: 1200,
-          glare: true,
-          maxGlare: 0.2,
-          scale: 1.01
-        });
+        if ($.fn.tilt) {
+          $(".card-tilt").tilt({
+            maxTilt: 4,
+            perspective: 1000,
+            easing: "cubic-bezier(.03,.98,.52,.99)",
+            speed: 1200,
+            glare: true,
+            maxGlare: 0.2,
+            scale: 1.01
+          });
+        }
       })
     },
 
     wowActive: function () {
-      new WOW().init();
+      if (typeof WOW !== 'undefined') {
+        new WOW().init();
+      }
     },
 
     progressAvtivation: function () {
@@ -1761,7 +1769,7 @@
           })
         });
 
-        gsap.to(".bg_image img", {
+        gsap.to(".bg_image img, .bg_image video", {
           xPercent: -18,
           scrollTrigger: {
             trigger: ".rts-team__area",
@@ -1817,14 +1825,14 @@
       if (hoverTab.length) {
 
         $(".rts-hover-tab").on("mouseenter", function () {
-            $(this).addClass("active").siblings().removeClass("active");
-          }),
+          $(this).addClass("active").siblings().removeClass("active");
+        }),
 
           gsap.utils.toArray(".rts-show-revel-right").forEach((e) => {
             gsap.set(e, {
-                opacity: 0,
-                y: 100
-              }),
+              opacity: 0,
+              y: 100
+            }),
               gsap.to(e, {
                 scrollTrigger: {
                   trigger: e,
@@ -1868,70 +1876,70 @@
           // scrollTrigger pre-pinning animation
           let beforeST = gsap.fromTo(
             scroller, {
-              x: () => {
-                let distance =
-                  scroller.getBoundingClientRect().top + window.scrollY;
-                return distance * 0.5;
-              },
-              opacity: 0.2
-            }, {
-              x: () => 0,
-              opacity: 1,
-              ease: "none",
-              immediateRender: true,
-              scrollTrigger: {
-                trigger: scroller,
-                start: -10,
-                end: "50% 46.99%",
-                //markers:true,
-                invalidateOnRefresh: true,
-                scrub: true
-              }
+            x: () => {
+              let distance =
+                scroller.getBoundingClientRect().top + window.scrollY;
+              return distance * 0.5;
+            },
+            opacity: 0.2
+          }, {
+            x: () => 0,
+            opacity: 1,
+            ease: "none",
+            immediateRender: true,
+            scrollTrigger: {
+              trigger: scroller,
+              start: -10,
+              end: "50% 46.99%",
+              //markers:true,
+              invalidateOnRefresh: true,
+              scrub: true
             }
+          }
           );
           timelines.push(beforeST);
 
           // scrollTrigger pinned
           let mainST = gsap.fromTo(
             scroller, {
-              x: () => 0
-            }, {
-              x: () => -getToValue(),
-              immediateRender: false,
-              ease: "none",
-              scrollTrigger: {
-                trigger: scroller,
-                start: "50% 47%",
-                end: () =>
-                  "+=" + Math.min(getToValue(), Math.max(window.innerHeight, window.innerWidth) + 200),
-                pin: true,
-                markers: false,
-                invalidateOnRefresh: true,
-                scrub: true,
-                onRefresh: function () {}
-              }
+            x: () => 0
+          }, {
+            x: () => -getToValue(),
+            immediateRender: false,
+            ease: "none",
+            scrollTrigger: {
+              trigger: scroller,
+              start: "50% 47%",
+              end: () =>
+                "+=" + Math.min(getToValue(), Math.max(window.innerHeight, window.innerWidth) + 200),
+              pin: true,
+              markers: false,
+              invalidateOnRefresh: true,
+              scrub: true,
+              onRefresh: function () { }
             }
+          }
           );
           timelines.push(mainST);
 
           // scrollTrigger post-pinning animation
           let afterST = gsap.fromTo(
             scroller, {
-              x: () => -getToValue(),
-              opacity: 1
-            }, {
-              x: () => -getToValue() - window.innerWidth * 0.5,
-              opacity: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: scroller,
-                start: () => mainST.scrollTrigger.end,
-                end: () => "+=" + window.innerHeight * 0.75,
-                invalidateOnRefresh: true,
-                markers: false,
-                scrub: true
-              }
+            x: () => -getToValue(),
+            opacity: 1
+          }, {
+            x: () => -getToValue() - window.innerWidth * 0.5,
+            opacity: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: scroller,
+              start: () => mainST.scrollTrigger.end,
+              end: () => "+=" + window.innerHeight * 0.75,
+              invalidateOnRefresh: true,
+              markers: false,
+              scrub: true
             }
+          }
           );
           timelines.push(afterST);
 
@@ -1976,72 +1984,72 @@
     },
 
     titleOpacityWrap: function () {
-  $(document).ready(function () {
-    var controller = new ScrollMagic.Controller();
+      $(document).ready(function () {
+        var controller = new ScrollMagic.Controller();
 
-    $('.rts-has-mask-fill').each(function () {
-      $(this).wrapInner('<span class="mask-fill-text"></span>');
-    });
+        $('.rts-has-mask-fill').each(function () {
+          $(this).wrapInner('<span class="mask-fill-text"></span>');
+        });
 
-    $('.rts-has-mask-fill .mask-fill-text').each(function () {
-      var $this = $(this);
-      var duration = $this.height() * 2;
+        $('.rts-has-mask-fill .mask-fill-text').each(function () {
+          var $this = $(this);
+          var duration = $this.height() * 2;
 
-      var tween = gsap.to($this, {
-        duration: 1,
-        backgroundSize: "200% 100%",
-        ease: Linear.easeNone
+          var tween = gsap.to($this, {
+            duration: 1,
+            backgroundSize: "200% 100%",
+            ease: Linear.easeNone
+          });
+
+          var scene = new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.8,
+            duration: duration
+          })
+            .setTween(tween)
+            .addTo(controller);
+
+          if ($("body").hasClass("smooth-scroll")) {
+            scrollbar.addListener(() => {
+              scene.refresh();
+            });
+          }
+        });
       });
 
-      var scene = new ScrollMagic.Scene({
-        triggerElement: this,
-        triggerHook: 0.8,
-        duration: duration
-      })
-      .setTween(tween)
-      .addTo(controller);
+      $(document).ready(function () {
+        var controller = new ScrollMagic.Controller();
 
-      if ($("body").hasClass("smooth-scroll")) {
-        scrollbar.addListener(() => {
-          scene.refresh();
+        $('.rts-has-mask-fill-2').each(function () {
+          $(this).wrapInner('<span class="mask-fill-text-2"></span>');
         });
-      }
-    });
-  });
 
-  $(document).ready(function () {
-    var controller = new ScrollMagic.Controller();
+        $('.rts-has-mask-fill-2 .mask-fill-text-2').each(function () {
+          var $this = $(this);
+          var duration = $this.height() * 2;
 
-    $('.rts-has-mask-fill-2').each(function () {
-      $(this).wrapInner('<span class="mask-fill-text-2"></span>');
-    });
+          var tween = gsap.to($this, {
+            duration: 1,
+            backgroundSize: "200% 100%",
+            ease: Linear.easeNone
+          });
 
-    $('.rts-has-mask-fill-2 .mask-fill-text-2').each(function () {
-      var $this = $(this);
-      var duration = $this.height() * 2;
+          var scene = new ScrollMagic.Scene({
+            triggerElement: this,
+            triggerHook: 0.8,
+            duration: duration
+          })
+            .setTween(tween)
+            .addTo(controller);
 
-      var tween = gsap.to($this, {
-        duration: 1,
-        backgroundSize: "200% 100%",
-        ease: Linear.easeNone
+          if ($("body").hasClass("smooth-scroll")) {
+            scrollbar.addListener(() => {
+              scene.refresh();
+            });
+          }
+        });
       });
-
-      var scene = new ScrollMagic.Scene({
-        triggerElement: this,
-        triggerHook: 0.8,
-        duration: duration
-      })
-      .setTween(tween)
-      .addTo(controller);
-
-      if ($("body").hasClass("smooth-scroll")) {
-        scrollbar.addListener(() => {
-          scene.refresh();
-        });
-      }
-    });
-  });
-},
+    },
 
     magicCoursor: function () {
       var myCursor = $('.rts-cursor');
@@ -2192,7 +2200,7 @@
           $('.close-event').css('display', block);
           $('.action-menu .open-event').attr('disabled', true);
           $('.action-menu .close-event').attr('disabled', true);
-          if ($('.rts-fs-container ul').hasClass('active')) {} else {
+          if ($('.rts-fs-container ul').hasClass('active')) { } else {
             $('.navbar-nav-button').toggleClass('active');
           }
 
@@ -2351,11 +2359,11 @@
             });
             homeAgency.from(
               split_hero__subtitle.words, {
-                duration: 1,
-                x: 50,
-                autoAlpha: 0,
-                stagger: 0.01
-              },
+              duration: 1,
+              x: 50,
+              autoAlpha: 0,
+              stagger: 0.01
+            },
               "-=1"
             );
             // Your GSAP animation code ends here
@@ -2386,11 +2394,11 @@
         });
         homeAgency.from(
           split_hero__subtitle.words, {
-            duration: 1,
-            x: 50,
-            autoAlpha: 0,
-            stagger: 0.01
-          },
+          duration: 1,
+          x: 50,
+          autoAlpha: 0,
+          stagger: 0.01
+        },
           "-=1"
         );
 
@@ -2501,6 +2509,7 @@
         "use strict";
 
         var progressPath = document.querySelector('.progress-wrap path');
+        if (!progressPath) return;
         var pathLength = progressPath.getTotalLength();
         progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
         progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;

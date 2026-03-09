@@ -48,15 +48,20 @@ if (isset($PAGE_URL) && $PAGE_URL !== '') {
     $uri = $uri ? strtok($uri, '?') : '';
     $current_slug = $uri ? basename($uri) : basename($_SERVER['SCRIPT_NAME'] ?? '');
 }
-$current_slug = preg_replace('~^trabajos/~', '', $current_slug);
-$current_slug_noext = pathinfo($current_slug, PATHINFO_EXTENSION) === 'php' ? pathinfo($current_slug, PATHINFO_FILENAME) : $current_slug;
+$current_slug = basename($current_slug);
+$current_slug_plain = str_replace('.php', '', $current_slug);
 
 $cur = SelectQuery('pages')->Condition('page_url =', 's', $current_slug)->Limit(1)->Run();
 if (empty($cur)) {
-    $cur = SelectQuery('pages')->Condition('page_url =', 's', $current_slug_noext)->Limit(1)->Run();
+    $cur = SelectQuery('pages')->Condition('page_url =', 's', $current_slug_plain)->Limit(1)->Run();
 }
 $cur = $cur ? array_values($cur)[0] : null;
-if (!$cur) return;
+
+// Allow proceeding even if $cur is null for debugging, but we need it for links
+if (!$cur) {
+    echo "<!-- DEBUG: Page not found in DB for $current_slug or $current_slug_plain -->";
+    // return; // Commented out to see if it renders anything
+}
 
 $page_title = isset($cur['page_name']) ? trim((string)$cur['page_name']) : '';
 if ($page_title !== '') {
@@ -95,8 +100,8 @@ $next_logo  = $next ? k_logo($next['page_logo_overlay'] ?? '', $B) : '';
 $next_href  = $next ? k_href($next['page_url'] ?? '#', $B) : '#';
 $next_name  = $next['page_name'] ?? '';
 ?>
-<section class="spacer bg-white h-mob-auto d-flex align-items-center position-relative" style="z-index: 2;">
-    <div class="container h-100 h-mob-auto py-5 my-5 my-sm-0">
+<section class="bg-white h-mob-auto d-flex align-items-center position-relative" style="z-index: 2;">
+    <div class="container h-100 h-mob-auto pt-5 pb-0 my-5 my-sm-0">
         <div class="row justify-content-sm-between justify-content-center align-items-center h-100">
             <div class="col-md-5 col-sm-6 col-6">
                 <div class="single-case-main-wrapper hidden-xs">

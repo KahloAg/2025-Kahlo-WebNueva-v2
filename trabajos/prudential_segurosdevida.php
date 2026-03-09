@@ -88,18 +88,21 @@ $PAGE_TITLE = "Kahlo Agencia - Prudential";
 
 <!-- Scripts -->
 <script defer src="../js/jquery.min.js"></script>
-<script defer src="../js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script defer src="../js/waypoint.js"></script>
 <script defer src="../js/imagesloaded.pkgd.min.js"></script>
-<script src="../js/gsap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="../js/smoothscroll-varticle.js"></script>
 <script src="../js/smoothscroll.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script defer src="../js/scrolltoplugin.js"></script>
 <script defer src="../js/splittext.js"></script>
+    <script defer src="../js/scrollmagic.js"></script>
 <script defer src="../js/counterup.js"></script>
 <script defer src="../js/waw.js"></script>
-<script defer src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script defer src="../js/main.js"></script>
 
 <script>
 // Menú móvil y efectos (defensivo por si el markup viene del include)
@@ -121,7 +124,8 @@ if (menuToggle && mobileNav) {
     });
 }
 
-const mediaQuery = window.matchMedia("(max-width: 992px)");
+const header = document.querySelector("header");
+        const mediaQuery = window.matchMedia("(max-width: 992px)");
 function handleScroll() {
     if (!header) return;
     if (mediaQuery.matches) {
@@ -137,14 +141,19 @@ handleScroll();
 
 // Altura footer dinámica
 function ajustarAlturaFooter() {
-    const footer = document.querySelector("footer.footer");
-    const main   = document.querySelector("main");
-    if (footer && main) {
-        const footerHeight = footer.offsetHeight;
-        main.style.marginBottom = footerHeight + "px";
-    }
-}
-window.addEventListener("load", ajustarAlturaFooter);
+            const footer = document.querySelector("footer.footer");
+            const main = document.querySelector("main");
+            if (footer && main) {
+                if (window.innerWidth > 991) {
+                    const footerHeight = footer.offsetHeight;
+                    main.style.marginBottom = footerHeight + "px";
+                } else {
+                    main.style.marginBottom = "0px";
+                }
+            }
+        }
+
+        window.addEventListener("load", ajustarAlturaFooter);
 window.addEventListener("resize", ajustarAlturaFooter);
 
 // Fade-in ítems footer

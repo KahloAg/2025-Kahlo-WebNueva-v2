@@ -1,16 +1,19 @@
 <?php
 $B = rtrim(BASEURL, '/');
 
-$__IS_ARG = false;
+$__IS_ESP = false;
 if (function_exists('detectar_origen')) {
     ob_start();
     $__res = detectar_origen('esp');
     ob_end_clean();
-    $__IS_ARG = ($__res === 'si');
+    $__IS_ESP = ($__res === 'si');
 }
 
-$__LOGO_SRC = $__IS_ARG ? ($B . '/img/logo-kahlo-dra.png') : ($B . '/img/logo-white.svg');
-$__LOGO_SRCSET = $__IS_ARG ? ($B . '/img/logo-kahlo-dra@2x.png 2x') : '';
+$__LOGO_SRC = $B . '/img/logo-white.svg';
+
+if ($__IS_ESP) {
+    $__LOGO_SRC = $B . '/img/logo-kahlo-dra.png';
+}
 ?>
 <style>
 .header-area .logo img.logo-img{display:block;height:44px;width:auto;max-width:100%}
@@ -21,7 +24,7 @@ $__LOGO_SRCSET = $__IS_ARG ? ($B . '/img/logo-kahlo-dra@2x.png 2x') : '';
     <div class="container">
         <div class="header-wrapper">
             <a href="<?= $B ?>/index.php" class="logo">
-                <img src="<?= htmlspecialchars($__LOGO_SRC, ENT_QUOTES, 'UTF-8') ?>" <?= $__LOGO_SRCSET ? 'srcset="'.htmlspecialchars($__LOGO_SRCSET, ENT_QUOTES, 'UTF-8').'"' : '' ?> alt="logo" decoding="async" loading="eager" class="logo-img" height="44">
+                <img src="<?= htmlspecialchars($__LOGO_SRC, ENT_QUOTES, 'UTF-8') ?>" alt="logo" decoding="async" loading="eager" class="logo-img" height="44">
             </a>
             <div class="header-right desktop-menu">
                 <nav class="nav-area">
@@ -144,9 +147,36 @@ $__LOGO_SRCSET = $__IS_ARG ? ($B . '/img/logo-kahlo-dra@2x.png 2x') : '';
     smoothTo(target, id);
     var menuToggle = document.getElementById('menuToggle');
     var mobileNav = document.getElementById('mobileNav');
-    if (menuToggle && mobileNav) { menuToggle.classList.remove('active'); mobileNav.classList.remove('open'); }
+    if (menuToggle && mobileNav) { 
+        menuToggle.classList.remove('active'); 
+        mobileNav.classList.remove('open'); 
+        document.body.classList.remove('mobile-menu-open');
+    }
     if (history.pushState) history.pushState(null, '', '#' + id);
   }
+
+  // Lógica unificada para el Toggle del Menú Móvil
+  document.addEventListener('DOMContentLoaded', function() {
+    var menuToggle = document.getElementById('menuToggle');
+    var mobileNav = document.getElementById('mobileNav');
+    if (menuToggle && mobileNav) {
+      menuToggle.addEventListener('click', function() {
+        var isOpen = mobileNav.classList.toggle('open');
+        menuToggle.classList.toggle('active');
+        document.body.classList.toggle('mobile-menu-open', isOpen);
+      });
+
+      // Asegurar que se cierre si se hace click en algún link (que no sea hash)
+      var links = mobileNav.querySelectorAll('a:not([href*="#"])');
+      links.forEach(function(link) {
+        link.addEventListener('click', function() {
+          menuToggle.classList.remove('active');
+          mobileNav.classList.remove('open');
+          document.body.classList.remove('mobile-menu-open');
+        });
+      });
+    }
+  });
 
   var links = document.querySelectorAll('.navbar-nav-1 a[href*="#"], #mobileNav a[href*="#"]');
   links.forEach(function(a) { a.addEventListener('click', handleClick); });

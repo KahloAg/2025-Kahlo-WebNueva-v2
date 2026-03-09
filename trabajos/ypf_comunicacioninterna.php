@@ -44,7 +44,7 @@
         <section class="spacer my-50">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-12 col-lg-10 offset-lg-1 text-start txt-trabajo-sub mt-7 mb-15">
+                    <div class="col-12 col-lg-10 offset-lg-1 text-start txt-trabajo-sub mt-7 mb-5">
                     <p class="text-white mb-0">EL DESAFÍO <br><br> YPF necesitaba una Comunicación Interna más estratégica: menos dispersión de mensajes entre áreas, más coherencia entre campañas y una narrativa común que construyera cultura, pertenencia y alineación con el negocio.</p>                     
                     </div>
 
@@ -59,7 +59,7 @@
                   
                     </div>
 
-                    <div class="row justify-content-center mb-15">
+                    <div class="row justify-content-center mb-5">
                         <div class="col-12 col-lg-4 txt-trabajo-sub">
                     <p class="text-white mb-0">SEGMENTAMOS <br class="d-none d-lg-block">AUDIENCIAS</p>  
                         </div>
@@ -93,7 +93,7 @@
                     <img src="../img/trabajos/ypf_comuinterna-6.jpg" class="img-fluid">
                     </div>
 
-                    <div class="col-12 col-lg-10 text-start txt-trabajo-sub mt-15 mb-15">
+                    <div class="col-12 col-lg-10 text-start txt-trabajo-sub mt-15 mb-5">
                     <p class="text-green">RESULTADOS</p>
                     <p class="text-white mb-0">Las campañas ganaron consistencia, recordación y claridad: cada área comenzó a comunicarse bajo un mismo sistema, fortaleciendo el rol de Comunicación Interna como partner estratégico del negocio. Las iniciativas clave de cultura y comunicación lograron mayor identificación, más participación y mejores indicadores de engagement interno.</p>                     
                     </div>
@@ -115,37 +115,25 @@
    
 
     <script defer src="../js/jquery.min.js"></script>
-    <script defer src="../js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="../js/waypoint.js"></script>
     <script defer src="../js/imagesloaded.pkgd.min.js"></script>
-    <script src="../js/gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script defer src="../js/smoothscroll-varticle.js"></script>
     <script src="../js/smoothscroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script defer src="../js/scrolltoplugin.js"></script>
     <script defer src="../js/splittext.js"></script>
+    <script defer src="../js/scrollmagic.js"></script>
     <script defer src="../js/counterup.js"></script>
     <script defer src="../js/waw.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
     <script defer src="../js/main.js"></script>
 
     <script>
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
-        const mobileLinks = mobileNav.querySelectorAll("a");
+        
         const header = document.querySelector("header");
-
-        menuToggle.addEventListener("click", () => {
-            menuToggle.classList.toggle("active");
-            mobileNav.classList.toggle("open");
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                menuToggle.classList.remove("active");
-                mobileNav.classList.remove("open");
-            });
-        });
-
         const mediaQuery = window.matchMedia("(max-width: 992px)");
 
         function handleScroll() {
@@ -168,8 +156,12 @@
             const footer = document.querySelector("footer.footer");
             const main = document.querySelector("main");
             if (footer && main) {
-                const footerHeight = footer.offsetHeight;
-                main.style.marginBottom = footerHeight + "px";
+                if (window.innerWidth > 991) {
+                    const footerHeight = footer.offsetHeight;
+                    main.style.marginBottom = footerHeight + "px";
+                } else {
+                    main.style.marginBottom = "0px";
+                }
             }
         }
 

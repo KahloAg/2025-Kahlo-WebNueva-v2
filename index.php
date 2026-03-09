@@ -6,9 +6,14 @@ include_once("_general.php");
 <link rel="preload" href="img/bg-home.mp4" as="video" type="video/mp4" fetchpriority="high">
 <link rel="stylesheet" href="css/index.css">
 <style>
-.footer{opacity:0;visibility:hidden;pointer-events:none}
+@media (min-width: 992px){
+  .footer{opacity:0;visibility:hidden;pointer-events:none}
+}
 #footer-sentinel{display:block;width:100%;height:1px}
 </style>
+
+
+
 
 </head>
 
@@ -29,7 +34,7 @@ include_once("_general.php");
     <?php include_once("templates/home/loading-miscelaneos.php"); ?>
 
     <script defer src="js/jquery.min.js"></script>
-    <script defer src="js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="js/waypoint.js"></script>
     <script defer src="js/imagesloaded.pkgd.min.js"></script>
     <script defer src="js/smoothscroll-varticle.js"></script>
@@ -40,6 +45,8 @@ include_once("_general.php");
     <script defer src="js/animate-scrollmagic.js"></script>
     <script defer src="js/counterup.js"></script>
     <script defer src="js/waw.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
     <script defer src="js/main.js"></script>
     <script defer src="js/metismenu.js"></script>
 
@@ -51,11 +58,7 @@ include_once("_general.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-    const menuToggle=document.getElementById("menuToggle");
-    const mobileNav=document.getElementById("mobileNav");
-    const mobileLinks=mobileNav?mobileNav.querySelectorAll("a"):[];
-    const header=document.querySelector("header");
-    if(menuToggle&&mobileNav){menuToggle.addEventListener("click",()=>{menuToggle.classList.toggle("active");mobileNav.classList.toggle("open")});mobileLinks.forEach(link=>{link.addEventListener("click",()=>{menuToggle.classList.remove("active");mobileNav.classList.remove("open")})})}
+    const header = document.querySelector("header");
     const mediaQuery=window.matchMedia("(max-width: 992px)");
     function handleScroll(){if(!header)return;if(mediaQuery.matches){if(window.scrollY>50){header.classList.add("scrolled")}else{header.classList.remove("scrolled")}}else{header.classList.remove("scrolled")}}
     window.addEventListener("scroll",handleScroll);
@@ -108,11 +111,8 @@ include_once("_general.php");
 
     window.addEventListener("hashchange",()=>ScrollTrigger.refresh(),{passive:true});
 
-    const footerEl=document.querySelector("footer.footer");
-    if(window.ResizeObserver&&footerEl){
-      const ro=new ResizeObserver(()=>{ajustarAlturaFooter()});
-      ro.observe(footerEl);
-    }
+    function myToggleFunction(id){const slides=id===1?["slide1","slide2"]:id===2?["slide3","slide4"]:id===3?["slide5","slide6"]:id===4?["slide7","slide8"]:id===5?["slide9","slide10"]:[];slides.forEach(sId=>{const el=document.getElementById(sId);if(el)el.style.animationPlayState="paused"})}
+    function myToggleFunctionOff(id){const slides=id===1?["slide1","slide2"]:id===2?["slide3","slide4"]:id===3?["slide5","slide6"]:id===4?["slide7","slide8"]:id===5?["slide9","slide10"]:[];slides.forEach(sId=>{const el=document.getElementById(sId);if(el)el.style.animationPlayState="running"})}
     </script>
 
     <script src="api/cards_images_feed.php"></script>

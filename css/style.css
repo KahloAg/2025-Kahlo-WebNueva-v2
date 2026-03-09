@@ -33023,12 +33023,12 @@ body.servi-ce-details .rts-footer-two-area {
   overflow: hidden;
   background: black;
   transition: height 0.4s ease-in-out;
-  z-index: 99997;
+  z-index: 99998; /* Un punto menos que el header */
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: saturate(180%) blur(20px);
-  background: rgba(22, 22, 23, .8);
+  background: rgba(22, 22, 23, .98); /* Más opaco para mejor contraste */
   /* Fondo para que se vea siempre */
 }
 
@@ -33078,6 +33078,13 @@ body.servi-ce-details .rts-footer-two-area {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     /* Fondo para que se vea siempre */
     z-index: 99999 !important;
+  }
+
+  /* Forzar transparencia total cuando el menú móvil está abierto */
+  body.mobile-menu-open .header-area {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
 
   .header-area.scrolled {

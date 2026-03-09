@@ -14,22 +14,38 @@ $__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
 ?>
 <style>
 .footer .footer-logo{display:block;width:auto;max-width:100%}
-.footer .footer-logo--wide{height:auto!important;width:88vw!important;max-width:none;margin-left:auto;margin-right:auto;transform:translateX(-3vw)}
+.footer .footer-logo--wide{height:auto!important;width:88vw!important;max-width:100%;margin-left:auto;margin-right:auto}
 @media (max-width:991px){
-  .footer .footer-logo--wide{width:94vw!important;transform:translateX(-2vw)}
+  .footer .footer-logo--wide{width:94vw!important;max-width:100%}
 }
 .footer .madrid-wrap{position:relative;display:inline-block;text-align:right}
 .footer .madrid-badge{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:12px;width:62px;height:auto;z-index:2;cursor:pointer}
 @media (max-width:991px){
-  .footer .madrid-badge{width:49px;margin-left:8px;top:0;transform:none}
-  .footer .madrid-wrap{padding-right:54px}
+  .footer .madrid-wrap{padding-right:64px}
+  .footer .madrid-badge{
+    width:49px;
+    left:auto;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    margin-left:0;
+  }
+}
+.pt-lg-120 { padding-top: 120px; }
+@media (max-width: 991px) {
+    .pt-lg-120 { padding-top: 60px; }
+}
+.footer .rts-btn.btn-white {
+    padding-left: 20px; /* Adjust to align text with links */
+    padding-right: 20px;
+    width: fit-content;
 }
 </style>
 
 <footer class="footer relative-mob" id="footer">
     <div class="footer-container">
-        <div class="container py-5">
-            <div class="row align-items-end gx-5 pt-5">
+        <div class="container pt-lg-120 pb-5">
+            <div class="row align-items-start gx-5 pt-0">
                 <div class="col-12 col-sm-4 col-md-3 mb-5 mb-sm-0">
                     <p class="mb-0 fade-item">
                         <a href="https://api.whatsapp.com/send?phone=541132905198&text=Hola!%20Me%20gustar%C3%ADa%20averiguar..." target="_blank" class="d-flex align-items-center justify-content-between rts-btn btn-radious btn-white text-black">

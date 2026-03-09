@@ -58,7 +58,7 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
                     <img src="../img/trabajos/santander_diversidad-3.jpg" class="img-fluid">
                 </div>
 
-                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-15">
+                <div class="col-12 col-lg-10 offset-lg-1 text-center mt-15 mb-5">
                 <p class="text-white txt-trabajo-20 mb-0">Nos propusimos desafiar nuestros propios prejuicios y crear una campaña que ponga a prueba la forma en que vemos a los demás. Un mensaje que muestra que la verdadera inclusión empieza cuando dejamos de asumir, y empezamos a mirar con igualdad.</p>
                 </div>
             </div>
@@ -75,34 +75,24 @@ $PAGE_TITLE = "Kahlo Agencia - Santander";
 
 
 <script defer src="../js/jquery.min.js"></script>
-<script defer src="../js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script defer src="../js/waypoint.js"></script>
 <script defer src="../js/imagesloaded.pkgd.min.js"></script>
-<script src="../js/gsap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script defer src="../js/smoothscroll-varticle.js"></script>
 <script src="../js/smoothscroll.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script defer src="../js/scrolltoplugin.js"></script>
 <script defer src="../js/splittext.js"></script>
+    <script defer src="../js/scrollmagic.js"></script>
 <script defer src="../js/counterup.js"></script>
 <script defer src="../js/waw.js"></script>
-<script defer src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script defer src="../js/main.js"></script>
 
 <script>
-const menuToggle=document.getElementById("menuToggle");
-const mobileNav=document.getElementById("mobileNav");
-const mobileLinks=mobileNav?mobileNav.querySelectorAll("a"):[];
-const header=document.querySelector("header");
-if(menuToggle&&mobileNav){menuToggle.addEventListener("click",()=>{menuToggle.classList.toggle("active");mobileNav.classList.toggle("open")});mobileLinks.forEach(link=>{link.addEventListener("click",()=>{menuToggle.classList.remove("active");mobileNav.classList.remove("open")})})}
-const mediaQuery=window.matchMedia("(max-width: 992px)");
-function handleScroll(){if(!header)return;if(mediaQuery.matches){if(window.scrollY>50){header.classList.add("scrolled")}else{header.classList.remove("scrolled")}}else{header.classList.remove("scrolled")}}
-window.addEventListener("scroll",handleScroll);
-window.addEventListener("resize",handleScroll);
-handleScroll();
-function ajustarAlturaFooter(){const footer=document.querySelector("footer.footer");const main=document.querySelector("main");if(footer&&main){const footerHeight=footer.offsetHeight;main.style.marginBottom=footerHeight+"px"}}
-window.addEventListener("load",ajustarAlturaFooter);
-window.addEventListener("resize",ajustarAlturaFooter);
-document.addEventListener("DOMContentLoaded",()=>{const items=document.querySelectorAll("footer .fade-item");const observer=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){entry.target.classList.add("visible")}})},{root:null,threshold:0.1});items.forEach((item)=>observer.observe(item))});
+items.forEach((item)=>observer.observe(item))});
 </script>
 </body>
 </html>

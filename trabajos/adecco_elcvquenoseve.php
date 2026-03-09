@@ -96,37 +96,25 @@ Deportistas, gamers y más pueden elegir su actividad y especialización, y el s
    
 
     <script defer src="../js/jquery.min.js"></script>
-    <script defer src="../js/bootstrap.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="../js/waypoint.js"></script>
     <script defer src="../js/imagesloaded.pkgd.min.js"></script>
-    <script src="../js/gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script defer src="../js/smoothscroll-varticle.js"></script>
     <script src="../js/smoothscroll.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script defer src="../js/scrolltoplugin.js"></script>
     <script defer src="../js/splittext.js"></script>
+    <script defer src="../js/scrollmagic.js"></script>
     <script defer src="../js/counterup.js"></script>
     <script defer src="../js/waw.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
     <script defer src="../js/main.js"></script>
 
     <script>
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
-        const mobileLinks = mobileNav.querySelectorAll("a");
+        
         const header = document.querySelector("header");
-
-        menuToggle.addEventListener("click", () => {
-            menuToggle.classList.toggle("active");
-            mobileNav.classList.toggle("open");
-        });
-
-        mobileLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                menuToggle.classList.remove("active");
-                mobileNav.classList.remove("open");
-            });
-        });
-
         const mediaQuery = window.matchMedia("(max-width: 992px)");
 
         function handleScroll() {
@@ -149,8 +137,12 @@ Deportistas, gamers y más pueden elegir su actividad y especialización, y el s
             const footer = document.querySelector("footer.footer");
             const main = document.querySelector("main");
             if (footer && main) {
-                const footerHeight = footer.offsetHeight;
-                main.style.marginBottom = footerHeight + "px";
+                if (window.innerWidth > 991) {
+                    const footerHeight = footer.offsetHeight;
+                    main.style.marginBottom = footerHeight + "px";
+                } else {
+                    main.style.marginBottom = "0px";
+                }
             }
         }
 

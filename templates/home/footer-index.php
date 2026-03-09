@@ -14,15 +14,22 @@ $__FOOTER_LOGO_CLASS = 'footer-logo footer-logo--wide';
 ?>
 <style>
 .footer .footer-logo{display:block;width:auto;max-width:100%}
-.footer .footer-logo--wide{height:auto!important;width:88vw!important;max-width:none;margin-left:auto;margin-right:auto;transform:translateX(-3vw)}
+.footer .footer-logo--wide{height:auto!important;width:88vw!important;max-width:100%;margin-left:auto;margin-right:auto}
 @media (max-width:991px){
-  .footer .footer-logo--wide{width:94vw!important;transform:translateX(-2vw)}
+  .footer .footer-logo--wide{width:94vw!important;max-width:100%}
 }
 .footer .madrid-wrap{position:relative;display:inline-block;text-align:right}
 .footer .madrid-badge{position:absolute;left:100%;top:50%;transform:translateY(-50%);margin-left:12px;width:62px;height:auto;z-index:2;cursor:pointer}
 @media (max-width:991px){
-  .footer .madrid-badge{width:49px;margin-left:8px;top:0;transform:none}
-  .footer .madrid-wrap{padding-right:54px}
+  .footer .madrid-wrap{padding-right:64px}
+  .footer .madrid-badge{
+    width:49px;
+    left:auto;
+    right:0;
+    top:50%;
+    transform:translateY(-50%);
+    margin-left:0;
+  }
 }
 </style>
 
