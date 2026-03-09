@@ -32701,6 +32701,11 @@ body.servi-ce-details .rts-footer-two-area {
     line-height: 3.6rem;
   }
 
+  .txt-trabajo-sub  {
+    font-size: 2.1rem;
+    line-height: 3.6rem;
+  }
+
   h1 {
     font-size: 62px;
     line-height: 77px;
@@ -32747,6 +32752,11 @@ body.servi-ce-details .rts-footer-two-area {
   }
 
   .txt-trabajo-sub p {
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+  }
+
+  .txt-trabajo-sub  {
     font-size: 1.8rem;
     line-height: 3.2rem;
   }
