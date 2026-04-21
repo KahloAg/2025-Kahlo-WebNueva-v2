@@ -22686,6 +22686,33 @@ a.underline:hover {
   line-height: 43px;
 }
 
+.case-nav-section {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 72vh;
+  padding: 4.5rem 0 7rem;
+}
+
+.case-nav-container {
+  width: 100%;
+}
+
+.case-nav-row {
+  row-gap: 2.5rem;
+}
+
+.case-nav-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.case-nav-copy {
+  gap: 0.75rem;
+}
+
 .text-black {
   color: #000000
 }
@@ -32730,6 +32757,15 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 992px) {
+  .case-nav-section {
+    min-height: auto;
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .case-nav-row {
+    row-gap: 2rem;
+  }
+
   .team-title-4 .title {
     font-size: 55px;
     line-height: 76px;
@@ -32845,6 +32881,10 @@ body.servi-ce-details .rts-footer-two-area {
 }
 
 @media (max-width: 576px) {
+  .case-nav-section {
+    padding: 2.5rem 0 3rem;
+  }
+
   .embed-container.hmob-video {
     padding-bottom: 120%;
   }

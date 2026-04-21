@@ -100,10 +100,10 @@ $next_logo  = $next ? k_logo($next['page_logo_overlay'] ?? '', $B) : '';
 $next_href  = $next ? k_href($next['page_url'] ?? '#', $B) : '#';
 $next_name  = $next['page_name'] ?? '';
 ?>
-<section class="bg-white h-mob-auto d-flex align-items-center position-relative" style="z-index: 2;">
-    <div class="container h-100 h-mob-auto pt-5 pb-0 my-5 my-sm-0">
-        <div class="row justify-content-sm-between justify-content-center align-items-center h-100">
-            <div class="col-md-5 col-sm-6 col-6">
+<section class="case-nav-section bg-white h-mob-auto">
+    <div class="container case-nav-container h-100 h-mob-auto">
+        <div class="row case-nav-row justify-content-sm-between justify-content-center align-items-center h-100">
+            <div class="col-md-5 col-sm-6 col-6 case-nav-item">
                 <div class="single-case-main-wrapper hidden-xs">
                     <a href="<?= htmlspecialchars($prev_href) ?>" class="pli-image-link">
                         <div class="pli-image-holder">
@@ -124,7 +124,7 @@ $next_name  = $next['page_name'] ?? '';
                         </div>
                     </a>
                 </div>
-                <div class="d-flex flex-column text-start">
+                <div class="d-flex flex-column text-start case-nav-copy">
                     <p class="txt-next mb-4 text-black">
                         <a class="underline" href="<?= htmlspecialchars($prev_href) ?>">
                             <img src="<?= $B ?>/img/arrow-left-black.svg" class="me-4" style="height: 25px;">VER
@@ -135,7 +135,7 @@ $next_name  = $next['page_name'] ?? '';
                 </div>
             </div>
 
-            <div class="col-md-5 col-sm-6 col-6">
+            <div class="col-md-5 col-sm-6 col-6 case-nav-item">
                 <div class="single-case-main-wrapper hidden-xs">
                     <a href="<?= htmlspecialchars($next_href) ?>" class="pli-image-link">
                         <div class="pli-image-holder">
@@ -156,7 +156,7 @@ $next_name  = $next['page_name'] ?? '';
                         </div>
                     </a>
                 </div>
-                <div class="d-flex flex-column text-md-end">
+                <div class="d-flex flex-column text-md-end case-nav-copy">
                     <p class="txt-next mb-4 text-black">
                         <a href="<?= htmlspecialchars($next_href) ?>" class="underline">
                             <img src="<?= $B ?>/img/arrow-right-black.svg" class="me-4" style="height: 25px;">VER
