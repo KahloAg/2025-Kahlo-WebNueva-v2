@@ -271,6 +271,9 @@ if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
   var footerStarted=false;
   var logosStarted=false;
   var flowStarted=false;
+  var projectsLoading=false;
+  var PROJECT_FETCH_MAX_ATTEMPTS=4;
+  var PROJECT_FETCH_RETRY_DELAY=5000;
 
   function joinClean(){
     var out='',i=0;
@@ -324,7 +327,7 @@ if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
     $ov.removeClass('error');
     var html='';
     if(state==='loading'){
-      html='<div class="spinner" aria-label="cargando"></div><div class="msg">Cargando trabajos…</div>';
+      html=msgHtml||'<div class="spinner" aria-label="cargando"></div><div class="msg">Cargando trabajos…</div>';
     }else if(state==='error'){
       $ov.addClass('error');
       html=msgHtml||'<div class="msg">No pudimos cargar los proyectos</div><button class="retry">Reintentar</button>';
@@ -343,23 +346,7 @@ if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
   }
 
   function explainAjaxError(cfg,xhr,status,err){
-    var reason='';
-    if(status==='timeout') reason='Timeout de la petición';
-    else if(status==='parsererror') reason='La respuesta no es JSON válido';
-    else if(xhr&&xhr.status===0) reason='Sin respuesta. Ruta inválida o CORS';
-    else reason=(xhr&&xhr.status?xhr.status+' '+(xhr.statusText||''):status||'Error desconocido');
-    var body=previewText(xhr&&xhr.responseText,380);
-    var html='<div class="msg" style="text-align:left;max-width:520px">'+
-      '<strong>No pudimos cargar los proyectos</strong><br><small>Diagnóstico visible</small><hr style="opacity:.25">'+
-      '<div><b>Base:</b> '+cfg.base+'</div>'+
-      '<div><b>API:</b> '+cfg.api+'</div>'+
-      '<div><b>Estado:</b> '+reason+'</div>'+
-      '<div><b>jQuery status:</b> '+(status||'-')+'</div>'+
-      (err?('<div><b>Error:</b> '+err+'</div>'):'')+
-      (body?('<div style="margin-top:8px"><b>Respuesta:</b><pre style="white-space:pre-wrap;max-height:180px;overflow:auto;margin:6px 0 0">'+$('<div>').text(body).html()+'</pre></div>'):'')+
-      '<div style="margin-top:10px"><button class="retry">Reintentar</button></div>'+
-    '</div>';
-    return html;
+    return '<div class="msg"><strong>Error al cargar los proyectos</strong><div style="margin-top:10px"><button class="retry">Reintentar</button></div></div>';
   }
 
   function kAsset(base,file,subdir){
@@ -473,14 +460,19 @@ if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
     if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
   }
 
-  function fetchProjectsOnce(){
+  function fetchProjectsOnce(options){
+    options=options||{};
     return new Promise(function(resolve){
       var cfg=resolveCfg();
       if(!cfg.$zone.length){
         resolve(false);
         return;
       }
-      overlay(cfg.$zone,'loading');
+      var loadingMsg='Cargando trabajos…';
+      if(options.maxAttempts>1){
+        loadingMsg='Cargando trabajos… intento '+options.attempt+' de '+options.maxAttempts;
+      }
+      overlay(cfg.$zone,'loading','<div class="spinner" aria-label="cargando"></div><div class="msg">'+loadingMsg+'</div>');
       $.ajax({url:cfg.api,dataType:'json',cache:true,timeout:15000})
       .done(function(resp){
         var list=[];
@@ -490,11 +482,38 @@ if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
         resolve(true);
       })
       .fail(function(xhr,status,err){
-        var html=explainAjaxError(cfg,xhr,status,err);
-        overlay(cfg.$zone,'error',html);
+        if(!options.silentError){
+          var html=explainAjaxError(cfg,xhr,status,err);
+          overlay(cfg.$zone,'error',html);
+        }
         resolve(false);
       });
     });
+  }
+
+  async function fetchProjectsWithRetry(){
+    if(projectsLoading)return false;
+    projectsLoading=true;
+    for(var attempt=1;attempt<=PROJECT_FETCH_MAX_ATTEMPTS;attempt++){
+      console.log('[trabajos] Intento '+attempt+' de '+PROJECT_FETCH_MAX_ATTEMPTS+' para cargar proyectos.');
+      var ok=await fetchProjectsOnce({
+        attempt:attempt,
+        maxAttempts:PROJECT_FETCH_MAX_ATTEMPTS,
+        silentError:attempt<PROJECT_FETCH_MAX_ATTEMPTS
+      });
+      if(ok){
+        console.log('[trabajos] Proyectos cargados correctamente en el intento '+attempt+'.');
+        projectsLoading=false;
+        return true;
+      }
+      if(attempt<PROJECT_FETCH_MAX_ATTEMPTS){
+        console.warn('[trabajos] Falló el intento '+attempt+'. Reintentando en '+(PROJECT_FETCH_RETRY_DELAY/1000)+' segundos.');
+        await wait(PROJECT_FETCH_RETRY_DELAY);
+      }
+    }
+    console.error('[trabajos] No se pudieron cargar los proyectos después de '+PROJECT_FETCH_MAX_ATTEMPTS+' intentos.');
+    projectsLoading=false;
+    return false;
   }
 
   function initLogosSection(){
@@ -515,13 +534,13 @@ if(window.gsap&&window.ScrollTrigger&&cardsWrappers.length&&tarjetas.length){
 
   $(document).on('click','#trabajos .trabajos-overlay .retry',function(e){
     e.preventDefault();
-    runHomeFlow();
+    fetchProjectsWithRetry();
   });
 
   async function runHomeFlow(){
     if(flowStarted)return;
     flowStarted=true;
-    var ok=await fetchProjectsOnce();
+    var ok=await fetchProjectsWithRetry();
     if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh();},0);}
     await wait(400);
     initLogosSection();
